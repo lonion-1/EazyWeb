@@ -1,6 +1,7 @@
-! Title: Benteng Pertahanan Dimensi Isekai
+! Title: EazyWhale Isekai Wall
 ! Maintainer: EazyWhale
-! Version: 2026.11.17.1826
+! Expires: 1 hours
+! Version: 2026.11.17.1910
 ! Total Rules: 44
 ! --------------------------------------------------
 
