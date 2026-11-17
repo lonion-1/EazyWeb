@@ -47,8 +47,9 @@ jobs:
 
           waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
           header = [
-              "! Title: Benteng Pertahanan Dimensi Isekai",
+              "! Title: EazyWhale Isekai Wall",
               "! Maintainer: EazyWhale",
+              "! Expires: 1 hours",
               f"! Version: {waktu}",
               f"! Total Rules: {len(aturan)}",
               "! --------------------------------------------------",
