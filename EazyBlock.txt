@@ -1,18 +1,21 @@
 ! Title: Benteng Pertahanan Dimensi Isekai
 ! Maintainer: EazyWhale
-! Version: 2026.11.17.1556
-! Total Rules: 34
+! Version: 2026.11.17.1826
+! Total Rules: 44
 ! --------------------------------------------------
 
 ||388heroky.cc^$document
 ||3keysbrewing.com^$document
 ||7kucingqy.vip^$document
+||a1togelslot.com^$document
 ||analytical.pl^$document
 ||bandarxlny.cc^$document
 ||bestkaiko.site^$document
 ||bisnis4dhk.cc^$document
 ||bm-88.net^$document
+||boardgamearena.com^$document
 ||citibt88.com.im^$document
+||coinpoker1.com^$document
 ||emas5000.biz^$document
 ||emas5000zr.site^$document
 ||enakslotmw.cc^$document
@@ -21,12 +24,15 @@
 ||fifthframe.co^$document
 ||foresthillsmha.com^$document
 ||gacototoxy.com^$document
+||ggpoker.com^$document
 ||goid.space^$document
 ||goratu.site^$document
+||haarstudioimagevanalebeek.com^$document
 ||hs-scripts.com^$document
 ||indo1.sbs^$document
 ||jackpotdewa.cc^$document
 ||joglototomax.com^$document
+||jotform.com^$document
 ||judi3.sbs^$document
 ||judi88.co^$document
 ||kaya303sukses.us^$document
@@ -36,15 +42,9 @@
 ||madamebresil.com^$document
 ||namcdfw.org^$document
 ||pentaslot.llc^$document
-||qqsawersor.site^$document
-||usemessages.com^$document
-||haarstudioimagevanalebeek.com^$document
-||boardgamearena.com^$document
-||rakeback.com^$document
-||coinpoker1.com^$document
 ||playwsop.com^$document
-||a1togelslot.com^$document
-||ggpoker.com^$document
-||yourpokerdream.com^$document
+||qqsawersor.site^$document
+||rakeback.com^$document
 ||triplehtacklingacademy.com^$document
-||jotform.com^$document
+||usemessages.com^$document
+||yourpokerdream.com^$document
