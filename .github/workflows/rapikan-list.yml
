@@ -43,7 +43,7 @@ jobs:
 
           waktu = datetime.datetime.utcnow().strftime("%Y.%m.%d.%H%M")
           header = [
-              "! Title: Benteng Pertahanan Dimensi Isekai (easyBlock)",
+              "! Title: Eazy-Whale-Blocklist",
               "! Maintainer: EazyWhale",
               f"! Version: {waktu}",
               f"! Total Rules: {len(aturan)}",
