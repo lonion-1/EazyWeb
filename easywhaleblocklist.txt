@@ -3,7 +3,7 @@
 ! Situs Judi
 ! ==========================================
 ||ero-labs.com^$document
-||web-03.citibt88.com.im^$document
+||citibt88.com.im^$document
 ||namcdfw.org^$document
 ||fifthframe.co^$document
 ||3keysbrewing.com^$document
@@ -12,11 +12,11 @@
 ||analytical.pl^$document
 ||foresthillsmha.com^$document
 ||kinfolksbbqsmyrna.com^$document
-||klik.top^
-||klik.best^
-||goratu.site^
-||js.hs-scripts.com^
-||js.usemessages.com^
+||klik.top^$document
+||klik.best^$document
+||goratu.site^$document
+||hs-scripts.com^$document
+||usemessages.com^$document
 ||fifthframe.co^$document
 ||madamebresil.com^$document
 ||pentaslot.llc^$document
@@ -27,7 +27,7 @@
 ||bandarxlny.cc^$document
 ||bisnis4dhk.cc^$document
 ||gacototoxy.com^$document
-||11.bestkaiko.site^$document
+||bestkaiko.site^$document
 ||judi3.sbs^$document
 ||qqsawersor.site^$document
 ||indo1.sbs^$document
