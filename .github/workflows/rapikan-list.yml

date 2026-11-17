@@ -1,3 +1,21 @@
+name: Rapikan Benteng Pertahanan Isekai
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'EazyBlock.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  bersih-bersih:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil isi repo
+        uses: actions/checkout@v4
+
       - name: Bersihkan spasi, duplikat, & urutkan
         run: |
           python3 -c '
@@ -13,8 +31,8 @@
               b = b.strip()
               if not b or b.startswith(("!", "#", "[")):
                   continue
-              # Biarkan aturan khusus apa adanya
-              if b.startswith(("@@", "/", "|")) or "##" in b or "#@#" in b or "#?#" in b:
+              # Biarkan aturan khusus apa adanya (tanpa menangkap ||)
+              if b.startswith(("@@", "/", "|http")) or "##" in b or "#@#" in b or "#?#" in b:
                   aturan.add(b)
                   continue
               # Domain biasa: hapus spasi, huruf kecil
