@@ -1,47 +1,40 @@
 ! Title: Benteng Pertahanan Dimensi Isekai
-! Description: Daftar blokir pribadi anti dimensi lain
-! Version: 2026.11.17
-! Last modified: 17 Nov 2026
+! Maintainer: EazyWhale
+! Version: 2026.11.17.1556
+! Total Rules: 34
+! --------------------------------------------------
 
-! =========================================
-! Situs Judi
-! ==========================================
-||ero-labs.com^$document
-||citibt88.com.im^$document
-||namcdfw.org^$document
-||fifthframe.co^$document
+||388heroky.cc^$document
 ||3keysbrewing.com^$document
-||judi88.co^$document
-||kinfolksbbqsmyrna.com^$document
+||7kucingqy.vip^$document
 ||analytical.pl^$document
+||bandarxlny.cc^$document
+||bestkaiko.site^$document
+||bisnis4dhk.cc^$document
+||bm-88.net^$document
+||citibt88.com.im^$document
+||emas5000.biz^$document
+||emas5000zr.site^$document
+||enakslotmw.cc^$document
+||ero-labs.com^$document
+||exobounty.com^$document
+||fifthframe.co^$document
 ||foresthillsmha.com^$document
-||kinfolksbbqsmyrna.com^$document
-||klik.top^$document
-||klik.best^$document
+||gacototoxy.com^$document
+||goid.space^$document
 ||goratu.site^$document
 ||hs-scripts.com^$document
-||usemessages.com^$document
-||fifthframe.co^$document
-||madamebresil.com^$document
-||pentaslot.llc^$document
-||kaya303sukses.us^$document
-||joglototomax.com^$document
-||388heroky.cc^$document
-||emas5000zr.site^$document
-||bandarxlny.cc^$document
-||bisnis4dhk.cc^$document
-||gacototoxy.com^$document
-||bestkaiko.site^$document
-||judi3.sbs^$document
-||qqsawersor.site^$document
 ||indo1.sbs^$document
-||goid.space^$document
-||emas5000.biz^$document
-||bandarxlny.cc^$document
-||enakslotmw.cc^$document
-||bm-88.net^$document
 ||jackpotdewa.cc^$document
+||joglototomax.com^$document
+||judi3.sbs^$document
+||judi88.co^$document
+||kaya303sukses.us^$document
+||kinfolksbbqsmyrna.com^$document
+||klik.best^$document
+||klik.top^$document
+||madamebresil.com^$document
+||namcdfw.org^$document
+||pentaslot.llc^$document
 ||qqsawersor.site^$document
-||7kucingqy.vip^$document
-||exobounty.com^$document
-
+||usemessages.com^$document
