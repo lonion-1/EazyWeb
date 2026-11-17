@@ -1,35 +1,45 @@
-name: Rapikan Benteng Pertahanan Isekai
+  - name: Bersihkan spasi, duplikat, & urutkan
+    run: |
+      python3 -c '
+      import datetime, re
 
-on:
-  push:
-    branches: [ main, master ]
-    paths:
-      - 'EazyBlock.txt'
-  workflow_dispatch:
+      file_target = "EazyBlock.txt"
 
-permissions:
-  contents: write
+      with open(file_target, "r", encoding="utf-8") as f:
+          baris = f.readlines()
 
-concurrency:
-  group: rapikan-list
-  cancel-in-progress: false
+      aturan = set()
+      for b in baris:
+          b = b.strip()
+          if not b or b.startswith(("!", "#", "[")):
+              continue
+          if b.startswith(("@@", "/", "|http")) or "##" in b or "#@#" in b or "#?#" in b:
+              aturan.add(b)
+              continue
+          b = re.sub(r"\s+", "", b).lower()
+          if not b.startswith("||"):
+              b = "||" + b
+          if "$" not in b and not b.endswith("^"):
+              b += "^"
+          aturan.add(b)
 
-jobs:
-  bersih-bersih:
-    runs-on: ubuntu-latest
-    # Hindari loop jika suatu saat pakai PAT
-    if: github.actor != 'github-actions[bot]'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
+      waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
+      header = [
+          "! Title: Benteng Pertahanan Dimensi Isekai",
+          "! Maintainer: EazyWhale",
+          f"! Version: {waktu}",
+          f"! Total Rules: {len(aturan)}",
+          "! --------------------------------------------------",
+          ""
+      ]
 
-      - name: Bersihkan spasi, duplikat, & urutkan
-        run: python3 .github/scripts/rapikan.py
+      with open(file_target, "w", encoding="utf-8") as f:
+          f.write("\n".join(header + sorted(aturan)) + "\n")
+      '
 
-      - name: Simpan hasil rapi
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add EazyBlock.txt
-          git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git pull --rebase && git push)
+  - name: Simpan hasil rapi ke GitHub
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      git add EazyBlock.txt
+      git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git push)
