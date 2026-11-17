@@ -3,10 +3,8 @@ name: Rapikan Benteng Pertahanan Isekai
 on:
   push:
     branches: [ main, master ]
-    paths:
-      - 'EazyBlock.txt'
+    paths: 'EazyBlock.txt'
   workflow_dispatch: # <-- Memunculkan tombol "Run workflow" manual di tab Actions
-  cron: '0 0 * * *' # Update otomatis setiap hari jam 00:00 UTC
 
 permissions:
   contents: write
