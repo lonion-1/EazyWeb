@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
     paths:
-      - 'eazywhaleblocklist.txt'
+      - 'easywhaleblocklist.txt'
 
 permissions:
   contents: write
@@ -21,7 +21,7 @@ jobs:
           python3 -c '
           import datetime
 
-          file_target = "eazywhaleblocklist.txt"
+          file_target = "easywhaleblocklist.txt"
 
           with open(file_target, "r", encoding="utf-8") as f:
               baris = f.readlines()
@@ -61,5 +61,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "EazyWhale Bot"
-          git add eazywhaleblocklist.txt
+          git add easywhaleblocklist.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git push)
