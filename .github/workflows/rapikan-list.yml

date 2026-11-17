@@ -1,27 +1,9 @@
-name: Rapikan Benteng Pertahanan Isekai
-
-on:
-  push:
-    branches: [ main, master ]
-    paths:
-      - 'easywhaleblocklist.txt'
-
-permissions:
-  contents: write
-
-jobs:
-  bersih-bersih:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ambil isi repo
-        uses: actions/checkout@v4
-
       - name: Bersihkan spasi, duplikat, & urutkan
         run: |
           python3 -c '
-          import datetime
+          import datetime, re
 
-          file_target = "easywhaleblocklist.txt"
+          file_target = "EazyBlock.txt"
 
           with open(file_target, "r", encoding="utf-8") as f:
               baris = f.readlines()
@@ -29,21 +11,23 @@ jobs:
           aturan = set()
           for b in baris:
               b = b.strip()
-              # Lewati baris kosong atau komentar
-              if not b or b.startswith(("!", "#")):
+              if not b or b.startswith(("!", "#", "[")):
                   continue
-              # Hapus semua spasi nakal dan ubah ke huruf kecil
-              b = b.replace(" ", "").lower()
-              # Pastikan diawali || dan diakhiri ^ jika berupa domain biasa
-              if not b.startswith(("||", "@@", "/")):
+              # Biarkan aturan khusus apa adanya
+              if b.startswith(("@@", "/", "|")) or "##" in b or "#@#" in b or "#?#" in b:
+                  aturan.add(b)
+                  continue
+              # Domain biasa: hapus spasi, huruf kecil
+              b = re.sub(r"\s+", "", b).lower()
+              if not b.startswith("||"):
                   b = "||" + b
-              if b.startswith("||") and not b.endswith("^") and "$" not in b:
-                  b = b + "^"
+              if "$" not in b and not b.endswith("^"):
+                  b += "^"
               aturan.add(b)
 
-          waktu = datetime.datetime.utcnow().strftime("%Y.%m.%d.%H%M")
+          waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
           header = [
-              "! Title: Eazy-Whale-Blocklist",
+              "! Title: Benteng Pertahanan Dimensi Isekai",
               "! Maintainer: EazyWhale",
               f"! Version: {waktu}",
               f"! Total Rules: {len(aturan)}",
@@ -51,15 +35,13 @@ jobs:
               ""
           ]
 
-          hasil = header + sorted(aturan)
-
           with open(file_target, "w", encoding="utf-8") as f:
-              f.write("\n".join(hasil) + "\n")
+              f.write("\n".join(header + sorted(aturan)) + "\n")
           '
 
       - name: Simpan hasil rapi ke GitHub
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "EazyWhale Bot"
-          git add easywhaleblocklist.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git push)
+          git config user.email "action@github.com"
+          git config user.name "EazyWhale Bot"
+          git add EazyBlock.txt
+          git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git push)
