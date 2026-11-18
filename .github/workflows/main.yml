@@ -6,6 +6,8 @@ on:
   push:
     branches: [ main, master ]
     paths: 'EazyBlock.txt'
+  schedule:
+    - cron: '0 2 * * 0' # Cek redundansi mingguan setiap Minggu jam 02:00 UTC
   workflow_dispatch: # <-- Memunculkan tombol "Run workflow" manual di tab Actions
 
 permissions:
@@ -22,30 +24,125 @@ jobs:
       - name: Ambil isi repo
         uses: actions/checkout@v4
 
-      - name: Bersihkan spasi, duplikat, & urutkan
+      - name: Bersihkan spasi, buang yang sudah ada di list global, & urutkan
         run: |
-          python3 -c '
-          import datetime, re
+          python3 - <<'PY'
+          import datetime, re, sys, time, urllib.request
+          from pathlib import Path
 
-          file_target = "EazyBlock.txt"
+          FILE_TARGET = Path("EazyBlock.txt")  # ← ganti ini ke file tujuan.
 
-          with open(file_target, "r", encoding="utf-8") as f:
-              baris = f.readlines()
+          # Daftar luar yang diintip untuk menghapus redundansi.
+          # PENTING: Jangan masukkan URL WhaleList (EazyLife-IsekaiWall.txt) ke sini agar tidak loop!
+          UPSTREAM_SOURCES = [
+              ("HaGeZi Gambling", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/gambling.txt"),  # ← isi url ini dengan url yang aku berikan
+              ("HaGeZi Pro", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt"),  # ← isi url ini dengan url yang aku berikan
+              ("ABPindo", "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"),  # ← isi url ini dengan url yang aku berikan
+          ]
 
-          aturan = set()
+          OPSI_AMAN = {"third-party", "3p", "important", "all", "popup"}
+          RE_DOMAIN = re.compile(r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:xn--[a-z0-9-]{1,59}|[a-z]{2,63})$")
+          RE_ABP = re.compile(r"^\|\|([a-z0-9.-]+)\^(?:\$([a-z0-9,~=-]+))?$")
+          RE_HOSTS = re.compile(r"^(?:0\.0\.0\.0|127\.0\.0\.1|::1?)\s+([^\s#]+)")
+
+          def parse_upstream_line(s):
+              if s.startswith("||"):
+                  m = RE_ABP.match(s)
+                  if not m:
+                      return None
+                  if m.group(2) and not set(m.group(2).split(",")) <= OPSI_AMAN:
+                      return None
+                  d = m.group(1)
+              elif s.startswith(("0.0.0.0", "127.0.0.1", "::")):
+                  m = RE_HOSTS.match(s)
+                  d = m.group(1) if m else None
+              else:
+                  d = s
+              return d if d and RE_DOMAIN.match(d) else None
+
+          def fetch_upstream(url, tries=3):
+              for i in range(tries):
+                  try:
+                      req = urllib.request.Request(url, headers={"User-Agent": "IsekaiWall-Cleaner/1.0"})
+                      with urllib.request.urlopen(req, timeout=60) as r:
+                          return r.read().decode("utf-8", errors="ignore").splitlines()
+                  except Exception as e:
+                      print(f"  percobaan {i + 1}/{tries} gagal: {e}")
+                      time.sleep(3 * (i + 1))
+              return None
+
+          # 1. Kumpulkan domain dari sumber luar untuk perbandingan
+          upstream_domains = set()
+          for nama, url in UPSTREAM_SOURCES:
+              print(f"Mengintip sumber luar: {nama}")
+              baris_luar = fetch_upstream(url)
+              if baris_luar is None:
+                  print(f"  LEWATI {nama} (gagal diambil, data lokal tetap aman)")
+                  continue
+              sebelum = len(upstream_domains)
+              for b in baris_luar:
+                  s = b.strip().lower()
+                  if not s or s[0] in "!#[" or s.startswith("@@"):
+                      continue
+                  d = parse_upstream_line(s)
+                  if d:
+                      upstream_domains.add(d)
+              print(f"  +{len(upstream_domains) - sebelum} domain terindeks")
+
+          def sudah_ada_di_luar(domain):
+              if not upstream_domains:
+                  return False
+              if domain in upstream_domains:
+                  return True
+              bagian = domain.split(".")
+              return any(".".join(bagian[i:]) in upstream_domains for i in range(1, len(bagian) - 1))
+
+          # 2. Baca dan rapikan EazyBlock.txt
+          baris = FILE_TARGET.read_text(encoding="utf-8").splitlines()
+
+          aturan_khusus = set()
+          domain_lokal = set()
+          terhapus_redundan = 0
+
           for b in baris:
               b = b.strip()
               if not b or b.startswith(("!", "#", "[")):
                   continue
+              # Pertahankan aturan pengecualian (@@), regex, dan cosmetic filter (##)
               if b.startswith(("@@", "/", "|http")) or "##" in b or "#@#" in b or "#?#" in b:
-                  aturan.add(b)
+                  aturan_khusus.add(b)
                   continue
+
               b = re.sub(r"\s+", "", b).lower()
               if not b.startswith("||"):
                   b = "||" + b
               if "$" not in b and not b.endswith("^"):
                   b += "^"
-              aturan.add(b)
+
+              # Cek apakah aturan domain ini sudah ter-cover daftar luar
+              m_dom = re.match(r"^\|\|([a-z0-9.-]+)\^", b)
+              if m_dom and sudah_ada_di_luar(m_dom.group(1)):
+                  terhapus_redundan += 1
+                  continue
+
+              if "$" in b:
+                  aturan_khusus.add(b)
+              elif m_dom:
+                  domain_lokal.add(m_dom.group(1))
+
+          # Eliminasi subdomain internal (jika domain induknya sudah ada di EazyBlock.txt)
+          domain_bersih = []
+          for d in sorted(domain_lokal):
+              bagian = d.split(".")
+              if any(".".join(bagian[i:]) in domain_lokal for i in range(1, len(bagian) - 1)):
+                  continue
+              domain_bersih.append(f"||{d}^")
+
+          aturan_akhir = sorted(aturan_khusus | set(domain_bersih))
+
+          # Pengaman mutlak: jangan pernah menimpa file jika hasil mendadak kosong
+          if not aturan_akhir:
+              sys.exit("GAGAL: Hasil akhir kosong! File EazyBlock.txt dibiarkan utuh.")
 
           waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
           header = [
@@ -54,19 +151,19 @@ jobs:
               "! Maintainer: EazyWhale",
               "! Expires: 1 hours",
               f"! Version: {waktu}",
-              f"! Total Rules: {len(aturan)}",
+              f"! Total Rules: {len(aturan_akhir)}",
               "! --------------------------------------------------",
               ""
           ]
 
-          with open(file_target, "w", encoding="utf-8") as f:
-              f.write("\n".join(header + sorted(aturan)) + "\n")
-          '
+          FILE_TARGET.write_text("\n".join(header + aturan_akhir) + "\n", encoding="utf-8")
+          print(f"\nSelesai! {terhapus_redundan} domain dibuang karena sudah masuk HaGeZi/ABPindo.")
+          print(f"Total aturan eksklusif tersisa: {len(aturan_akhir)}")
+          PY
 
       - name: Simpan hasil rapi ke GitHub
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add EazyBlock.txt
-          git diff --staged --quiet || (git commit -m "chore: rapikan list otomatis" && git push)
-          
+          git add EazyBlock.txt # ← ganti ini ke file tujuan.
+          git diff --staged --quiet || (git commit -m "chore: rapikan list & buang redundansi global" && git push)
