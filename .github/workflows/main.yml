@@ -1,4 +1,6 @@
 name: Rapikan Benteng Pertahanan Isekai
+# Copyright (c) 2026 <EazyWhale>
+# Licensed under the MIT License. See scripts/LICENSE for details.
 
 on:
   push:
@@ -48,6 +50,7 @@ jobs:
           waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
           header = [
               "! Title: EazyWhale Isekai Wall",
+              "! License: GNU General Public License v3.0 (GPL-3.0)",
               "! Maintainer: EazyWhale",
               "! Expires: 1 hours",
               f"! Version: {waktu}",
