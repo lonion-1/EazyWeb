@@ -1,51 +1,52 @@
 ! Title: EazyWhale Isekai Wall
+! License: GNU General Public License v3.0 (GPL-3.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
 ! Version: 2026.11.17.1910
 ! Total Rules: 44
 ! --------------------------------------------------
 
-||388heroky.cc^$document
-||3keysbrewing.com^$document
-||7kucingqy.vip^$document
-||a1togelslot.com^$document
-||analytical.pl^$document
-||bandarxlny.cc^$document
-||bestkaiko.site^$document
-||bisnis4dhk.cc^$document
-||bm-88.net^$document
-||boardgamearena.com^$document
-||citibt88.com.im^$document
-||coinpoker1.com^$document
-||emas5000.biz^$document
-||emas5000zr.site^$document
-||enakslotmw.cc^$document
-||ero-labs.com^$document
-||exobounty.com^$document
-||fifthframe.co^$document
-||foresthillsmha.com^$document
-||gacototoxy.com^$document
-||ggpoker.com^$document
-||goid.space^$document
-||goratu.site^$document
-||haarstudioimagevanalebeek.com^$document
-||hs-scripts.com^$document
-||indo1.sbs^$document
-||jackpotdewa.cc^$document
-||joglototomax.com^$document
-||jotform.com^$document
-||judi3.sbs^$document
-||judi88.co^$document
-||kaya303sukses.us^$document
-||kinfolksbbqsmyrna.com^$document
-||klik.best^$document
-||klik.top^$document
-||madamebresil.com^$document
-||namcdfw.org^$document
-||pentaslot.llc^$document
-||playwsop.com^$document
-||qqsawersor.site^$document
-||rakeback.com^$document
-||triplehtacklingacademy.com^$document
-||usemessages.com^$document
-||yourpokerdream.com^$document
+||388heroky.cc^
+||3keysbrewing.com^
+||7kucingqy.vip^
+||a1togelslot.com^
+||analytical.pl^
+||bandarxlny.cc^
+||bestkaiko.site^
+||bisnis4dhk.cc^
+||bm-88.net^
+||boardgamearena.com^
+||citibt88.com.im^
+||coinpoker1.com^
+||emas5000.biz^
+||emas5000zr.site^
+||enakslotmw.cc^
+||ero-labs.com^
+||exobounty.com^
+||fifthframe.co^
+||foresthillsmha.com^
+||gacototoxy.com^
+||ggpoker.com^
+||goid.space^
+||goratu.site^
+||haarstudioimagevanalebeek.com^
+||hs-scripts.com^
+||indo1.sbs^
+||jackpotdewa.cc^
+||joglototomax.com^
+||jotform.com^
+||judi3.sbs^
+||judi88.co^
+||kaya303sukses.us^
+||kinfolksbbqsmyrna.com^
+||klik.best^
+||klik.top^
+||madamebresil.com^
+||namcdfw.org^
+||pentaslot.llc^
+||playwsop.com^
+||qqsawersor.site^
+||rakeback.com^
+||triplehtacklingacademy.com^
+||usemessages.com^
+||yourpokerdream.com^
