@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.17.1910
-! Total Rules: 44
+! Version: 2026.11.18.1055
+! Total Rules: 38
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -17,7 +17,6 @@
 ||bm-88.net^
 ||boardgamearena.com^
 ||citibt88.com.im^
-||coinpoker1.com^
 ||emas5000.biz^
 ||emas5000zr.site^
 ||enakslotmw.cc^
@@ -26,9 +25,6 @@
 ||fifthframe.co^
 ||foresthillsmha.com^
 ||gacototoxy.com^
-||ggpoker.com^
-||goid.space^
-||goratu.site^
 ||haarstudioimagevanalebeek.com^
 ||hs-scripts.com^
 ||indo1.sbs^
@@ -40,11 +36,9 @@
 ||kaya303sukses.us^
 ||kinfolksbbqsmyrna.com^
 ||klik.best^
-||klik.top^
 ||madamebresil.com^
 ||namcdfw.org^
 ||pentaslot.llc^
-||playwsop.com^
 ||qqsawersor.site^
 ||rakeback.com^
 ||triplehtacklingacademy.com^
