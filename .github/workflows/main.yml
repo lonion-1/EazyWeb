@@ -8,7 +8,7 @@ on:
     paths:
       - 'EazyBlock.txt'
   schedule:
-    - cron: '0 2 * * 0' # Cek redundansi mingguan setiap Minggu jam 02:00 UTC
+    - cron: '37 21 * * 6' # Cek redundansi mingguan setiap Minggu jam 04:37 WIB
   workflow_dispatch: # Tombol "Run workflow" manual di tab Actions
     inputs:
       paksa:
