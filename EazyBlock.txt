@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.19.1542
-! Total Rules: 48
+! Version: 2026.11.19.1550
+! Total Rules: 49
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -13,6 +13,7 @@
 ||analytical.pl^
 ||apabos.com^
 ||bandarxlny.cc^
+||berk-ah-spin.life^
 ||bestkaiko.site^
 ||bisnis4dhk.cc^
 ||bm-88.net^
@@ -54,4 +55,3 @@
 ||triplehtacklingacademy.com^
 ||usemessages.com^
 ||yourpokerdream.com^
-||berk-ah-spin.life^
