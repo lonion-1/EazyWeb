@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.18.1809
-! Total Rules: 47
+! Version: 2026.11.19.1542
+! Total Rules: 48
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -37,6 +37,7 @@
 ||jotform.com^
 ||judi3.sbs^
 ||judi88.co^
+||judionline.vip^
 ||kaya303sukses.us^
 ||kebaya4dkeren.com^
 ||kinfolksbbqsmyrna.com^
@@ -53,4 +54,3 @@
 ||triplehtacklingacademy.com^
 ||usemessages.com^
 ||yourpokerdream.com^
-||judionline.vip^
