@@ -196,13 +196,16 @@ jobs:
                   f"(>{int(BATAS_BUANG * 100)}%). Periksa dulu, atau jalankan manual dengan opsi 'paksa'."
               )
 
-          # Tidak ada perubahan aturan -> jangan tulis, jangan commit
+          waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
+          # Keep-Alive: Selalu perbarui last-run.txt agar repo tidak dibekukan GitHub 60 hari
+          Path("last-run.txt").write_text(f"Last check (UTC): {waktu}\n", encoding="utf-8")
+
+          # Tidak ada perubahan aturan -> jangan tulis ulang EazyBlock.txt
           if aturan_lama == aturan_akhir:
-              print("Tidak ada perubahan aturan, file dibiarkan.")
+              print("Tidak ada perubahan aturan, EazyBlock.txt dibiarkan.")
               sys.exit(0)
 
           # ---------- 4. Tulis ----------
-          waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
           header = [
               "! Title: EazyWhale Isekai Wall",
               "! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
@@ -226,7 +229,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add EazyBlock.txt
+          git add EazyBlock.txt last-run.txt
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan untuk di-commit."
           else
