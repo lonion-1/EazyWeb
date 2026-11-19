@@ -1,6 +1,6 @@
 name: Rapikan Benteng Pertahanan Isekai
 # Copyright (c) 2026 <EazyWhale>
-# Licensed under the MIT License. See scripts/LICENSE for details.
+# Licensed under the MIT License.
 
 on:
   push:
