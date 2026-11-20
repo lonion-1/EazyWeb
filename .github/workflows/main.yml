@@ -9,7 +9,7 @@ on:
       - 'EazyBlock.txt'
   schedule:
     - cron: '37 21 * * 6' # Cek redundansi mingguan setiap Minggu jam 04:37 WIB
-  workflow_dispatch: # Tombol "Run workflow" manual di tab Actions
+  workflow_dispatch:
     inputs:
       paksa:
         description: 'Lewati pengaman "terlalu banyak aturan terbuang"'
@@ -25,215 +25,32 @@ concurrency:
 
 jobs:
   bersih-bersih:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Ambil isi repo
         uses: actions/checkout@v4
 
-      - name: Bersihkan input, buang yang sudah ada di list global, & urutkan
+      - name: Bersihkan input, catat kelulusan ke hulu, & urutkan
         env:
           PAKSA: ${{ inputs.paksa }}
-        run: |
-          python3 - <<'PY'
-          import datetime, os, re, sys, time, urllib.request
-          from pathlib import Path
-
-          FILE_TARGET = Path("EazyBlock.txt")
-          PAKSA = os.environ.get("PAKSA", "").lower() == "true"
-          BATAS_BUANG = 0.5  # Gagal jika lebih dari 50% aturan lama hilang (kecuali PAKSA)
-
-          # Daftar luar yang diintip untuk menghapus redundansi (hanya dibaca, tidak pernah ditulis).
-          # PENTING: Jangan masukkan URL WhaleList (EazyLife-IsekaiWall.txt) ke sini agar tidak loop!
-          UPSTREAM_SOURCES = [
-              ("HaGeZi Gambling", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/gambling.txt"),
-              ("HaGeZi Pro", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt"),
-              ("ABPindo", "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"),
-          ]
-
-          OPSI_AMAN = {"third-party", "3p", "important", "all", "popup"}
-          RE_DOMAIN = re.compile(r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:xn--[a-z0-9-]{1,59}|[a-z]{2,63})$")
-          RE_ABP = re.compile(r"^\|\|([a-z0-9.-]+)\^(?:\$([a-z0-9,~=-]+))?$")
-          RE_HOSTS = re.compile(r"^(?:0\.0\.0\.0|127\.0\.0\.1|::1?)\s+([^\s#]+)")
-          RE_DOM_AWAL = re.compile(r"^\|\|([a-z0-9.-]+)\^")
-
-          # ---------- Util ----------
-          def parse_upstream_line(s):
-              if s.startswith("||"):
-                  m = RE_ABP.match(s)
-                  if not m:
-                      return None
-                  if m.group(2) and not set(m.group(2).split(",")) <= OPSI_AMAN:
-                      return None
-                  d = m.group(1)
-              elif s.startswith(("0.0.0.0", "127.0.0.1", "::")):
-                  m = RE_HOSTS.match(s)
-                  d = m.group(1) if m else None
-              else:
-                  d = s
-              return d if d and RE_DOMAIN.match(d) else None
-
-          def fetch_upstream(url, tries=3):
-              for i in range(tries):
-                  try:
-                      req = urllib.request.Request(url, headers={"User-Agent": "IsekaiWall-Cleaner/1.0"})
-                      with urllib.request.urlopen(req, timeout=60) as r:
-                          return r.read().decode("utf-8", errors="ignore").splitlines()
-                  except Exception as e:
-                      print(f"  percobaan {i + 1}/{tries} gagal: {e}")
-                      time.sleep(3 * (i + 1))
-              return None
-
-          def bersihkan_domain(b):
-              """Ubah URL/domain mentah jadi domain bersih, atau None jika tidak valid.
-              Hanya membuang skema, path, query, port. Subdomain TIDAK dipotong."""
-              d = re.sub(r"^(?:\|\||\||https?://|//)+", "", b)
-              d = re.split(r"[/?#:^*]", d, maxsplit=1)[0].strip(".")
-              if d and not d.isascii():
-                  try:
-                      d = d.encode("idna").decode("ascii")
-                  except UnicodeError:
-                      return None
-              return d if RE_DOMAIN.match(d) else None
-
-          def induk_ada(domain, kumpulan):
-              bagian = domain.split(".")
-              return any(".".join(bagian[i:]) in kumpulan for i in range(1, len(bagian) - 1))
-
-          # ---------- 1. Intip sumber luar ----------
-          upstream_domains = set()
-          sumber_ok = 0
-          for nama, url in UPSTREAM_SOURCES:
-              print(f"Mengintip sumber luar: {nama}")
-              baris_luar = fetch_upstream(url)
-              if baris_luar is None:
-                  print(f"  LEWATI {nama} (gagal diambil, data lokal tetap aman)")
-                  continue
-              sumber_ok += 1
-              sebelum = len(upstream_domains)
-              for b in baris_luar:
-                  s = b.strip().lower()
-                  if not s or s[0] in "!#[" or s.startswith("@@"):
-                      continue
-                  d = parse_upstream_line(s)
-                  if d:
-                      upstream_domains.add(d)
-              print(f"  +{len(upstream_domains) - sebelum} domain terindeks")
-
-          if sumber_ok < len(UPSTREAM_SOURCES):
-              print(f"PERINGATAN: hanya {sumber_ok}/{len(UPSTREAM_SOURCES)} sumber berhasil diambil.")
-
-          def sudah_ada_di_luar(domain):
-              if not upstream_domains:
-                  return False
-              return domain in upstream_domains or induk_ada(domain, upstream_domains)
-
-          # ---------- 2. Baca & rapikan ----------
-          teks_lama = FILE_TARGET.read_text(encoding="utf-8").splitlines()
-
-          aturan_khusus = set()
-          domain_lokal = set()
-          n_redundan = n_invalid = 0
-
-          for b in teks_lama:
-              b = b.strip()
-              if not b or b.startswith(("!", "#", "[")):
-                  continue
-              # Pertahankan pengecualian (@@), regex, dan cosmetic filter
-              if b.startswith(("@@", "/", "|http")) or "##" in b or "#@#" in b or "#?#" in b:
-                  aturan_khusus.add(b)
-                  continue
-
-              b = re.sub(r"\s+", "", b).lower()
-
-              if "$" in b:
-                  # Aturan beropsi: dijaga apa adanya, hanya dipastikan berawalan ||
-                  if not b.startswith("||"):
-                      b = "||" + b
-                  m = RE_DOM_AWAL.match(b)
-                  if not m:
-                      print(f"  LEWATI aturan beropsi tidak valid: {b}")
-                      n_invalid += 1
-                      continue
-                  if sudah_ada_di_luar(m.group(1)):
-                      n_redundan += 1
-                      continue
-                  aturan_khusus.add(b)
-                  continue
-
-              # Aturan biasa: URL / path / port / ^ otomatis dipangkas ke domain
-              d = bersihkan_domain(b)
-              if not d:
-                  print(f"  LEWATI baris tidak valid: {b}")
-                  n_invalid += 1
-                  continue
-              if sudah_ada_di_luar(d):
-                  n_redundan += 1
-                  continue
-              domain_lokal.add(d)
-
-          # Eliminasi subdomain internal (induknya sudah ada di EazyBlock.txt)
-          domain_bersih = []
-          n_subdomain = 0
-          for d in sorted(domain_lokal):
-              if induk_ada(d, domain_lokal):
-                  n_subdomain += 1
-                  continue
-              domain_bersih.append(f"||{d}^")
-
-          aturan_akhir = sorted(aturan_khusus | set(domain_bersih))
-
-          # ---------- 3. Pengaman ----------
-          if not aturan_akhir:
-              sys.exit("GAGAL: Hasil akhir kosong! File EazyBlock.txt dibiarkan utuh.")
-
-          aturan_lama = [x.strip() for x in teks_lama if x.strip() and not x.strip().startswith("!")]
-
-          if (not PAKSA and len(aturan_lama) >= 20
-                  and len(aturan_akhir) < len(aturan_lama) * (1 - BATAS_BUANG)):
-              sys.exit(
-                  f"GAGAL: aturan turun {len(aturan_lama)} -> {len(aturan_akhir)} "
-                  f"(>{int(BATAS_BUANG * 100)}%). Periksa dulu, atau jalankan manual dengan opsi 'paksa'."
-              )
-
-          waktu = datetime.datetime.now(datetime.timezone.utc).strftime("%Y.%m.%d.%H%M")
-          # Keep-Alive: Selalu perbarui last-run.txt agar repo tidak dibekukan GitHub 60 hari
-          Path("last-run.txt").write_text(f"Last check (UTC): {waktu}\n", encoding="utf-8")
-
-          # Tidak ada perubahan aturan -> jangan tulis ulang EazyBlock.txt
-          if aturan_lama == aturan_akhir:
-              print("Tidak ada perubahan aturan, EazyBlock.txt dibiarkan.")
-              sys.exit(0)
-
-          # ---------- 4. Tulis ----------
-          header = [
-              "! Title: EazyWhale Isekai Wall",
-              "! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
-              "! Maintainer: EazyWhale",
-              "! Expires: 1 hours",
-              f"! Version: {waktu}",
-              f"! Total Rules: {len(aturan_akhir)}",
-              "! --------------------------------------------------",
-              ""
-          ]
-
-          FILE_TARGET.write_text("\n".join(header + aturan_akhir) + "\n", encoding="utf-8")
-          print("\nSelesai!")
-          print(f"  Dibuang karena sudah ada di HaGeZi/ABPindo : {n_redundan}")
-          print(f"  Dibuang karena induknya sudah ada di list   : {n_subdomain}")
-          print(f"  Baris tidak valid dilewati                  : {n_invalid}")
-          print(f"  Total aturan eksklusif tersisa              : {len(aturan_akhir)}")
-          PY
+        run: python3 scripts/clean.py
 
       - name: Simpan hasil rapi ke GitHub
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add EazyBlock.txt last-run.txt
+          git add EazyBlock.txt domains/EazyBlock.txt Graduated.txt README.md last-run.txt
           if git diff --staged --quiet; then
             echo "Tidak ada perubahan untuk di-commit."
-          else
-            git commit -m "chore: rapikan list & buang redundansi global"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
-            git push
+            exit 0
           fi
+          git commit -m "chore: rapikan list & catat kelulusan global"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
