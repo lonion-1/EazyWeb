@@ -1,18 +1,68 @@
 {
-  "seen": [],
+  "seen": [
+    "tg:agent828bet/59",
+    "tg:agent828bet/61",
+    "tg:agent828bet/62",
+    "tg:agent828bet/63",
+    "tg:agent828bet/64",
+    "tg:agent828bet/65",
+    "tg:agent828bet/66",
+    "tg:agent828bet/67",
+    "tg:agent828bet/68",
+    "tg:agent828bet/69",
+    "tg:agent828bet/70",
+    "tg:agent828bet/71",
+    "tg:agent828bet/72",
+    "tg:agent828bet/73",
+    "tg:agent828bet/74",
+    "tg:agent828bet/75",
+    "tg:agent828bet/76",
+    "tg:agent828bet/77",
+    "tg:agent828bet/78",
+    "tg:agent828bet/39",
+    "tg:agent828bet/40",
+    "tg:agent828bet/41",
+    "tg:agent828bet/42",
+    "tg:agent828bet/43",
+    "tg:agent828bet/45",
+    "tg:agent828bet/47",
+    "tg:agent828bet/48",
+    "tg:agent828bet/50",
+    "tg:agent828bet/51",
+    "tg:agent828bet/52",
+    "tg:agent828bet/53",
+    "tg:agent828bet/54",
+    "tg:agent828bet/55",
+    "tg:agent828bet/56",
+    "tg:agent828bet/57",
+    "tg:agent828bet/58",
+    "tg:agent828bet/19",
+    "tg:agent828bet/23",
+    "tg:agent828bet/24",
+    "tg:agent828bet/27",
+    "tg:agent828bet/29",
+    "tg:agent828bet/30",
+    "tg:agent828bet/32",
+    "tg:agent828bet/33",
+    "tg:agent828bet/34",
+    "tg:agent828bet/35",
+    "tg:agent828bet/36",
+    "tg:agent828bet/37",
+    "tg:agent828bet/38"
+  ],
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 0,
+      "scans": 1,
       "harvested": 0,
-      "dry_runs": 0,
+      "dry_runs": 1,
       "misses": 0
     }
   },
   "comic_sites": {
     "https://link.manhwaland.land/": {
       "misses": 0,
-      "hits": 2
+      "hits": 3
     },
     "https://doujin.desu.xxx/": {
       "misses": 0,
@@ -48,14 +98,6 @@
     },
     "https://11.ikiru.wtf/": {
       "misses": 0,
-      "hits": 0
-    },
-    "https://sektejav.cc/": {
-      "misses": 2,
-      "hits": 0
-    },
-    "https://manhwaland.io/": {
-      "misses": 2,
       "hits": 0
     }
   },
