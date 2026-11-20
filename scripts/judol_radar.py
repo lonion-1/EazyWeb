@@ -1,5 +1,6 @@
-# Copyright (c) 2026 <EazyWhale>
-# Licensed under the MIT License.
+# Copyright (c) 2026 EazyWhale (https://github.com/lonion-1/WhaleGuard)
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Licensed under the GNU Affero General Public License v3.0.
 """EazyWhale Isekai Wall - Secondary Crawler Engine (judol_radar.py).
 
 Fitur Safety-First & Zero-Redundancy:
@@ -140,7 +141,7 @@ MULTI_PART_TLDS = {
 # Ekstensi institusi/pemerintah yang mutlak dilindungi
 PROTECTED_TLD_SUFFIXES = (
     ".go.id", ".ac.id", ".sch.id", ".mil.id", ".or.id", ".desa.id", ".ponpes.id",
-    ".gov", ".edu", ".mil",
+    ".gov", ".edu", ".mil", "eu.com", "uk.com", "us.com", "de.com", "eu.org",
 )
 
 # Layanan hosting gratis: pertahankan subdomain lengkap, jangan pernah blokir induknya
