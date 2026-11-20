@@ -1,0 +1,49 @@
+name: Pemeriksa History URL (>30 Hari)
+# Copyright (c) 2026 <EazyWhale>
+# Licensed under the MIT License.
+
+on:
+  schedule:
+    - cron: '42 19 */2 * *' # Jalan otomatis setiap 2 hari sekali jam 02:42 WIB
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rapikan-list
+  cancel-in-progress: false
+
+jobs:
+  cek-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Ambil isi repo
+        uses: actions/checkout@v4
+
+      - name: Periksa arsip URL (>1 bulan) & rotasi daftar aktif
+        run: python3 scripts/history_radar.py
+
+      - name: Jalankan Main Engine (clean.py) untuk deduplikasi & build
+        run: python3 scripts/clean.py
+
+      - name: Simpan arsip, banned list & rules ke GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan arsip maupun domain baru."
+            exit 0
+          fi
+          git commit -m "chore(history): rotasi arsip URL & panen domain judol [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
+          
