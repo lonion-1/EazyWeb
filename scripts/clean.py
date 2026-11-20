@@ -145,7 +145,7 @@ def update_readme():
 
 def main():
     parser = argparse.ArgumentParser(description="EazyBlock Cleaner & Builder")
-    parser.add_argument("--paksa", action="store_true", help="Lewati pengaman batas buang 50%")
+    parser.add_argument("--paksa", action="store_true", help="Lewati pengaman batas buang 50%%")    
     args = parser.parse_args()
     paksa = args.paksa or os.environ.get("PAKSA", "").lower() == "true"
 
