@@ -53,9 +53,17 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 3,
+      "scans": 4,
       "harvested": 0,
-      "dry_runs": 3,
+      "dry_runs": 4,
+      "misses": 0
+    },
+    "manhwa1_8": {
+      "source": "directory",
+      "kind": "comic",
+      "scans": 0,
+      "harvested": 0,
+      "dry_runs": 0,
       "misses": 0
     }
   },
@@ -88,11 +96,11 @@
       "misses": 0,
       "hits": 0
     },
-    "https://komikaido.com/": {
-      "misses": 1,
+    "https://mangaku.lol/": {
+      "misses": 0,
       "hits": 0
     },
-    "https://mangaku.lol/": {
+    "https://komiku.org/": {
       "misses": 0,
       "hits": 0
     },
@@ -104,16 +112,16 @@
       "misses": 0,
       "hits": 1
     },
+    "https://komikaido.com/": {
+      "misses": 0,
+      "hits": 0
+    },
     "https://11.ikiru.wtf/": {
       "misses": 0,
       "hits": 0
     },
     "https://komikindo.ch/": {
-      "misses": 2,
-      "hits": 0
-    },
-    "https://sektejav.cc/": {
-      "misses": 2,
+      "misses": 0,
       "hits": 0
     },
     "https://manhwaindo.io/": {
@@ -121,11 +129,11 @@
       "hits": 0
     },
     "https://www.comic.komikpedia.com/": {
-      "misses": 2,
+      "misses": 0,
       "hits": 0
     },
     "https://www.manhwaindo.my/": {
-      "misses": 0,
+      "misses": 1,
       "hits": 0
     },
     "https://shinigami.lol/": {
@@ -170,6 +178,18 @@
     },
     "https://idlixstream.casa/": {
       "misses": 1,
+      "hits": 0
+    },
+    "https://manhwaland.io/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "http://komikindo.cv/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://softkomik.org/": {
+      "misses": 0,
       "hits": 0
     }
   },
@@ -237,6 +257,23 @@
     "qlpcoin_indo",
     "tiktokpiralterbaruu",
     "fxt_indo",
-    "dr_nevertheless"
+    "dr_nevertheless",
+    "cewekindo",
+    "boysbeforeflowers",
+    "trumpmanhwa",
+    "mouse_sub_indonesia",
+    "indomotion",
+    "videobokep_pedohijabdan",
+    "manhwa_chat",
+    "filmkdramasubindorrf",
+    "bokep_v",
+    "bokep_indoviral",
+    "nevertheless_jtbc",
+    "manhwa18index",
+    "undercover_subindo",
+    "manhwa_offical",
+    "ww_indo",
+    "wandavision_episode_mini",
+    "joinhassebay"
   ]
 }
