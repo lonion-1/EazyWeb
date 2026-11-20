@@ -1,20 +1,7 @@
 # Copyright (c) 2026 EazyWhale (https://github.com/lonion-1/WhaleGuard)
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Licensed under the GNU Affero General Public License v3.0
-"""EazyWhale Isekai Wall - Secondary Crawler Engine (judol_radar.py).
-
-Fitur Safety-First & Zero-Redundancy:
-1. Menggunakan 2 file WhaleList (EazyLife-IsekaiWall.txt & EazyLife-Security.txt) + Graduated.txt
-   sebagai cache anti-redundansi agar cepat & tidak pernah mengambil domain yang sudah diblokir.
-2. Jembatan Otomatis 4 Jalur:
-   - Jalur A: Certificate Transparency (crt.sh) untuk sertifikat SSL judol baru.
-   - Jalur B: Telegram Judol Channel Discovery (t.me/s/ + lyzem.com).
-   - Jalur C: Telegram Manhwa/Pornhwa/Komik Channel Discovery -> menyedot domain situs komik
-              baru & domain pindahan (mirror) dari postingan update chapter.
-   - Jalur D: Comic-Site Banner Crawler -> menyedot domain iklan judol yang menempel di situs komik.
-3. Perlindungan ketat multi-part TLD, domain pemerintah/kampus, platform donasi (Trakteer/Saweria),
-   hosting gratis, & verifikasi DNS aktif.
-"""
+"""EazyWhale Isekai Wall - Secondary Crawler Engine v2.0 (Anti-403 + Telegram-First Hunting)."""
 import html
 import json
 import re
@@ -31,13 +18,21 @@ GRADUATED_FILE = Path("Graduated.txt")
 ALLOWLIST_FILE = Path("Allowlist.txt")
 STATE_FILE = Path(".github/judol_radar_state.json")
 
-# 2 URL Cache dari WhaleList (cepat, ringan, & mencakup HaGeZi Gambling + Fake + URLhaus + EazyBlock)
 WHALELIST_CACHE_URLS = [
     ("WhaleList IsekaiWall", "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-IsekaiWall.txt"),
     ("WhaleList Security", "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"),
 ]
 
-# Situs utama baca komik/doujin/manhwa (pancingan awal)
+# Kanal Telegram pancingan awal agar bot langsung masuk & snowball sejak putaran pertama
+SEED_TG_CHANNELS = {
+    "shinigami_id": "comic",
+    "sektedoujin": "comic",
+    "doujindesu": "comic",
+    "komikcast": "comic",
+    "kiryuu_id": "comic",
+    "agent328bet": "judol",
+}
+
 COMIC_SEED_URLS = [
     "https://doujin.desu.xxx/",
     "https://shinigami.to/",
@@ -50,7 +45,6 @@ COMIC_SEED_URLS = [
     "https://mangaku.lol/",
 ]
 
-# Query Certificate Transparency (crt.sh) untuk domain judol yang baru terbit SSL-nya
 CRT_QUERIES = [
     "%slotgacor%",
     "%rtpslot%",
@@ -59,29 +53,26 @@ CRT_QUERIES = [
     "%mahjongways%",
 ]
 
-# Pencarian direktori Telegram untuk kanal promo judol
 JUDOL_TG_QUERIES = [
     "https://lyzem.com/search?q=slot+gacor",
     "https://lyzem.com/search?q=situs+judol",
     "https://lyzem.com/search?q=link+alternatif+slot",
 ]
 
-# Pencarian direktori Telegram untuk kanal update manhwa/pornhwa/komik sub Indo
 COMIC_TG_QUERIES = [
     "https://lyzem.com/search?q=manhwa+sub+indo",
     "https://lyzem.com/search?q=baca+manhwa",
     "https://lyzem.com/search?q=pornhwa+indo",
-    "https://lyzem.com/search?q=manhwa+18+indo",
     "https://lyzem.com/search?q=doujin+sub+indo",
 ]
 
 MAX_SEEN_POSTS = 4000
 MAX_ACTIVE_CHANNELS = 35
 MAX_COMIC_SITES = 45
-MAX_VERIFY_PER_RUN = 18
+MAX_VERIFY_PER_RUN = 20
 MAX_REJECTED = 700
-MAX_DRY_RUNS = 25
-MAX_MISSES = 3
+MAX_DRY_RUNS = 20
+MAX_MISSES = 2  # Cukup 2x kena 403/timeout langsung pecat agar tidak nabrak tembok terus
 MAX_NEW_DOMAINS_PER_RUN = 150
 
 RE_DOMAIN = re.compile(
@@ -98,15 +89,13 @@ RE_HTML_LINK_BLOCK = re.compile(
     re.IGNORECASE,
 )
 
-# Ciri domain atau postingan situs baca komik/manhwa/pornhwa
 RE_COMIC_SITE_HINT = re.compile(
-    r"(?i)(?:komik|manga|manhwa|manhua|pornhwa|webtoon|doujin|desu|sekte|crot|ikiru|shinigami|kiryuu|westmanga|bacakomik|hentai|toon)"
+    r"(?i)(?:komik|manga|manhwa|manhua|pornhwa|webtoon|doujin|desu|sekte|crot|ikiru|shinigami|kiryuu|westmanga|bacakomik|toon)"
 )
 RE_COMIC_POST_CONTEXT = re.compile(
-    r"(?i)\b(chapter|ch\.?\s*\d+|episode|ep\.?\s*\d+|manhwa|pornhwa|manga|manhua|doujin|komik|sub\s*indo|baca\s*disini|link\s*baca|update)\b"
+    r"(?i)\b(chapter|ch\.?\s*\d+|episode|ep\.?\s*\d+|manhwa|pornhwa|manga|manhua|doujin|komik|sub\s*indo|baca\s*disini|link\s*baca|update|pindah|domain\s*baru)\b"
 )
 
-# Pola nama domain judol berkeyakinan tinggi (anti false-positive)
 RE_JUDOL_DOMAIN_STRONG = re.compile(
     r"(?i)("
     r"slotgacor|gacorslot|rtpslot|slotrtp|maxwin|judol|judibola|agenbola|"
@@ -137,7 +126,6 @@ RE_INDONESIAN_HINT = re.compile(
     r"(?i)\b(dan|yang|ini|itu|daftar|login|link|alternatif|bonus|member|depo|resmi|gacor|hari|baca|indo|lanjut)\b"
 )
 
-# TLD multi-bagian termasuk second-level registrars agar tidak terpotong menjadi induk publik
 MULTI_PART_TLDS = {
     "co.id", "my.id", "biz.id", "web.id", "or.id", "ac.id", "sch.id",
     "go.id", "mil.id", "desa.id", "ponpes.id", "net.id",
@@ -164,14 +152,13 @@ FREE_HOST_SUFFIXES = {
     "rf.gd", "byethost.com", "kesug.com", "great-site.net",
 }
 
-# Platform besar, shortener, donasi scanlation, berita, CDN gambar, & bank yang mutlak dilindungi
 PROTECTED_DOMAINS = {
     "google.com", "googleapis.com", "gstatic.com", "youtube.com", "youtu.be", "android.com",
     "facebook.com", "fb.com", "instagram.com", "whatsapp.com", "wa.me", "threads.net", "meta.com",
     "t.me", "telegram.org", "telegram.me", "telegra.ph",
     "twitter.com", "x.com", "tiktok.com", "discord.com", "discord.gg", "reddit.com",
     "github.com", "githubusercontent.com", "gitlab.com", "cloudflare.com", "imgur.com",
-    "wp.com", "gravatar.com", "disqus.com", "histats.com",
+    "wp.com", "gravatar.com", "disqus.com", "histats.com", "schema.org", "w3.org",
     "linktr.ee", "bit.ly", "tinyurl.com", "s.id", "cutt.ly", "rebrand.ly", "heylink.me", "taplink.cc",
     "trakteer.id", "saweria.co", "karyakarsa.com", "ko-fi.com", "sociabuzz.com", "patreon.com", "paypal.com", "paypal.me",
     "medium.com", "substack.com", "archive.org", "wikipedia.org",
@@ -190,21 +177,26 @@ RESERVED_TG_NAMES = {
 }
 
 
-def http_get(url: str, timeout: int = 25) -> tuple[str | None, str]:
+def http_get(url: str, timeout: int = 20) -> tuple[str | None, str, int]:
+    """Kembalikan (html, final_url, status_code). Status 403 langsung ditandai agar tidak diulang."""
     req = urllib.request.Request(
         url,
         headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Language": "id-ID,id;q=0.9,en;q=0.8",
         },
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             final_url = r.geturl() or url
-            return r.read().decode("utf-8", errors="ignore"), final_url
+            return r.read().decode("utf-8", errors="ignore"), final_url, getattr(r, "status", 200)
+    except urllib.error.HTTPError as e:
+        print(f"[WARN] HTTP {e.code} pada {url[:70]}")
+        return None, url, e.code
     except (urllib.error.URLError, TimeoutError, OSError) as e:
-        print(f"[WARN] Gagal akses {url[:75]}: {e}")
-        return None, url
+        print(f"[WARN] Gagal akses {url[:70]}: {e}")
+        return None, url, 0
 
 
 def bersihkan_html(raw_html: str) -> str:
@@ -283,9 +275,8 @@ def muat_cache_diabaikan() -> tuple[set[str], set[str]]:
                 diabaikan.add(dom)
 
     for nama, url in WHALELIST_CACHE_URLS:
-        raw, _ = http_get(url, timeout=45)
+        raw, _, _ = http_get(url, timeout=45)
         if not raw:
-            print(f"[WARN] Cache {nama} gagal dimuat, lanjut dengan cache lokal.")
             continue
         sebelum = len(diabaikan)
         for l in raw.splitlines():
@@ -313,9 +304,9 @@ def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
     kandidat: set[str] = set()
     for q in CRT_QUERIES:
         url = f"https://crt.sh/?q={urllib.parse.quote(q)}&output=json"
-        raw, _ = http_get(url, timeout=30)
+        raw, _, _ = http_get(url, timeout=25)
         if not raw:
-            time.sleep(2.0)
+            time.sleep(1.5)
             continue
         try:
             entries = json.loads(raw)
@@ -331,7 +322,7 @@ def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
                 if RE_JUDOL_DOMAIN_STRONG.search(dom):
                     kandidat.add(dom)
         print(f"[CRT.SH] Query {q}: total kandidat sementara {len(kandidat)}")
-        time.sleep(2.0)
+        time.sleep(1.5)
     return kandidat
 
 
@@ -348,7 +339,7 @@ def default_meta(source: str, kind: str = "judol") -> dict:
 
 def muat_state() -> dict:
     if not STATE_FILE.exists():
-        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": []}
+        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": [], "blocked_urls": []}
     try:
         data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
         return {
@@ -356,15 +347,17 @@ def muat_state() -> dict:
             "channels": data.get("channels", {}),
             "comic_sites": data.get("comic_sites", {}),
             "rejected": list(data.get("rejected", []))[-MAX_REJECTED:],
+            "blocked_urls": list(data.get("blocked_urls", []))[-300:],
         }
     except Exception:
-        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": []}
+        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": [], "blocked_urls": []}
 
 
 def simpan_state(state: dict) -> None:
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     state["seen"] = list(dict.fromkeys(state["seen"]))[-MAX_SEEN_POSTS:]
     state["rejected"] = list(dict.fromkeys(state["rejected"]))[-MAX_REJECTED:]
+    state["blocked_urls"] = list(dict.fromkeys(state.get("blocked_urls", [])))[-300:]
     state["channels"] = dict(
         sorted(
             state["channels"].items(),
@@ -375,7 +368,7 @@ def simpan_state(state: dict) -> None:
     state["comic_sites"] = dict(
         sorted(
             state.get("comic_sites", {}).items(),
-            key=lambda kv: (kv[0] in COMIC_SEED_URLS, kv[1].get("hits", 0)),
+            key=lambda kv: kv[1].get("hits", 0),
             reverse=True,
         )
     )
@@ -392,14 +385,13 @@ def ekstrak_tg_username(teks: str) -> set[str]:
 
 
 def klasifikasi_kanal_tg(username: str) -> str | None:
-    """Kembalikan 'judol', 'comic', atau None jika tidak relevan/tidak aktif."""
-    raw, _ = http_get(f"https://t.me/s/{username}", timeout=20)
-    if not raw or "tgme_widget_message_text" not in raw:
+    raw, _, status = http_get(f"https://t.me/s/{username}", timeout=18)
+    if status != 200 or not raw or "tgme_widget_message_text" not in raw:
         return None
     title_m = re.search(r'class="tgme_channel_info_header_title"[^>]*>([\s\S]*?)</div>', raw)
     desc_m = re.search(r'class="tgme_channel_info_description"[^>]*>([\s\S]*?)</div>', raw)
     msgs = re.findall(r'<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)</div>', raw)
-    if len(msgs) < 3:
+    if len(msgs) < 2:
         return None
 
     sampel = " ".join([
@@ -424,8 +416,8 @@ def fetch_telegram_channel(channel: str, max_pages: int = 3) -> list[dict]:
 
     for _ in range(max_pages):
         url = f"https://t.me/s/{channel}" + (f"?before={before_id}" if before_id else "")
-        raw, _ = http_get(url, timeout=20)
-        if not raw:
+        raw, _, status = http_get(url, timeout=18)
+        if status != 200 or not raw:
             break
         blocks = re.findall(
             r'data-post="([^"]+)"[\s\S]*?<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)</div>',
@@ -448,8 +440,50 @@ def fetch_telegram_channel(channel: str, max_pages: int = 3) -> list[dict]:
         if not oldest_num.isdigit() or oldest_num == before_id or int(oldest_num) <= 1:
             break
         before_id = oldest_num
-        time.sleep(1.0)
+        time.sleep(0.8)
     return hasil
+
+
+def temukan_kanal_tg_baru(
+    channels_map: dict,
+    rejected_set: set[str],
+    state: dict,
+    snowball_extra: set[str] | None = None,
+) -> int:
+    """Cari & verifikasi kanal Telegram baru terlebih dahulu agar langsung dipindai di siklus yang sama."""
+    known_lower = {k.lower() for k in channels_map}
+    dir_cands: set[str] = set()
+
+    for q_url in (COMIC_TG_QUERIES + JUDOL_TG_QUERIES):
+        raw, _, status = http_get(q_url, timeout=18)
+        if status == 200 and raw:
+            found = ekstrak_tg_username(raw)
+            dir_cands.update(found)
+        time.sleep(1.0)
+
+    kandidat_gabungan = list(dir_cands) + list(snowball_extra or set())
+    antrean = [
+        u for u in kandidat_gabungan
+        if u.lower() not in known_lower and u.lower() not in rejected_set
+    ]
+
+    print(f"[TG-DISCOVERY] {len(antrean)} kandidat kanal baru siap diuji...")
+    ditambahkan = 0
+    for cand in antrean[:MAX_VERIFY_PER_RUN]:
+        if len(channels_map) >= MAX_ACTIVE_CHANNELS:
+            break
+        ch_kind = klasifikasi_kanal_tg(cand)
+        if ch_kind:
+            src = "directory" if cand in dir_cands else "snowball"
+            channels_map[cand] = default_meta(src, kind=ch_kind)
+            known_lower.add(cand.lower())
+            ditambahkan += 1
+            print(f"[NEW CHANNEL] Kanal {ch_kind} masuk antrean ({src}): @{cand}")
+        else:
+            state["rejected"].append(cand)
+            rejected_set.add(cand.lower())
+        time.sleep(0.8)
+    return ditambahkan
 
 
 def crawl_comic_banners(
@@ -457,11 +491,12 @@ def crawl_comic_banners(
     allowlist: set[str],
     diabaikan: set[str],
 ) -> set[str]:
-    """Jalur D: Sedot domain iklan judol dari banner <a>...<img></a> pada situs komik + 2-hop mirror."""
     comic_sites: dict = state.setdefault("comic_sites", {})
+    blocked_urls: set[str] = set(state.setdefault("blocked_urls", []))
+
     for url in COMIC_SEED_URLS:
         u = url.strip()
-        if u and u not in comic_sites:
+        if u and u not in comic_sites and u not in blocked_urls:
             comic_sites[u] = {"misses": 0, "hits": 0}
 
     kandidat_judol: set[str] = set()
@@ -479,11 +514,27 @@ def crawl_comic_banners(
         daftarkan_host_komik(u)
 
     def pindai_satu_situs(site_url: str, meta: dict) -> list[str]:
-        raw, final_url = http_get(site_url, timeout=20)
-        if not raw:
+        if site_url in blocked_urls:
+            comic_sites.pop(site_url, None)
+            return []
+
+        raw, final_url, status = http_get(site_url, timeout=18)
+
+        # Jika kena HTTP 403 (Cloudflare blokir IP GitHub), langsung blacklist URL ini agar tidak nabrak lagi!
+        if status == 403:
+            print(f"[SKIP-403] {site_url} memblokir bot (403), dipensiunkan permanen.")
+            comic_sites.pop(site_url, None)
+            blocked_urls.add(site_url)
+            state["blocked_urls"].append(site_url)
+            return []
+
+        if status != 200 or not raw:
             meta["misses"] = meta.get("misses", 0) + 1
-            if site_url not in COMIC_SEED_URLS and meta["misses"] >= 3:
+            if meta["misses"] >= MAX_MISSES:
+                print(f"[PRUNE-SITE] {site_url} tidak merespons {MAX_MISSES}x, dihapus.")
                 comic_sites.pop(site_url, None)
+                blocked_urls.add(site_url)
+                state["blocked_urls"].append(site_url)
             return []
 
         meta["misses"] = 0
@@ -493,6 +544,7 @@ def crawl_comic_banners(
         hits_site = 0
         discovered_mirrors: list[str] = []
 
+        # 1) Cek tag <a href="...">...</a>
         for href, inner_html in RE_HTML_LINK_BLOCK.findall(raw):
             parsed = urllib.parse.urlparse(href)
             target_host = parsed.netloc.lower().removeprefix("www.")
@@ -505,7 +557,7 @@ def crawl_comic_banners(
 
             if RE_COMIC_SITE_HINT.search(dom):
                 base_url = f"{parsed.scheme or 'https'}://{parsed.netloc}/"
-                if base_url not in comic_sites and base_url not in discovered_mirrors:
+                if base_url not in comic_sites and base_url not in blocked_urls and base_url not in discovered_mirrors:
                     discovered_mirrors.append(base_url)
                 daftarkan_host_komik(base_url)
                 continue
@@ -525,9 +577,18 @@ def crawl_comic_banners(
                     kandidat_judol.add(dom)
                     hits_site += 1
 
+        # 2) Cek juga URL iklan judol yang ditanam langsung di dalam <script> / window.open
+        for m in RE_URL_EXTRACT.finditer(raw):
+            dom = ekstrak_domain_aman(m.group(1), allowlist | comic_hosts)
+            if not dom or dom in comic_hosts or punya_induk_di_cache(dom, diabaikan):
+                continue
+            if RE_JUDOL_DOMAIN_STRONG.search(dom) and dom not in kandidat_judol:
+                kandidat_judol.add(dom)
+                hits_site += 1
+
         meta["hits"] = meta.get("hits", 0) + hits_site
         print(f"[COMIC] {site_host}: +{hits_site} domain banner judol (total situs: {meta['hits']})")
-        time.sleep(1.5)
+        time.sleep(1.2)
         return discovered_mirrors
 
     antrean_mirror: list[str] = []
@@ -538,7 +599,7 @@ def crawl_comic_banners(
                 antrean_mirror.append(m_url)
 
     for new_u in antrean_mirror[:6]:
-        if len(comic_sites) >= MAX_COMIC_SITES:
+        if len(comic_sites) >= MAX_COMIC_SITES or new_u in blocked_urls:
             break
         comic_sites[new_u] = {"misses": 0, "hits": 0}
         print(f"[NEW COMIC] Situs komik mirror/partner ditemukan: {new_u}")
@@ -553,8 +614,13 @@ def main() -> int:
     seen_set = set(state["seen"])
     channels_map: dict = state["channels"]
     comic_sites: dict = state.setdefault("comic_sites", {})
+    blocked_urls: set[str] = set(state.setdefault("blocked_urls", []))
     rejected_set = {x.lower() for x in state["rejected"]}
-    known_lower = {k.lower() for k in channels_map}
+
+    # Pastikan kanal seed awal terdaftar jika belum ditolak/mati
+    for seed_ch, seed_kind in SEED_TG_CHANNELS.items():
+        if seed_ch not in channels_map and seed_ch.lower() not in rejected_set:
+            channels_map[seed_ch] = default_meta("seed", kind=seed_kind)
 
     kandidat_mentah: set[str] = set()
     snowball_tg: set[str] = set()
@@ -563,7 +629,12 @@ def main() -> int:
     # 1. Jalur A: Certificate Transparency (crt.sh)
     kandidat_mentah.update(fetch_crt_candidates(allowlist, diabaikan))
 
-    # 2. Jalur B & C: Pindai Kanal Telegram (Promo Judol & Update Manhwa/Pornhwa)
+    # 2. Jalur B: Cari kanal Telegram baru DULUAN sebelum memindai!
+    if len(channels_map) < MAX_ACTIVE_CHANNELS:
+        temukan_kanal_tg_baru(channels_map, rejected_set, state)
+
+    # 3. Jalur C: Masuk ke dalam setiap kanal Telegram untuk hunting domain komik & judol
+    known_lower = {k.lower() for k in channels_map}
     for ch, meta in list(channels_map.items()):
         items = fetch_telegram_channel(ch, max_pages=3)
         meta["scans"] = meta.get("scans", 0) + 1
@@ -572,8 +643,8 @@ def main() -> int:
         if not items:
             meta["misses"] = meta.get("misses", 0) + 1
             if meta["misses"] >= MAX_MISSES:
-                to_prune.append((ch, "mati/kosong"))
-            time.sleep(1.0)
+                to_prune.append((ch, "mati/private/kosong"))
+            time.sleep(0.8)
             continue
 
         meta["misses"] = 0
@@ -581,8 +652,7 @@ def main() -> int:
 
         for post in items:
             teks = post["text"]
-            if RE_JUDOL_CONTEXT.search(teks) or RE_COMIC_POST_CONTEXT.search(teks):
-                snowball_tg.update(ekstrak_tg_username(teks))
+            snowball_tg.update(ekstrak_tg_username(teks))
 
             if post["id"] in seen_set:
                 continue
@@ -590,19 +660,21 @@ def main() -> int:
             state["seen"].append(post["id"])
 
             if kind == "comic":
-                # Kanal update manhwa/pornhwa -> sedot alamat situs komik yang dibagikan
-                if RE_COMIC_POST_CONTEXT.search(teks):
-                    for m in RE_URL_EXTRACT.finditer(teks):
-                        dom = ekstrak_domain_aman(m.group(1), allowlist)
-                        if not dom or RE_JUDOL_DOMAIN_STRONG.search(dom):
-                            continue
-                        site_url = f"https://{dom}/"
-                        if site_url not in comic_sites and len(comic_sites) < MAX_COMIC_SITES:
-                            comic_sites[site_url] = {"misses": 0, "hits": 0}
+                for m in RE_URL_EXTRACT.finditer(teks):
+                    dom = ekstrak_domain_aman(m.group(1), allowlist)
+                    if not dom:
+                        continue
+                    if RE_JUDOL_DOMAIN_STRONG.search(dom):
+                        if not punya_induk_di_cache(dom, diabaikan) and dom not in kandidat_mentah:
+                            kandidat_mentah.add(dom)
                             panen_kanal += 1
-                            print(f"[TG->COMIC] Situs manhwa/komik baru dari @{ch}: {site_url}")
+                        continue
+                    site_url = f"https://{dom}/"
+                    if site_url not in comic_sites and site_url not in blocked_urls and len(comic_sites) < MAX_COMIC_SITES:
+                        comic_sites[site_url] = {"misses": 0, "hits": 0}
+                        panen_kanal += 1
+                        print(f"[TG->COMIC] Situs manhwa/komik baru dari @{ch}: {site_url}")
             else:
-                # Kanal promo judol -> sedot langsung domain judol
                 punya_konteks = bool(RE_JUDOL_CONTEXT.search(teks))
                 for m in RE_URL_EXTRACT.finditer(teks):
                     dom = ekstrak_domain_aman(m.group(1), allowlist)
@@ -623,8 +695,8 @@ def main() -> int:
             if meta["dry_runs"] >= MAX_DRY_RUNS:
                 to_prune.append((ch, f"zonk {MAX_DRY_RUNS}x"))
 
-        print(f"[INFO] TG @{ch} ({kind}): +{panen_kanal} temuan (total: {meta['harvested']}, zonk: {meta['dry_runs']}/{MAX_DRY_RUNS})")
-        time.sleep(1.0)
+        print(f"[INFO] TG @{ch} ({kind}): {len(items)} pesan | +{panen_kanal} temuan (total: {meta['harvested']})")
+        time.sleep(0.8)
 
     for ch, alasan in to_prune:
         print(f"[ROTATE] Memecat @{ch} ({alasan})")
@@ -633,39 +705,26 @@ def main() -> int:
         state["rejected"].append(ch)
         rejected_set.add(ch.lower())
 
-    # Auto-Discovery kanal Telegram baru (Judol & Manhwa/Pornhwa)
-    if len(channels_map) < MAX_ACTIVE_CHANNELS:
-        dir_cands: set[str] = set()
-        for q_url in (COMIC_TG_QUERIES + JUDOL_TG_QUERIES):
-            raw, _ = http_get(q_url, timeout=20)
-            if raw:
-                dir_cands.update(ekstrak_tg_username(raw))
-            time.sleep(1.2)
+    # Simpan kandidat snowball Telegram untuk siklus berikutnya
+    if snowball_tg and len(channels_map) < MAX_ACTIVE_CHANNELS:
+        for cand in list(snowball_tg)[:10]:
+            if cand.lower() not in known_lower and cand.lower() not in rejected_set:
+                ch_kind = klasifikasi_kanal_tg(cand)
+                if ch_kind:
+                    channels_map[cand] = default_meta("snowball", kind=ch_kind)
+                    known_lower.add(cand.lower())
+                    print(f"[NEW CHANNEL] Snowball {ch_kind}: @{cand}")
+                else:
+                    state["rejected"].append(cand)
+                    rejected_set.add(cand.lower())
+                time.sleep(0.8)
 
-        antrean = [
-            u for u in (list(dir_cands) + list(snowball_tg))
-            if u.lower() not in known_lower and u.lower() not in rejected_set
-        ]
-        for cand in antrean[:MAX_VERIFY_PER_RUN]:
-            if len(channels_map) >= MAX_ACTIVE_CHANNELS:
-                break
-            ch_kind = klasifikasi_kanal_tg(cand)
-            if ch_kind:
-                src = "directory" if cand in dir_cands else "snowball"
-                channels_map[cand] = default_meta(src, kind=ch_kind)
-                known_lower.add(cand.lower())
-                print(f"[NEW CHANNEL] Kanal {ch_kind} terverifikasi ({src}): @{cand}")
-            else:
-                state["rejected"].append(cand)
-                rejected_set.add(cand.lower())
-            time.sleep(1.0)
-
-    # 3. Jalur D: Sedot Banner Iklan dari Seluruh Situs Komik (Seed + Temuan TG)
+    # 4. Jalur D: Sedot Banner Iklan dari Seluruh Situs Komik (Seed + Temuan TG)
     kandidat_mentah.update(crawl_comic_banners(state, allowlist, diabaikan))
 
     simpan_state(state)
 
-    # 4. Verifikasi DNS Aktif
+    # 5. Verifikasi DNS Aktif
     domain_terverifikasi: list[str] = []
     for dom in sorted(kandidat_mentah):
         if len(domain_terverifikasi) >= MAX_NEW_DOMAINS_PER_RUN:
