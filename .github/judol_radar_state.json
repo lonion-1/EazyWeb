@@ -70,17 +70,17 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 7,
+      "scans": 8,
       "harvested": 0,
-      "dry_runs": 7,
+      "dry_runs": 8,
       "misses": 0
     },
     "manhwa1_8": {
       "source": "directory",
       "kind": "comic",
-      "scans": 3,
+      "scans": 4,
       "harvested": 0,
-      "dry_runs": 3,
+      "dry_runs": 4,
       "misses": 0
     }
   },
@@ -135,10 +135,6 @@
     },
     "https://11.ikiru.wtf/": {
       "misses": 0,
-      "hits": 0
-    },
-    "https://sektejav.cc/": {
-      "misses": 1,
       "hits": 0
     }
   },
@@ -242,6 +238,7 @@
     "agent328bet"
   ],
   "blocked_urls": [
-    "https://manhwaland.io/"
+    "https://manhwaland.io/",
+    "https://sektejav.cc/"
   ]
 }
