@@ -53,16 +53,16 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     }
   },
   "comic_sites": {
     "https://link.manhwaland.land/": {
       "misses": 0,
-      "hits": 4
+      "hits": 5
     },
     "https://doujin.desu.xxx/": {
       "misses": 0,
@@ -89,62 +89,66 @@
       "hits": 0
     },
     "https://komiku.org/": {
-      "misses": 0,
+      "misses": 1,
       "hits": 0
     },
     "https://mangaku.lol/": {
       "misses": 0,
       "hits": 0
     },
+    "https://komikstation.org/": {
+      "misses": 0,
+      "hits": 2
+    },
+    "https://shiroku.web.id/": {
+      "misses": 0,
+      "hits": 1
+    },
     "https://11.ikiru.wtf/": {
       "misses": 0,
       "hits": 0
     },
     "https://manhwaland.io/": {
-      "misses": 1,
+      "misses": 2,
       "hits": 0
     },
     "https://sektejav.cc/": {
-      "misses": 1,
+      "misses": 2,
       "hits": 0
     },
     "https://manhwaindo.io/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://www.comic.komikpedia.com/": {
-      "misses": 1,
+      "misses": 2,
       "hits": 0
     },
     "https://www.manhwaindo.my/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://shinigami.lol/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://komikstation.org/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://manhwaindo.im/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://shiroku.web.id/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://comicaso.site/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://komikcast.app/": {
-      "misses": 1,
+      "misses": 0,
       "hits": 0
     },
     "https://softkomik.app/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://softkomik.org/": {
       "misses": 1,
       "hits": 0
     }
@@ -195,6 +199,24 @@
     "indokimochi",
     "manhwasubindo0511",
     "gamesyoulike",
-    "manhwa_yaoi"
+    "manhwa_yaoi",
+    "HanteiUnivers",
+    "video_bokep_terbaru",
+    "drakor_terbaru_nevertheless",
+    "yt_indo",
+    "nevertheless_dkorea",
+    "manhwa18",
+    "discusnet",
+    "nevertheless7",
+    "dasterobek",
+    "alivesubindo",
+    "nevertheless_01",
+    "manhwachanbaek",
+    "dastersobekk",
+    "luvyuproject",
+    "qlpcoin_indo",
+    "tiktokpiralterbaruu",
+    "fxt_indo",
+    "dr_nevertheless"
   ]
 }

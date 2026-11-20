@@ -1,6 +1,6 @@
 # Title: EazyWhale Isekai Wall (personalDNSfilter Wildcard)
-# Version: 2026.11.20.2029
-# Count: 52
+# Version: 2026.11.20.2122
+# Count: 54
 
 388heroky.cc
 *.388heroky.cc
@@ -10,6 +10,8 @@
 *.7kucingqy.vip
 a1togelslot.com
 *.a1togelslot.com
+akseskdslot.net
+*.akseskdslot.net
 analytical.pl
 *.analytical.pl
 apabos.com
@@ -86,6 +88,8 @@ melajuokjek21.com
 *.melajuokjek21.com
 namcdfw.org
 *.namcdfw.org
+pakdeslotmaxwin.com
+*.pakdeslotmaxwin.com
 pentaslot.llc
 *.pentaslot.llc
 pui68cenil.com

@@ -2,3 +2,4 @@
 # Format: domain | tanggal_lulus (UTC) | terindeks_di
 # -----------------------------------------------------------------------
 
+t2m.io | 2026-11-20 | ABPindo
