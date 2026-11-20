@@ -88,7 +88,7 @@
       "misses": 0,
       "hits": 0
     },
-    "https://komiku.org/": {
+    "https://komikaido.com/": {
       "misses": 1,
       "hits": 0
     },
@@ -108,7 +108,7 @@
       "misses": 0,
       "hits": 0
     },
-    "https://manhwaland.io/": {
+    "https://komikindo.ch/": {
       "misses": 2,
       "hits": 0
     },
@@ -148,7 +148,27 @@
       "misses": 0,
       "hits": 0
     },
-    "https://softkomik.org/": {
+    "https://biddynamic.com/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://www.wattpad.com/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://www.anime-planet.com/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://d21.team/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "http://199.119.136.102/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://idlixstream.casa/": {
       "misses": 1,
       "hits": 0
     }
