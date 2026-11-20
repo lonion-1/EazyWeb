@@ -1,0 +1,71 @@
+{
+  "seen": [],
+  "channels": {},
+  "comic_sites": {
+    "https://link.manhwaland.land/": {
+      "misses": 0,
+      "hits": 1
+    },
+    "https://doujin.desu.xxx/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://shinigami.to/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://ikiru.id/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://sektedoujin.cc/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://crotpedia.net/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://komiktap.info/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://komiku.org/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://mangaku.lol/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://11.ikiru.wtf/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://sektejav.cc/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://manhwaland.io/": {
+      "misses": 1,
+      "hits": 0
+    }
+  },
+  "rejected": [
+    "hiburan_sahajaa",
+    "xxxjoleyxxx",
+    "lyzemcom",
+    "abang_sincan138",
+    "margo123indonesia",
+    "aplikasianyar",
+    "egp88_official",
+    "spadeslot",
+    "ssidwinner",
+    "sido247kuatterpecaya",
+    "videotiktok69",
+    "elvclub",
+    "slotsgacorr",
+    "nyoks24",
+    "forumslotpragmatic"
+  ]
+}

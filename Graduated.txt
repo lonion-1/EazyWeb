@@ -1,0 +1,4 @@
+# EazyBlock Graduated - Catatan Domain yang Sudah Terindeks Sumber Global
+# Format: domain | tanggal_lulus (UTC) | terindeks_di
+# -----------------------------------------------------------------------
+

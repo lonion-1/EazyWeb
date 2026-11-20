@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.19.1550
-! Total Rules: 49
+! Version: 2026.11.20.2029
+! Total Rules: 52
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -45,6 +45,7 @@
 ||klik.best^
 ||madamebresil.com^
 ||mambawinplayer.net^
+||maxwin--berada-ditangan-anda.pages.dev^
 ||melajuokjek21.com^
 ||namcdfw.org^
 ||pentaslot.llc^
@@ -52,6 +53,8 @@
 ||qqsawersor.site^
 ||rakeback.com^
 ||scanrw4d.com^
+||slotgacor--2025.pages.dev^
 ||triplehtacklingacademy.com^
 ||usemessages.com^
 ||yourpokerdream.com^
+||zeus.fun^
