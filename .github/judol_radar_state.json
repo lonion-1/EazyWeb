@@ -172,102 +172,6 @@
     "https://komikaido.com/": {
       "misses": 0,
       "hits": 0
-    },
-    "https://11.ikiru.wtf/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://komikindo.ch/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://manhwaindo.io/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://www.comic.komikpedia.com/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://www.manhwaindo.my/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://shinigami.lol/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://manhwaindo.im/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://comicaso.site/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://komikcast.app/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://softkomik.app/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://biddynamic.com/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://www.wattpad.com/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://www.anime-planet.com/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://d21.team/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "http://199.119.136.102/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://idlixstream.casa/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://manhwaland.io/": {
-      "misses": 1,
-      "hits": 0
-    },
-    "http://komikindo.cv/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://softkomik.org/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://t.me/s/manhwaloverz?q=%23mpreg&before=1175": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://t.me/s/suka18plus?before=130": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://tgstat.com/channel/@komikdewasamantap": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://www.bloggertoraja.com/2021/06/cara-baca-dan-download-manga-di-telegram.html?m=1": {
-      "misses": 1,
-      "hits": 0
-    },
-    "https://sektejav.cc/": {
-      "misses": 1,
-      "hits": 0
     }
   },
   "rejected": [
@@ -363,8 +267,5 @@
     "menina_meiga",
     "agen828bet"
   ],
-  "blocked_urls": [
-    "https://komiktap.info/",
-    "https://komiku.org/"
-  ]
+  "blocked_urls": []
 }
