@@ -70,66 +70,18 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 6,
+      "scans": 7,
       "harvested": 0,
-      "dry_runs": 6,
+      "dry_runs": 7,
       "misses": 0
     },
     "manhwa1_8": {
       "source": "directory",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
-    },
-    "shinigami_id": {
-      "source": "seed",
-      "kind": "comic",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
-    },
-    "sektedoujin": {
-      "source": "seed",
-      "kind": "comic",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
-    },
-    "doujindesu": {
-      "source": "seed",
-      "kind": "comic",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
-    },
-    "komikcast": {
-      "source": "seed",
-      "kind": "comic",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
-    },
-    "kiryuu_id": {
-      "source": "seed",
-      "kind": "comic",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
-    },
-    "agent328bet": {
-      "source": "seed",
-      "kind": "judol",
-      "scans": 1,
-      "harvested": 0,
-      "dry_runs": 0,
-      "misses": 1
     }
   },
   "comic_sites": {
@@ -171,6 +123,22 @@
     },
     "https://komikaido.com/": {
       "misses": 0,
+      "hits": 0
+    },
+    "https://komiktap.info/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://komiku.org/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://11.ikiru.wtf/": {
+      "misses": 0,
+      "hits": 0
+    },
+    "https://sektejav.cc/": {
+      "misses": 1,
       "hits": 0
     }
   },
@@ -265,7 +233,15 @@
     "nevertheless_idn",
     "bokepviralhots",
     "menina_meiga",
-    "agen828bet"
+    "agen828bet",
+    "shinigami_id",
+    "sektedoujin",
+    "doujindesu",
+    "komikcast",
+    "kiryuu_id",
+    "agent328bet"
   ],
-  "blocked_urls": []
+  "blocked_urls": [
+    "https://manhwaland.io/"
+  ]
 }
