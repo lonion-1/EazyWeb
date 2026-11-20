@@ -1,0 +1,49 @@
+name: Radar Otomatis Domain Judol (Secondary Engine)
+# Copyright (c) 2026 <EazyWhale>
+# Licensed under the MIT License.
+
+on:
+  schedule:
+    - cron: '17 20 * * *' # Cadangan harian jam 03:17 WIB (sebelum WhaleList build 04:23 WIB)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rapikan-list
+  cancel-in-progress: false
+
+jobs:
+  radar-judol:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Ambil isi repo
+        uses: actions/checkout@v4
+
+      - name: Pindai & verifikasi domain judol baru (WhaleList Cache + crt.sh + Telegram)
+        run: python3 scripts/judol_radar.py
+
+      - name: Jalankan Main Engine (clean.py) untuk deduplikasi & build
+        run: python3 scripts/clean.py
+
+      - name: Simpan hasil ke GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Tidak ada domain baru untuk di-commit."
+            exit 0
+          fi
+          git commit -m "chore(radar): auto-add domain judol terverifikasi [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
+          
