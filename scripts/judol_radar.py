@@ -130,6 +130,11 @@ MULTI_PART_TLDS = {
     "co.uk", "org.uk", "me.uk", "com.au", "net.au", "org.au",
     "com.sg", "com.my", "co.jp", "co.kr", "com.br", "com.tr",
     "com.vn", "co.th", "com.ph", "com.tw", "com.hk",
+    "eu.com", "uk.com", "us.com", "de.com", "cn.com", "ru.com",
+    "za.com", "br.com", "ar.com", "hu.com", "jpn.com", "kr.com",
+    "no.com", "qc.com", "sa.com", "se.com", "uy.com", "web.com",
+    "gb.com", "gb.net", "uk.net", "se.net", "in.net", "jp.net",
+    "hu.net", "ae.org", "us.org", "eu.org",
 }
 
 # Ekstensi institusi/pemerintah yang mutlak dilindungi
