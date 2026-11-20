@@ -70,24 +70,80 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 5,
+      "scans": 6,
       "harvested": 0,
-      "dry_runs": 5,
+      "dry_runs": 6,
       "misses": 0
     },
     "manhwa1_8": {
       "source": "directory",
       "kind": "comic",
+      "scans": 2,
+      "harvested": 0,
+      "dry_runs": 2,
+      "misses": 0
+    },
+    "shinigami_id": {
+      "source": "seed",
+      "kind": "comic",
       "scans": 1,
       "harvested": 0,
-      "dry_runs": 1,
-      "misses": 0
+      "dry_runs": 0,
+      "misses": 1
+    },
+    "sektedoujin": {
+      "source": "seed",
+      "kind": "comic",
+      "scans": 1,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 1
+    },
+    "doujindesu": {
+      "source": "seed",
+      "kind": "comic",
+      "scans": 1,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 1
+    },
+    "komikcast": {
+      "source": "seed",
+      "kind": "comic",
+      "scans": 1,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 1
+    },
+    "kiryuu_id": {
+      "source": "seed",
+      "kind": "comic",
+      "scans": 1,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 1
+    },
+    "agent328bet": {
+      "source": "seed",
+      "kind": "judol",
+      "scans": 1,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 1
     }
   },
   "comic_sites": {
     "https://link.manhwaland.land/": {
       "misses": 0,
       "hits": 5
+    },
+    "https://komikstation.org/": {
+      "misses": 0,
+      "hits": 2
+    },
+    "https://shiroku.web.id/": {
+      "misses": 0,
+      "hits": 1
     },
     "https://doujin.desu.xxx/": {
       "misses": 0,
@@ -109,25 +165,9 @@
       "misses": 0,
       "hits": 0
     },
-    "https://komiktap.info/": {
-      "misses": 0,
-      "hits": 0
-    },
     "https://mangaku.lol/": {
       "misses": 0,
       "hits": 0
-    },
-    "https://komiku.org/": {
-      "misses": 0,
-      "hits": 0
-    },
-    "https://komikstation.org/": {
-      "misses": 0,
-      "hits": 2
-    },
-    "https://shiroku.web.id/": {
-      "misses": 0,
-      "hits": 1
     },
     "https://komikaido.com/": {
       "misses": 0,
@@ -320,6 +360,11 @@
     "menina_meigaa",
     "nevertheless_idn",
     "bokepviralhots",
-    "menina_meiga"
+    "menina_meiga",
+    "agen828bet"
+  ],
+  "blocked_urls": [
+    "https://komiktap.info/",
+    "https://komiku.org/"
   ]
 }
