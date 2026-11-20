@@ -5,7 +5,10 @@
 Fitur Safety-First & Zero-Redundancy:
 1. Menggunakan 2 file WhaleList (EazyLife-IsekaiWall.txt & EazyLife-Security.txt) + Graduated.txt
    sebagai cache anti-redundansi agar cepat & tidak pernah mengambil domain yang sudah diblokir.
-2. Melacak domain judol baru dari Certificate Transparency (crt.sh) & Telegram Auto-Discovery.
+2. Melacak domain judol baru dari 3 jalur:
+   - Jalur A: Certificate Transparency (crt.sh)
+   - Jalur B: Comic-Site Banner & Mirror Crawler (termasuk redirect-hub & 2-hop mirror)
+   - Jalur C: Telegram Auto-Discovery (t.me/s/ + lyzem.com) dengan rapor produktivitas kanal
 3. Perlindungan ketat multi-part TLD (.my.id, .biz.id, .co.id), domain pemerintah/kampus,
    platform bersama (blogspot, pages.dev, linktr.ee, sosmed), & verifikasi DNS aktif.
 """
@@ -31,6 +34,19 @@ WHALELIST_CACHE_URLS = [
     ("WhaleList Security", "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"),
 ]
 
+# Daftar situs utama baca komik/doujin/manhwa (termasuk portal redirect) untuk disedot banner judolnya
+COMIC_SEED_URLS = [
+    "https://doujin.desu.xxx/",
+    "https://shinigami.to/",
+    "https://ikiru.id/",
+    "https://sektedoujin.cc/",
+    "https://crotpedia.net/",
+    "https://link.manhwaland.land/",
+    "https://komiktap.info/",
+    "https://komiku.org/",
+    "https://mangaku.lol/",
+]
+
 # Query Certificate Transparency (crt.sh) untuk domain judol yang baru terbit SSL-nya
 CRT_QUERIES = [
     "%slotgacor%",
@@ -49,11 +65,12 @@ DIRECTORY_QUERIES = [
 
 MAX_SEEN_POSTS = 3500
 MAX_ACTIVE_CHANNELS = 25
+MAX_COMIC_SITES = 35
 MAX_VERIFY_PER_RUN = 15
 MAX_REJECTED = 600
 MAX_DRY_RUNS = 25
 MAX_MISSES = 3
-MAX_NEW_DOMAINS_PER_RUN = 120  # Batas aman per siklus agar list tetap terkendali
+MAX_NEW_DOMAINS_PER_RUN = 150  # Batas aman per siklus agar list tetap terkendali
 
 RE_DOMAIN = re.compile(
     r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:xn--[a-z0-9-]{1,59}|[a-z]{2,63})$"
@@ -63,6 +80,15 @@ RE_URL_EXTRACT = re.compile(
 )
 RE_TG_MENTION = re.compile(
     r"(?:https?://)?(?:t\.me|telegram\.me)/(?:s/)?([a-zA-Z][a-zA-Z0-9_]{4,31})\b"
+)
+RE_HTML_LINK_BLOCK = re.compile(
+    r'<a\b[^>]*href=["\'](https?://[^"\']+)["\'][^>]*>([\s\S]*?)</a>',
+    re.IGNORECASE,
+)
+
+# Ciri domain situs baca komik/mirror untuk snowball otomatis (dan mencegahnya ikut terblokir)
+RE_COMIC_SITE_HINT = re.compile(
+    r"(?i)(?:komik|manga|manhwa|manhua|webtoon|doujin|desu|sekte|crot|ikiru|shinigami|kiryuu|westmanga|bacakomik)"
 )
 
 # Pola nama domain judol berkeyakinan tinggi (anti false-positive)
@@ -76,9 +102,13 @@ RE_JUDOL_DOMAIN_STRONG = re.compile(
     r")"
 )
 
-# Pola nama domain moderat (hanya lolos jika muncul di dalam pesan promo judol eksplisit)
+# Pola nama domain moderat (hanya lolos jika muncul di banner gambar/promo judol eksplisit)
 RE_JUDOL_DOMAIN_MODERATE = re.compile(
     r"(?i)(?:slot|gacor|jp|jackpot|cuan|hok|depo|wd|bet|win|spin|zeus|olympus|toto|4d|77|88|99|138|303|5000|vip|raja|dewa|bos|indo|asia|idn|link|alternatif)"
+)
+
+RE_BANNER_JUDOL_ATTR = re.compile(
+    r"(?i)(?:slot|gacor|rtp|togel|toto|maxwin|judol|judi|depo|withdraw|wd|bonus|zeus|mahjong|pragmatic|scatter)"
 )
 
 RE_JUDOL_CONTEXT = re.compile(
@@ -117,13 +147,14 @@ FREE_HOST_SUFFIXES = {
     "rf.gd", "byethost.com", "kesug.com", "great-site.net",
 }
 
-# Domain platform besar, shortener, berita, & perbankan yang mutlak dilarang diblokir
+# Domain platform besar, shortener, berita, CDN gambar, & perbankan yang mutlak dilarang diblokir
 PROTECTED_DOMAINS = {
     "google.com", "googleapis.com", "gstatic.com", "youtube.com", "youtu.be", "android.com",
     "facebook.com", "fb.com", "instagram.com", "whatsapp.com", "wa.me", "threads.net", "meta.com",
     "t.me", "telegram.org", "telegram.me", "telegra.ph",
     "twitter.com", "x.com", "tiktok.com", "discord.com", "discord.gg", "reddit.com",
-    "github.com", "githubusercontent.com", "gitlab.com", "cloudflare.com",
+    "github.com", "githubusercontent.com", "gitlab.com", "cloudflare.com", "imgur.com",
+    "wp.com", "gravatar.com", "disqus.com", "histats.com",
     "linktr.ee", "bit.ly", "tinyurl.com", "s.id", "cutt.ly", "rebrand.ly", "heylink.me", "taplink.cc",
     "medium.com", "substack.com", "archive.org", "wikipedia.org",
     "kompas.com", "detik.com", "cnnindonesia.com", "cnbcindonesia.com", "tribunnews.com",
@@ -140,7 +171,8 @@ RESERVED_TG_NAMES = {
 }
 
 
-def http_get(url: str, timeout: int = 25) -> str | None:
+def http_get(url: str, timeout: int = 25) -> tuple[str | None, str]:
+    """Ambil isi URL beserta URL akhir setelah redirect (penting untuk portal situs komik)."""
     req = urllib.request.Request(
         url,
         headers={
@@ -150,10 +182,11 @@ def http_get(url: str, timeout: int = 25) -> str | None:
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.read().decode("utf-8", errors="ignore")
+            final_url = r.geturl() or url
+            return r.read().decode("utf-8", errors="ignore"), final_url
     except (urllib.error.URLError, TimeoutError, OSError) as e:
         print(f"[WARN] Gagal akses {url[:75]}: {e}")
-        return None
+        return None, url
 
 
 def bersihkan_html(raw_html: str) -> str:
@@ -178,7 +211,6 @@ def ekstrak_domain_aman(raw_host: str, allowlist: set[str]) -> str | None:
     suffix2 = ".".join(parts[-2:])
     suffix3 = ".".join(parts[-3:]) if len(parts) >= 3 else ""
 
-    # Jika memakai layanan hosting gratis (mis. judol.blogspot.com), pertahankan subdomainnya
     if suffix2 in FREE_HOST_SUFFIXES:
         if len(parts) < 3 or parts[-3] in {"www", "m"}:
             return None
@@ -236,7 +268,7 @@ def muat_cache_diabaikan() -> tuple[set[str], set[str]]:
                 diabaikan.add(dom)
 
     for nama, url in WHALELIST_CACHE_URLS:
-        raw = http_get(url, timeout=45)
+        raw, _ = http_get(url, timeout=45)
         if not raw:
             print(f"[WARN] Cache {nama} gagal dimuat, lanjut dengan cache lokal.")
             continue
@@ -263,11 +295,11 @@ def punya_induk_di_cache(domain: str, cache: set[str]) -> bool:
 
 
 def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
-    """Sadapan Certificate Transparency (crt.sh) untuk sertifikat SSL domain judol baru."""
+    """Jalur A: Sadapan Certificate Transparency (crt.sh) untuk sertifikat SSL domain judol baru."""
     kandidat: set[str] = set()
     for q in CRT_QUERIES:
         url = f"https://crt.sh/?q={urllib.parse.quote(q)}&output=json"
-        raw = http_get(url, timeout=30)
+        raw, _ = http_get(url, timeout=30)
         if not raw:
             time.sleep(2.0)
             continue
@@ -289,22 +321,121 @@ def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
     return kandidat
 
 
+def crawl_comic_banners(
+    state: dict,
+    allowlist: set[str],
+    diabaikan: set[str],
+) -> set[str]:
+    """Jalur B: Sedot domain iklan judol dari banner <a>...<img></a> pada situs komik + 2-hop mirror."""
+    comic_sites: dict = state.setdefault("comic_sites", {})
+    for url in COMIC_SEED_URLS:
+        u = url.strip()
+        if u and u not in comic_sites:
+            comic_sites[u] = {"misses": 0, "hits": 0}
+
+    kandidat_judol: set[str] = set()
+    comic_hosts: set[str] = set()
+
+    def daftarkan_host_komik(url_str: str) -> None:
+        host = urllib.parse.urlparse(url_str).netloc.lower().removeprefix("www.")
+        if host:
+            comic_hosts.add(host)
+            base_dom = ekstrak_domain_aman(host, set())
+            if base_dom:
+                comic_hosts.add(base_dom)
+
+    for u in comic_sites:
+        daftarkan_host_komik(u)
+
+    def pindai_satu_situs(site_url: str, meta: dict) -> list[str]:
+        raw, final_url = http_get(site_url, timeout=20)
+        if not raw:
+            meta["misses"] = meta.get("misses", 0) + 1
+            if site_url not in COMIC_SEED_URLS and meta["misses"] >= 3:
+                comic_sites.pop(site_url, None)
+            return []
+
+        meta["misses"] = 0
+        daftarkan_host_komik(final_url)
+
+        site_host = urllib.parse.urlparse(final_url).netloc.lower().removeprefix("www.")
+        hits_site = 0
+        discovered_mirrors: list[str] = []
+
+        for href, inner_html in RE_HTML_LINK_BLOCK.findall(raw):
+            parsed = urllib.parse.urlparse(href)
+            target_host = parsed.netloc.lower().removeprefix("www.")
+            if not target_host or target_host == site_host or target_host in comic_hosts:
+                continue
+
+            dom = ekstrak_domain_aman(target_host, allowlist | comic_hosts)
+            if not dom:
+                continue
+
+            # Jika mengarah ke situs komik partner / domain baru dari portal redirect
+            if RE_COMIC_SITE_HINT.search(dom):
+                base_url = f"{parsed.scheme or 'https'}://{parsed.netloc}/"
+                if base_url not in comic_sites and base_url not in discovered_mirrors:
+                    discovered_mirrors.append(base_url)
+                daftarkan_host_komik(base_url)
+                continue
+
+            if punya_induk_di_cache(dom, diabaikan):
+                continue
+
+            has_img = "<img" in inner_html.lower()
+            attr_text = bersihkan_html(inner_html)
+            alt_matches = " ".join(re.findall(r'(?:alt|title)=["\']([^"\']+)["\']', inner_html, re.I))
+            konteks_banner = f"{dom} {attr_text} {alt_matches}"
+
+            if RE_JUDOL_DOMAIN_STRONG.search(dom) or (
+                (has_img or len(parsed.path) > 1) and RE_BANNER_JUDOL_ATTR.search(konteks_banner)
+            ):
+                if dom not in kandidat_judol:
+                    kandidat_judol.add(dom)
+                    hits_site += 1
+
+        meta["hits"] = meta.get("hits", 0) + hits_site
+        print(f"[COMIC] {site_host}: +{hits_site} domain banner judol (total situs: {meta['hits']})")
+        time.sleep(1.5)
+        return discovered_mirrors
+
+    # Pass 1: Pindai situs utama & situs komik tersimpan
+    antrean_mirror: list[str] = []
+    for site_url, meta in list(comic_sites.items())[:18]:
+        mirrors = pindai_satu_situs(site_url, meta)
+        for m_url in mirrors:
+            if len(comic_sites) + len(antrean_mirror) < MAX_COMIC_SITES and m_url not in antrean_mirror:
+                antrean_mirror.append(m_url)
+
+    # Pass 2 (2-Hop): Langsung selami mirror yang baru ditemukan dari portal (mis. shinigami.to / manhwaland)
+    for new_u in antrean_mirror[:6]:
+        if len(comic_sites) >= MAX_COMIC_SITES:
+            break
+        comic_sites[new_u] = {"misses": 0, "hits": 0}
+        print(f"[NEW COMIC] Situs komik mirror/partner ditemukan: {new_u}")
+        pindai_satu_situs(new_u, comic_sites[new_u])
+
+    return kandidat_judol
+
+
 def default_meta(source: str) -> dict:
     return {"source": source, "scans": 0, "harvested": 0, "dry_runs": 0, "misses": 0}
 
 
 def muat_state() -> dict:
     if not STATE_FILE.exists():
-        return {"seen": [], "channels": {}, "rejected": []}
+        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": []}
     try:
         data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
         return {
             "seen": list(data.get("seen", []))[-MAX_SEEN_POSTS:],
             "channels": data.get("channels", {}),
+            "comic_sites": data.get("comic_sites", {}),
             "rejected": list(data.get("rejected", []))[-MAX_REJECTED:],
         }
     except Exception:
-        return {"seen": [], "channels": {}, "rejected": []}
+        return {"seen": [], "channels": {}, "comic_sites": {}, "rejected": []}
 
 
 def simpan_state(state: dict) -> None:
@@ -315,6 +446,13 @@ def simpan_state(state: dict) -> None:
         sorted(
             state["channels"].items(),
             key=lambda kv: kv[1].get("harvested", 0),
+            reverse=True,
+        )
+    )
+    state["comic_sites"] = dict(
+        sorted(
+            state.get("comic_sites", {}).items(),
+            key=lambda kv: (kv[0] in COMIC_SEED_URLS, kv[1].get("hits", 0)),
             reverse=True,
         )
     )
@@ -331,7 +469,7 @@ def ekstrak_tg_username(teks: str) -> set[str]:
 
 
 def verifikasi_kanal_judol(username: str) -> bool:
-    raw = http_get(f"https://t.me/s/{username}", timeout=20)
+    raw, _ = http_get(f"https://t.me/s/{username}", timeout=20)
     if not raw or "tgme_widget_message_text" not in raw:
         return False
     msgs = re.findall(r'<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)</div>', raw)
@@ -348,7 +486,7 @@ def fetch_telegram_channel(channel: str, max_pages: int = 3) -> list[dict]:
 
     for _ in range(max_pages):
         url = f"https://t.me/s/{channel}" + (f"?before={before_id}" if before_id else "")
-        raw = http_get(url, timeout=20)
+        raw, _ = http_get(url, timeout=20)
         if not raw:
             break
         blocks = re.findall(
@@ -391,7 +529,10 @@ def main() -> int:
     # 1. Jalur A: Certificate Transparency (crt.sh)
     kandidat_mentah.update(fetch_crt_candidates(allowlist, diabaikan))
 
-    # 2. Jalur B: Telegram Auto-Discovery & Rapor Kanal
+    # 2. Jalur B: Sedot Banner Iklan dari Situs Komik & Mirror
+    kandidat_mentah.update(crawl_comic_banners(state, allowlist, diabaikan))
+
+    # 3. Jalur C: Telegram Auto-Discovery & Rapor Kanal
     for ch, meta in list(channels_map.items()):
         items = fetch_telegram_channel(ch, max_pages=3)
         meta["scans"] = meta.get("scans", 0) + 1
@@ -450,7 +591,7 @@ def main() -> int:
     if len(channels_map) < MAX_ACTIVE_CHANNELS:
         dir_cands: set[str] = set()
         for q_url in DIRECTORY_QUERIES:
-            raw = http_get(q_url, timeout=20)
+            raw, _ = http_get(q_url, timeout=20)
             if raw:
                 dir_cands.update(ekstrak_tg_username(raw))
             time.sleep(1.2)
@@ -473,7 +614,7 @@ def main() -> int:
 
     simpan_state(state)
 
-    # 3. Verifikasi DNS Aktif agar hanya domain yang benar-benar hidup yang ditambahkan
+    # 4. Verifikasi DNS Aktif agar hanya domain yang benar-benar hidup yang ditambahkan
     domain_terverifikasi: list[str] = []
     for dom in sorted(kandidat_mentah):
         if len(domain_terverifikasi) >= MAX_NEW_DOMAINS_PER_RUN:
@@ -502,4 +643,46 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-              
+   
+
+def fetch_telegram_channel(channel: str, max_pages: int = 3) -> list[dict]:
+    hasil = []
+    seen_local: set[str] = set()
+    before_id: str | None = None
+
+    for _ in range(max_pages):
+        url = f"https://t.me/s/{channel}" + (f"?before={before_id}" if before_id else "")
+        raw, _ = http_get(url, timeout=20)
+        if not raw:
+            break
+        blocks = re.findall(
+            r'data-post="([^"]+)"[\s\S]*?<div class="tgme_widget_message_text[^"]*"[^>]*>([\s\S]*?)</div>',
+            raw,
+        )
+        if not blocks:
+            break
+        for post_id, msg_html in blocks:
+            if post_id in seen_local:
+                continue
+            seen_local.add(post_id)
+            clean = bersihkan_html(msg_html)
+            if clean:
+                hasil.append({"id": f"tg:{post_id}", "text": clean})
+
+        first_post = blocks[0][0]
+        if "/" not in first_post:
+            break
+        oldest_num = first_post.split("/")[-1]
+        if not oldest_num.isdigit() or oldest_num == before_id or int(oldest_num) <= 1:
+            break
+        before_id = oldest_num
+        time.sleep(1.0)
+    return hasil
+
+
+def main() -> int:
+    diabaikan, allowlist = muat_cache_diabaikan()
+    state = muat_state()
+    seen_set = set(state["seen"])
+    channels_map: dict = state["channels"]
+    rejected
