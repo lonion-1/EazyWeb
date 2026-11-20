@@ -1,7 +1,7 @@
 # Copyright (c) 2026 EazyWhale (https://github.com/lonion-1/WhaleGuard)
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Licensed under the GNU Affero General Public License v3.0
-"""EazyWhale Isekai Wall - Secondary Crawler Engine v2.0 (Anti-403 + Telegram-First Hunting)."""
+"""EazyWhale Isekai Wall - Secondary Crawler Engine v2.1 (Full TG Seed + Anti-403)."""
 import html
 import json
 import re
@@ -23,14 +23,57 @@ WHALELIST_CACHE_URLS = [
     ("WhaleList Security", "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"),
 ]
 
-# Kanal Telegram pancingan awal agar bot langsung masuk & snowball sejak putaran pertama
+# Kanal Telegram pancingan awal (Agregator Utama + DeepSeek R1 + Qweny)
 SEED_TG_CHANNELS = {
+    # --- Agregator Utama & Kanal Judol Terverifikasi ---
     "shinigami_id": "comic",
     "sektedoujin": "comic",
     "doujindesu": "comic",
     "komikcast": "comic",
     "kiryuu_id": "comic",
     "agent328bet": "judol",
+
+    # --- Tambahan Qweny: Kanal Komik/Manhwa ---
+    "Manhwaland": "comic",
+    "manga_mania": "comic",
+    "Manhwa_Loverz": "comic",
+    "Manhwadesu_Official": "comic",
+
+    # --- Tambahan Qweny: Kanal Promo Judol Langsung ---
+    "Official_1win_kanal": "judol",
+    "pandahvdw": "judol",
+    "asupannewupdate1": "judol",
+    "MELEDAK_BESTIE_KU_LANGSUNG_GAS": "judol",
+    "BENUA88_SlotOnline": "judol",
+    "MEJAVIP_Slot_Gacor_Anti_Rungkad": "judol",
+    "Drama_Daily_DAY": "judol",
+    "SBOBET88_Resmi": "judol",
+    "MULTIBET88_Link_Situs_Slot": "judol",
+
+    # --- Tambahan DeepSeek R1: Manhwa, Pornhwa, Manga & Campuran ---
+    "komitaku": "comic",
+    "milftoonid": "comic",
+    "ManhwaheavenAOM": "comic",
+    "manhwa_university_updates": "comic",
+    "Manga_Campus": "comic",
+    "manga_gallery": "comic",
+    "komikpremium": "comic",
+    "morpheussubind": "comic",
+    "madlokiofficiall": "comic",
+    "Cellapino": "comic",
+    "nokepocukasugtl": "comic",
+    "red_mansion_indo": "comic",
+    "komik_one_piece_indo": "comic",
+    "One_Piece_Sub_Indo_New": "comic",
+    "passionmanhwaseries_subindo": "comic",
+    "pearlboysubindonesia": "comic",
+    "honeybearblmanhwa": "comic",
+    "komikbl_indo": "comic",
+    "yaoi_manhwa_indo": "comic",
+    "seeyoumykingggg": "comic",
+    "therougeprincesecretlyanomega": "comic",
+    "undercoverchaebol": "comic",
+    "badthinkingdiaryend": "comic",
 }
 
 COMIC_SEED_URLS = [
@@ -67,12 +110,12 @@ COMIC_TG_QUERIES = [
 ]
 
 MAX_SEEN_POSTS = 4000
-MAX_ACTIVE_CHANNELS = 35
+MAX_ACTIVE_CHANNELS = 55
 MAX_COMIC_SITES = 45
 MAX_VERIFY_PER_RUN = 20
 MAX_REJECTED = 700
 MAX_DRY_RUNS = 20
-MAX_MISSES = 2  # Cukup 2x kena 403/timeout langsung pecat agar tidak nabrak tembok terus
+MAX_MISSES = 2
 MAX_NEW_DOMAINS_PER_RUN = 150
 
 RE_DOMAIN = re.compile(
@@ -178,7 +221,6 @@ RESERVED_TG_NAMES = {
 
 
 def http_get(url: str, timeout: int = 20) -> tuple[str | None, str, int]:
-    """Kembalikan (html, final_url, status_code). Status 403 langsung ditandai agar tidak diulang."""
     req = urllib.request.Request(
         url,
         headers={
@@ -409,7 +451,7 @@ def klasifikasi_kanal_tg(username: str) -> str | None:
     return None
 
 
-def fetch_telegram_channel(channel: str, max_pages: int = 3) -> list[dict]:
+def fetch_telegram_channel(channel: str, max_pages: int = 2) -> list[dict]:
     hasil = []
     seen_local: set[str] = set()
     before_id: str | None = None
@@ -450,7 +492,6 @@ def temukan_kanal_tg_baru(
     state: dict,
     snowball_extra: set[str] | None = None,
 ) -> int:
-    """Cari & verifikasi kanal Telegram baru terlebih dahulu agar langsung dipindai di siklus yang sama."""
     known_lower = {k.lower() for k in channels_map}
     dir_cands: set[str] = set()
 
@@ -520,7 +561,6 @@ def crawl_comic_banners(
 
         raw, final_url, status = http_get(site_url, timeout=18)
 
-        # Jika kena HTTP 403 (Cloudflare blokir IP GitHub), langsung blacklist URL ini agar tidak nabrak lagi!
         if status == 403:
             print(f"[SKIP-403] {site_url} memblokir bot (403), dipensiunkan permanen.")
             comic_sites.pop(site_url, None)
@@ -544,7 +584,6 @@ def crawl_comic_banners(
         hits_site = 0
         discovered_mirrors: list[str] = []
 
-        # 1) Cek tag <a href="...">...</a>
         for href, inner_html in RE_HTML_LINK_BLOCK.findall(raw):
             parsed = urllib.parse.urlparse(href)
             target_host = parsed.netloc.lower().removeprefix("www.")
@@ -577,7 +616,6 @@ def crawl_comic_banners(
                     kandidat_judol.add(dom)
                     hits_site += 1
 
-        # 2) Cek juga URL iklan judol yang ditanam langsung di dalam <script> / window.open
         for m in RE_URL_EXTRACT.finditer(raw):
             dom = ekstrak_domain_aman(m.group(1), allowlist | comic_hosts)
             if not dom or dom in comic_hosts or punya_induk_di_cache(dom, diabaikan):
@@ -617,7 +655,6 @@ def main() -> int:
     blocked_urls: set[str] = set(state.setdefault("blocked_urls", []))
     rejected_set = {x.lower() for x in state["rejected"]}
 
-    # Pastikan kanal seed awal terdaftar jika belum ditolak/mati
     for seed_ch, seed_kind in SEED_TG_CHANNELS.items():
         if seed_ch not in channels_map and seed_ch.lower() not in rejected_set:
             channels_map[seed_ch] = default_meta("seed", kind=seed_kind)
@@ -636,7 +673,7 @@ def main() -> int:
     # 3. Jalur C: Masuk ke dalam setiap kanal Telegram untuk hunting domain komik & judol
     known_lower = {k.lower() for k in channels_map}
     for ch, meta in list(channels_map.items()):
-        items = fetch_telegram_channel(ch, max_pages=3)
+        items = fetch_telegram_channel(ch, max_pages=2)
         meta["scans"] = meta.get("scans", 0) + 1
         kind = meta.get("kind", "judol")
 
@@ -753,4 +790,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-   
+    
