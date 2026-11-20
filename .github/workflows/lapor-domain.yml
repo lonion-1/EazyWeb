@@ -1,0 +1,225 @@
+name: Auto-Check & Process Domain Report
+# Copyright (c) 2026 <EazyWhale>
+# Licensed under the MIT License.
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: rapikan-list
+  cancel-in-progress: false
+
+jobs:
+  process-report:
+    if: >
+      (
+        contains(github.event.issue.labels.*.name, 'lapor-domain') ||
+        startsWith(github.event.issue.title, '[Lapor Domain]:')
+      ) &&
+      (
+        github.event.action == 'opened' ||
+        (github.event.action == 'labeled' && github.event.label.name == 'approved')
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo EazyWeb
+        uses: actions/checkout@v4
+        with:
+          ref: blocker
+
+      - name: Cek duplikasi, hulu global, & tambahkan domain
+        id: check
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          EVENT_ACTION: ${{ github.event.action }}
+          EVENT_LABEL: ${{ github.event.label.name }}
+        run: |
+          python3 - <<'PY'
+          import os, re, subprocess, sys, urllib.request
+          from pathlib import Path
+
+          body = os.environ.get("ISSUE_BODY", "")
+          issue_user = os.environ.get("ISSUE_USER", "")
+          repo_owner = os.environ.get("REPO_OWNER", "")
+          action = os.environ.get("EVENT_ACTION", "")
+          label = os.environ.get("EVENT_LABEL", "")
+          gh_out = os.environ["GITHUB_OUTPUT"]
+
+          def out(k, v):
+              with open(gh_out, "a", encoding="utf-8") as f:
+                  f.write(f"{k}<<EOF\n{v}\nEOF\n")
+
+          RE_DOMAIN = re.compile(r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:xn--[a-z0-9-]{1,59}|[a-z]{2,63})$")
+          ANTI_ISENG = {"google.com", "youtube.com", "github.com", "whatsapp.com", "cloudflare.com", "facebook.com", "instagram.com", "microsoft.com", "apple.com"}
+
+          def bersihkan_domain(b):
+              d = re.sub(r"^(?:\|\||\||https?://|//)+", "", b.strip().lower())
+              d = re.split(r"[/?#:^*]", d, maxsplit=1)[0].strip(".")
+              if d and not d.isascii():
+                  try:
+                      d = d.encode("idna").decode("ascii")
+                  except UnicodeError:
+                      return None
+              return d if RE_DOMAIN.match(d) else None
+
+          def covered_by(domain, domain_set):
+              if domain in domain_set:
+                  return True
+              parts = domain.split(".")
+              return any(".".join(parts[i:]) in domain_set for i in range(1, len(parts) - 1))
+
+          sections = {}
+          current = None
+          for line in body.splitlines():
+              if line.startswith("### "):
+                  current = line[4:].strip()
+                  sections[current] = []
+              elif current is not None:
+                  sections[current].append(line)
+
+          requested = []
+          blocked_safe = []
+          invalid_lines = []
+          for line in sections.get("Daftar Domain / URL", []):
+              t = line.strip()
+              if not t or t == "_No response_":
+                  continue
+              d = bersihkan_domain(t)
+              if not d:
+                  invalid_lines.append(t)
+              elif covered_by(d, ANTI_ISENG):
+                  blocked_safe.append(d)
+              elif d not in requested:
+                  requested.append(d)
+
+          if not requested and not blocked_safe:
+              out("reply_msg", "❌ **Tidak ditemukan format domain yang valid.** Pastikan memasukkan minimal satu domain seperti `contoh.com`.")
+              out("should_close", "false")
+              out("file_updated", "false")
+              sys.exit(0)
+
+          target_file = Path("EazyBlock.txt")
+          local_domains = set()
+          if target_file.exists():
+              for l in target_file.read_text(encoding="utf-8").splitlines():
+                  s = l.strip().lower()
+                  if s.startswith("||") and s.endswith("^") and "$" not in s:
+                      local_domains.add(s[2:-1])
+
+          UPSTREAM_SOURCES = [
+              ("HaGeZi Gambling", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/gambling.txt"),
+              ("HaGeZi Pro", "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt"),
+              ("ABPindo", "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"),
+          ]
+          upstream_map = {}
+          for nama, url in UPSTREAM_SOURCES:
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "IsekaiWall-IssueBot/1.0"})
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      for b in r.read().decode("utf-8", errors="ignore").splitlines():
+                          s = b.strip().lower()
+                          if s.startswith("||") and s.endswith("^") and "$" not in s:
+                              d = s[2:-1]
+                              if d not in upstream_map:
+                                  upstream_map[d] = nama
+              except Exception:
+                  pass
+
+          upstream_set = set(upstream_map.keys())
+          already_local = []
+          already_global = []
+          fresh_domains = []
+
+          for d in requested:
+              if covered_by(d, local_domains):
+                  already_local.append(d)
+              elif covered_by(d, upstream_set):
+                  hit = next((upstream_map[u] for u in upstream_set if d == u or d.endswith("." + u)), "Global")
+                  already_global.append((d, hit))
+              else:
+                  fresh_domains.append(d)
+
+          is_approved_or_owner = (issue_user == repo_owner) or (action == "labeled" and label == "approved")
+          file_updated = False
+
+          if fresh_domains and is_approved_or_owner:
+              isi = target_file.read_text(encoding="utf-8") if target_file.exists() else ""
+              tambahan = "\n".join(f"||{d}^" for d in fresh_domains)
+              target_file.write_text(isi.rstrip() + "\n" + tambahan + "\n", encoding="utf-8")
+              subprocess.run(["python3", "scripts/clean.py"], check=True)
+              file_updated = True
+
+          blocks = []
+          if blocked_safe:
+              blocks.append("🚫 **Ditolak (Domain Sistem / Layanan Utama):** " + ", ".join(f"`{d}`" for d in blocked_safe))
+          if already_local:
+              blocks.append("ℹ️ **Sudah Diblokir di `EazyBlock.txt`:** " + ", ".join(f"`{d}`" for d in already_local))
+          if already_global:
+              lines_g = ["🌐 **Sudah Terindeks Sumber Global (Otomatis Tercover di WhaleList):**"]
+              for d, src in already_global:
+                  lines_g.append(f"* `{d}` *(terdaftar di **{src}**)*")
+              blocks.append("\n".join(lines_g))
+
+          if fresh_domains:
+              if is_approved_or_owner:
+                  blocks.append("✅ **Berhasil Ditambahkan & Dirapikan ke `EazyBlock.txt`:**\n" + "\n".join(f"* `{d}`" for d in fresh_domains))
+              else:
+                  blocks.append("⏳ **Domain Baru Terdeteksi — Menunggu Persetujuan Maintainer (`approved`):**\n" + "\n".join(f"* `{d}`" for d in fresh_domains))
+
+          if invalid_lines:
+              blocks.append("⚠️ **Baris tidak valid diabaikan:** " + ", ".join(f"`{x}`" for x in invalid_lines))
+
+          should_close = (len(fresh_domains) == 0) or is_approved_or_owner
+          out("reply_msg", "\n\n".join(blocks))
+          out("should_close", "true" if should_close else "false")
+          out("file_updated", "true" if file_updated else "false")
+          PY
+
+      - name: Commit & push hasil EazyBlock
+        if: steps.check.outputs.file_updated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add EazyBlock.txt domains/EazyBlock.txt Graduated.txt README.md last-run.txt
+          if ! git diff --staged --quiet; then
+            git commit -m "feat(block): add reported domains (#${{ github.event.issue.number }})"
+            for i in 1 2 3; do
+              if git pull --rebase origin blocker && git push; then
+                exit 0
+              fi
+              sleep 5
+            done
+            exit 1
+          fi
+
+      - name: Balas komentar & tutup Issue
+        uses: actions/github-script@v7
+        env:
+          REPLY_MSG: ${{ steps.check.outputs.reply_msg }}
+          SHOULD_CLOSE: ${{ steps.check.outputs.should_close }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: process.env.REPLY_MSG
+            });
+
+            if (process.env.SHOULD_CLOSE === 'true') {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                state: 'closed',
+                state_reason: 'completed'
+              });
+            }
