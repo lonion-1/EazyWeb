@@ -53,16 +53,16 @@
   "channels": {
     "agent828bet": {
       "source": "directory",
-      "scans": 1,
+      "scans": 2,
       "harvested": 0,
-      "dry_runs": 1,
+      "dry_runs": 2,
       "misses": 0
     }
   },
   "comic_sites": {
     "https://link.manhwaland.land/": {
       "misses": 0,
-      "hits": 3
+      "hits": 4
     },
     "https://doujin.desu.xxx/": {
       "misses": 0,
@@ -99,6 +99,14 @@
     "https://11.ikiru.wtf/": {
       "misses": 0,
       "hits": 0
+    },
+    "https://manhwaland.io/": {
+      "misses": 1,
+      "hits": 0
+    },
+    "https://sektejav.cc/": {
+      "misses": 1,
+      "hits": 0
     }
   },
   "rejected": [
@@ -129,6 +137,24 @@
     "situslokal",
     "idgame88",
     "slotgacorsensational",
-    "situsrate"
+    "situsrate",
+    "au_manhwa",
+    "raonraoffseries",
+    "indomesum",
+    "sixevemanhwablindoch",
+    "yaoimangaid",
+    "pinkypp",
+    "gdkiqkn3_9s_xmog8uqs1a",
+    "doujinyaoiindo2",
+    "filmdramamouse",
+    "mangaormanhwa18",
+    "undercover_k2021",
+    "caliphateindob",
+    "Otaku_Collection",
+    "filmdrakorsubindo",
+    "indokimochi",
+    "manhwasubindo0511",
+    "gamesyoulike",
+    "manhwa_yaoi"
   ]
 }
