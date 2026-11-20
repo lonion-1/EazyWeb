@@ -1,0 +1,32 @@
+name: Lapor Domain Judol / Iklan Baru
+description: "Setor domain judi online, scam, atau iklan membandel yang belum terblokir."
+title: "[Lapor Domain]: "
+labels: ["lapor-domain"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🛡️ Benteng Pertahanan Isekai — Lapor Domain Baru
+        Masukkan daftar domain/URL yang lolos dari pemblokiran. Bot akan otomatis mengecek apakah domain tersebut sudah diblokir atau sudah masuk ke HaGeZi/ABPindo.
+
+  - type: textarea
+    id: domains
+    attributes:
+      label: Daftar Domain / URL
+      description: "Masukkan **1 domain atau URL per baris**."
+      placeholder: |
+        https://situs-judol-baru.com/daftar
+        iklan-bandel.net
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Kategori Ancaman
+      options:
+        - Judi Online (Judol)
+        - Iklan / Pop-up / Redirect
+        - Scam / Phishing / Malware
+    validations:
+      required: true
