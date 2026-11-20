@@ -1,10 +1,18 @@
 {
   "seen": [],
-  "channels": {},
+  "channels": {
+    "agent828bet": {
+      "source": "directory",
+      "scans": 0,
+      "harvested": 0,
+      "dry_runs": 0,
+      "misses": 0
+    }
+  },
   "comic_sites": {
     "https://link.manhwaland.land/": {
       "misses": 0,
-      "hits": 1
+      "hits": 2
     },
     "https://doujin.desu.xxx/": {
       "misses": 0,
@@ -43,11 +51,11 @@
       "hits": 0
     },
     "https://sektejav.cc/": {
-      "misses": 1,
+      "misses": 2,
       "hits": 0
     },
     "https://manhwaland.io/": {
-      "misses": 1,
+      "misses": 2,
       "hits": 0
     }
   },
@@ -66,6 +74,19 @@
     "elvclub",
     "slotsgacorr",
     "nyoks24",
-    "forumslotpragmatic"
+    "forumslotpragmatic",
+    "happympo_jp",
+    "nyepinkarosarungan",
+    "kesehatanalternatif",
+    "qqpulsa365gacor",
+    "slotcoin365",
+    "gamefifaslot88",
+    "updateslotgacor",
+    "alternatifvefonksiyoneltip",
+    "tipsterslotindonesia",
+    "situslokal",
+    "idgame88",
+    "slotgacorsensational",
+    "situsrate"
   ]
 }
