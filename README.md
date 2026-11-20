@@ -6,6 +6,14 @@ Kumpulan daftar blokir garis depan untuk menangkap domain judi online (*judol*),
 
 ---
 
+<div align ="center">
+
+  [![Build EazyLife](https://img.shields.io/github/actions/workflow/status/lonion-1/EazyWeb/main.yml?branch=main&label=Build%20EazyWeb&EazyBlock=flat)](https://github.com/lonion-1/EazyWeb/actions/workflows/main.yml) ![Last Commit](https://img.shields.io/github/last-commit/lonion-1/EazyWeb?label=Last%20Update&style=flat&color=success)
+
+  </div>
+
+---
+
 ### 📦 Daftar Tautan & Statistik
 
 | File | Format | Aturan Aktif | Ukuran | Raw URL |
