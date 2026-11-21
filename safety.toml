@@ -1,0 +1,66 @@
+# ════════════════════════════════════════════════════════════════
+#  PAGAR PENGAMAN — domain yang TIDAK BOLEH pernah masuk blocklist.
+#  Hati-hati saat mengubah. Domain di Allowlist.txt juga dihormati.
+# ════════════════════════════════════════════════════════════════
+
+protected_domains = [
+  "google.com", "googleapis.com", "gstatic.com", "youtube.com", "youtu.be", "android.com",
+  "facebook.com", "fb.com", "instagram.com", "whatsapp.com", "wa.me", "threads.net", "meta.com",
+  "t.me", "telegram.org", "telegram.me", "telegra.ph",
+  "twitter.com", "x.com", "tiktok.com", "discord.com", "discord.gg", "reddit.com",
+  "github.com", "githubusercontent.com", "gitlab.com", "cloudflare.com", "imgur.com",
+  "wp.com", "gravatar.com", "disqus.com", "histats.com", "schema.org", "w3.org",
+  "linktr.ee", "bit.ly", "tinyurl.com", "s.id", "cutt.ly", "rebrand.ly", "heylink.me", "taplink.cc",
+  "trakteer.id", "saweria.co", "karyakarsa.com", "ko-fi.com", "sociabuzz.com", "patreon.com", "paypal.com", "paypal.me",
+  "medium.com", "substack.com", "archive.org", "wikipedia.org",
+  "eu.com", "uk.com", "us.com", "de.com", "eu.org",
+  "kompas.com", "detik.com", "cnnindonesia.com", "cnbcindonesia.com", "tribunnews.com",
+  "liputan6.com", "tempo.co", "suara.com", "okezone.com", "sindonews.com", "kumparan.com",
+  "idntimes.com", "antaranews.com", "republika.co.id", "kemkomdigi.go.id", "kominfo.go.id",
+  "bca.co.id", "bri.co.id", "bni.co.id", "bankmandiri.co.id", "dana.id", "ovo.id", "gopay.co.id",
+  "tokopedia.com", "shopee.co.id", "lazada.co.id", "blibli.com",
+]
+
+# Akhiran yang tak pernah diblokir (pemerintah, pendidikan, dll).
+protected_tld_suffixes = [
+  ".go.id", ".ac.id", ".sch.id", ".mil.id", ".or.id", ".desa.id", ".ponpes.id",
+  ".gov", ".edu", ".mil",
+]
+
+# Hosting gratis: yang diblokir adalah SUBDOMAIN-nya, bukan induknya.
+free_host_suffixes = [
+  "blogspot.com", "blogspot.co.id", "wordpress.com", "github.io", "gitlab.io",
+  "pages.dev", "workers.dev", "netlify.app", "vercel.app", "herokuapp.com",
+  "firebaseapp.com", "web.app", "wixsite.com", "weebly.com", "tumblr.com",
+  "notion.site", "canva.site", "000webhostapp.com", "infinityfreeapp.com",
+  "rf.gd", "byethost.com", "kesug.com", "great-site.net",
+]
+
+# TLD bertingkat (untuk menentukan domain induk yang benar).
+multi_part_tlds = [
+  "co.id", "my.id", "biz.id", "web.id", "or.id", "ac.id", "sch.id",
+  "go.id", "mil.id", "desa.id", "ponpes.id", "net.id",
+  "co.uk", "org.uk", "me.uk", "com.au", "net.au", "org.au",
+  "com.sg", "com.my", "co.jp", "co.kr", "com.br", "com.tr",
+  "com.vn", "co.th", "com.ph", "com.tw", "com.hk",
+  "eu.com", "uk.com", "us.com", "de.com", "cn.com", "ru.com",
+  "za.com", "br.com", "ar.com", "hu.com", "jpn.com", "kr.com",
+  "no.com", "qc.com", "sa.com", "se.com", "uy.com", "web.com",
+  "gb.com", "gb.net", "uk.net", "se.net", "in.net", "jp.net",
+  "hu.net", "ae.org", "us.org", "eu.org",
+]
+
+# Nama Telegram yang bukan kanal sungguhan.
+reserved_tg_names = [
+  "joinchat", "addstickers", "addtheme", "setlanguage", "share", "proxy",
+  "socks", "confirmphone", "iv", "login", "contact", "support", "telegram",
+  "admin", "channel", "group", "botfather",
+]
+
+# TLD yang dikenali untuk domain "telanjang" di teks (tanpa http://), mis. slotxyz88.com
+bare_tlds = [
+  "com", "net", "org", "id", "xyz", "info", "site", "online", "top", "vip",
+  "club", "live", "bet", "win", "co", "cc", "me", "pro", "biz", "app", "link",
+  "click", "fun", "icu", "shop", "store", "life", "world", "today", "asia",
+  "ws", "pw", "tv", "to", "one", "game", "games", "casino", "wiki", "work",
+]
