@@ -1,0 +1,34 @@
+{
+ "queries": {
+  "id|%gacorslot%": {
+   "cool_until": 1795248095,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "id|%judionline%": {
+   "cool_until": 1795248095,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "id|%judol%": {
+   "cool_until": 1795248095,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "id|%maxwin%": {},
+  "id|%slotgacor%": {
+   "cool_until": 1795248095,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  }
+ },
+ "version": 3
+}

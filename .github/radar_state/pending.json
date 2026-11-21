@@ -1,0 +1,18 @@
+{
+ "domains": {
+  "injd.site": {
+   "dns_fail_days": [],
+   "first": 1795240895,
+   "last": 1795240895,
+   "notes": [
+    "banner"
+   ],
+   "page_checked": 1795240895,
+   "page_ok": false,
+   "src": {
+    "comic:komikaido.com": 1
+   }
+  }
+ },
+ "version": 3
+}
