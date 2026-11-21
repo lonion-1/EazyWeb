@@ -18,7 +18,14 @@ protected_domains = [
   "liputan6.com", "tempo.co", "suara.com", "okezone.com", "sindonews.com", "kumparan.com",
   "idntimes.com", "antaranews.com", "republika.co.id", "kemkomdigi.go.id", "kominfo.go.id",
   "bca.co.id", "bri.co.id", "bni.co.id", "bankmandiri.co.id", "dana.id", "ovo.id", "gopay.co.id",
-  "tokopedia.com", "shopee.co.id", "lazada.co.id", "blibli.com", "dana.com",
+  "tokopedia.com", "shopee.co.id", "lazada.co.id", "blibli.com", "dana.com", "googleusercontent.com", "googlevideo.com", "ggpht.com", "goo.gl",
+"microsoft.com", "live.com", "office.com", "bing.com", "linkedin.com", "lnkd.in",
+"apple.com", "icloud.com", "amazon.com", "amzn.to", "amazonaws.com",
+"ovo.com", "gopay.com", "linkaja.id", "qris.id", "midtrans.com", "xendit.co", "doku.com", "flip.id",
+"grab.com", "gojek.com", "traveloka.com", "tiket.com",
+"bukalapak.com", "telkomsel.com", "ioh.co.id", "xl.co.id", "tri.co.id", "smartfren.com", "byu.id",
+"youtube-nocookie.com", "youtu.be", "spotify.com", "soundcloud.com", "vimeo.com", "dailymotion.com",
+"canva.com", "notion.so", "trello.com", "figma.com", "zoom.us",
 ]
 
 # Akhiran yang tak pernah diblokir (pemerintah, pendidikan, dll).
