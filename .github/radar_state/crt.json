@@ -98,6 +98,34 @@
    "last_ok": 1795263492,
    "soft_days": []
   },
+  "my_sg_bn|%4dtoto%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
+   "soft_days": []
+  },
+  "my_sg_bn|%918kiss%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
+   "soft_days": []
+  },
+  "my_sg_bn|%judislot%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
+   "soft_days": []
+  },
+  "my_sg_bn|%kasinoonline%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
+   "soft_days": []
+  },
   "my_sg_bn|%mega888%": {
    "cool_until": 0,
    "fails": 0,
@@ -110,6 +138,20 @@
    "fails": 0,
    "hard_days": [],
    "last_ok": 1795263492,
+   "soft_days": []
+  },
+  "my_sg_bn|%scr888%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
+   "soft_days": []
+  },
+  "my_sg_bn|%xe88%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795265483,
    "soft_days": []
   }
  },

@@ -1,19 +1,16 @@
 {
  "proposals": {
-  "https://manhwaland.io/": {
-   "src": "mirror:link.manhwaland.land",
-   "tries": 3,
-   "ts": 1795240895
-  },
-  "https://sektejav.cc/": {
-   "src": "mirror:sektedoujin.cc",
-   "tries": 3,
-   "ts": 1795240895
+  "https://komikstation.co/": {
+   "src": "mirror:komikstation.org",
+   "tries": 0,
+   "ts": 1795265483
   }
  },
  "rejected": {
   "https://anilist.co/": 1795248031,
-  "https://mediafire.com/": 1795263492
+  "https://manhwaland.io/": 1795265483,
+  "https://mediafire.com/": 1795263492,
+  "https://sektejav.cc/": 1795265483
  },
  "retired": {},
  "sites": {
@@ -22,9 +19,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -33,9 +30,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -44,9 +41,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -55,9 +52,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -65,10 +62,10 @@
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
-   "hits": 4,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "hits": 5,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -77,9 +74,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 2,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -88,9 +85,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -99,9 +96,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 5,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -110,9 +107,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -121,9 +118,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -132,9 +129,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -143,9 +140,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -154,9 +151,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 1,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 4,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 5,
    "soft_days": [],
    "source": "legacy"
   },
@@ -165,9 +162,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795263492,
-   "last_scan": 1795263492,
-   "scans": 1,
+   "last_ok": 1795265483,
+   "last_scan": 1795265483,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
   }

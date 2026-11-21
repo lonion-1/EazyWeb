@@ -1,6 +1,6 @@
 # Title: EazyWhale Isekai Wall (personalDNSfilter Wildcard)
-# Version: 2026.11.21.1223
-# Count: 95
+# Version: 2026.11.21.1255
+# Count: 109
 
 388heroky.cc
 *.388heroky.cc
@@ -16,6 +16,8 @@ analytical.pl
 *.analytical.pl
 apabos.com
 *.apabos.com
+asikornbank.com
+*.asikornbank.com
 bandarxlny.cc
 *.bandarxlny.cc
 bankmandiri.com
@@ -32,6 +34,10 @@ boardgamearena.com
 *.boardgamearena.com
 carikebaya4d.com
 *.carikebaya4d.com
+cash.com
+*.cash.com
+cimbclick.com.my
+*.cimbclick.com.my
 cimbclicks.com
 *.cimbclicks.com
 cimbclicks.my.id
@@ -50,8 +56,14 @@ dana.com
 *.dana.com
 dana.live
 *.dana.live
+dana.my.id
+*.dana.my.id
+dana.top
+*.dana.top
 dana.vip
 *.dana.vip
+dana.xyz
+*.dana.xyz
 emas5000.biz
 *.emas5000.biz
 emas5000zr.site
@@ -70,6 +82,8 @@ gacototoxy.com
 *.gacototoxy.com
 gash.com
 *.gash.com
+gcahs.com
+*.gcahs.com
 gcas.com
 *.gcas.com
 gcash.live
@@ -110,6 +124,8 @@ kaikornbank.com
 *.kaikornbank.com
 kasikonbank.com
 *.kasikonbank.com
+kasikonrbank.com
+*.kasikonrbank.com
 kasikorbank.com
 *.kasikorbank.com
 kasikornabnk.com
@@ -118,6 +134,14 @@ kasikornbak.com
 *.kasikornbak.com
 kasikornban.com
 *.kasikornban.com
+kasikornbank.live
+*.kasikornbank.live
+kasikornbnak.com
+*.kasikornbnak.com
+kasikornbnk.com
+*.kasikornbnk.com
+kasikronbank.com
+*.kasikronbank.com
 kasiornbank.com
 *.kasiornbank.com
 kaskornbank.com
@@ -126,6 +150,8 @@ kaya303sukses.us
 *.kaya303sukses.us
 kebaya4dkeren.com
 *.kebaya4dkeren.com
+kilkbca.com
+*.kilkbca.com
 kinfolksbbqsmyrna.com
 *.kinfolksbbqsmyrna.com
 klibca.com
@@ -180,6 +206,8 @@ touchngo.biz.id
 *.touchngo.biz.id
 touchngo.com
 *.touchngo.com
+touchngo.live
+*.touchngo.live
 touchngo.site
 *.touchngo.site
 triplehtacklingacademy.com

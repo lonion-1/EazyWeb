@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.21.1223
-! Total Rules: 95
+! Version: 2026.11.21.1255
+! Total Rules: 109
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -13,6 +13,7 @@
 ||akseskdslot.net^
 ||analytical.pl^
 ||apabos.com^
+||asikornbank.com^
 ||bandarxlny.cc^
 ||bankmandiri.com^
 ||berk-ah-spin.life^
@@ -21,6 +22,8 @@
 ||bm-88.net^
 ||boardgamearena.com^
 ||carikebaya4d.com^
+||cash.com^
+||cimbclick.com.my^
 ||cimbclicks.com^
 ||cimbclicks.my.id^
 ||citibt88.com.im^
@@ -30,7 +33,10 @@
 ||dana.biz.id^
 ||dana.com^
 ||dana.live^
+||dana.my.id^
+||dana.top^
 ||dana.vip^
+||dana.xyz^
 ||emas5000.biz^
 ||emas5000zr.site^
 ||enakslotmw.cc^
@@ -40,6 +46,7 @@
 ||foresthillsmha.com^
 ||gacototoxy.com^
 ||gash.com^
+||gcahs.com^
 ||gcas.com^
 ||gcash.live^
 ||gcash.online^
@@ -60,14 +67,20 @@
 ||judionline.vip^
 ||kaikornbank.com^
 ||kasikonbank.com^
+||kasikonrbank.com^
 ||kasikorbank.com^
 ||kasikornabnk.com^
 ||kasikornbak.com^
 ||kasikornban.com^
+||kasikornbank.live^
+||kasikornbnak.com^
+||kasikornbnk.com^
+||kasikronbank.com^
 ||kasiornbank.com^
 ||kaskornbank.com^
 ||kaya303sukses.us^
 ||kebaya4dkeren.com^
+||kilkbca.com^
 ||kinfolksbbqsmyrna.com^
 ||klibca.com^
 ||klik.best^
@@ -95,6 +108,7 @@
 ||togelonline--moblie-version.pages.dev^
 ||touchngo.biz.id^
 ||touchngo.com^
+||touchngo.live^
 ||touchngo.site^
 ||triplehtacklingacademy.com^
 ||usemessages.com^

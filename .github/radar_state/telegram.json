@@ -35,10 +35,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 5347,
-   "last_scan": 1795263492,
-   "scans": 9,
+   "last_scan": 1795265483,
+   "scans": 10,
    "soft_days": [],
    "source": "snowball"
   },
@@ -49,10 +49,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 992,
-   "last_scan": 1795263492,
-   "scans": 8,
+   "last_scan": 1795265483,
+   "scans": 9,
    "soft_days": [],
    "source": "snowball"
   },
@@ -63,10 +63,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 992,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -119,10 +119,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 1553,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -147,10 +147,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 9,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -245,10 +245,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 78,
-   "last_scan": 1795263492,
-   "scans": 18,
+   "last_scan": 1795265483,
+   "scans": 19,
    "soft_days": [],
    "source": "directory"
   },
@@ -259,10 +259,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 9128,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -296,15 +296,15 @@
   },
   "drkrongoing": {
    "cool_until": 0,
-   "dry_runs": 2,
+   "dry_runs": 3,
    "fails": 0,
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
-   "last_post": 5055,
-   "last_scan": 1795263492,
-   "scans": 9,
+   "last_ok": 1795265483,
+   "last_post": 5057,
+   "last_scan": 1795265483,
+   "scans": 10,
    "soft_days": [],
    "source": "snowball"
   },
@@ -315,10 +315,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 666,
-   "last_scan": 1795263492,
-   "scans": 9,
+   "last_scan": 1795265483,
+   "scans": 10,
    "soft_days": [],
    "source": "snowball"
   },
@@ -399,10 +399,10 @@
    "hard_days": [],
    "harvested": 149,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 2121,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -413,10 +413,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 1826,
-   "last_scan": 1795263492,
-   "scans": 10,
+   "last_scan": 1795265483,
+   "scans": 11,
    "soft_days": [],
    "source": "seed"
   },
@@ -427,10 +427,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 342,
-   "last_scan": 1795263492,
-   "scans": 8,
+   "last_scan": 1795265483,
+   "scans": 9,
    "soft_days": [],
    "source": "seed"
   },
@@ -441,10 +441,10 @@
    "hard_days": [],
    "harvested": 16,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 303,
-   "last_scan": 1795263492,
-   "scans": 8,
+   "last_scan": 1795265483,
+   "scans": 9,
    "soft_days": [],
    "source": "seed"
   },
@@ -455,10 +455,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 2,
-   "last_scan": 1795263492,
-   "scans": 8,
+   "last_scan": 1795265483,
+   "scans": 9,
    "soft_days": [],
    "source": "seed"
   },
@@ -469,10 +469,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 316,
-   "last_scan": 1795263492,
-   "scans": 12,
+   "last_scan": 1795265483,
+   "scans": 13,
    "soft_days": [],
    "source": "directory"
   },
@@ -483,10 +483,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795263492,
+   "last_ok": 1795265483,
    "last_post": 19506,
-   "last_scan": 1795263492,
-   "scans": 8,
+   "last_scan": 1795265483,
+   "scans": 9,
    "soft_days": [],
    "source": "seed"
   },
@@ -673,7 +673,7 @@
    "source": "seed"
   }
  },
- "disc_cursor": 6,
+ "disc_cursor": 0,
  "queue": {
   "abangbumi": {
    "name": "abangbumi",
@@ -717,107 +717,17 @@
    "tries": 0,
    "ts": 1795258838
   },
-  "nausica_of_the_valleyof_the_wind": {
-   "name": "Nausica_of_the_Valleyof_the_Wind",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "neongenesisevangelion_manga": {
-   "name": "NeonGenesisEvangelion_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "originmanga": {
-   "name": "OriginManga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "oshinokomanga": {
-   "name": "OshiNoKoManga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "overgeared_webtoon": {
-   "name": "Overgeared_Webtoon",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
   "panelslot": {
    "name": "panelslot",
    "src": "directory",
    "tries": 0,
    "ts": 1795258838
   },
-  "past_life_regresser": {
-   "name": "Past_life_Regresser",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "psyren_manga": {
-   "name": "Psyren_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
   "qumqum": {
    "name": "qumqum",
    "src": "directory",
    "tries": 0,
    "ts": 1795258838
-  },
-  "rave_master_adventure": {
-   "name": "Rave_Master_Adventure",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "rogue_guard_in_medieval_fantasy": {
-   "name": "Rogue_Guard_in_Medieval_Fantasy",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "saikik_manga": {
-   "name": "SaikiK_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "sanctuary_manga": {
-   "name": "Sanctuary_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "say_i_love_you_manga": {
-   "name": "Say_I_Love_You_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "sayonara_zetsubousensei": {
-   "name": "Sayonara_ZetsubouSensei",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "scums_wish_manga": {
-   "name": "Scums_Wish_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "shadow_slave_manhwa_relam": {
-   "name": "shadow_slave_manhwa_relam",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
   },
   "sloter77": {
    "name": "sloter77",
@@ -837,41 +747,11 @@
    "tries": 0,
    "ts": 1795258838
   },
-  "sousouno_frieren": {
-   "name": "SousouNo_Frieren",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "space_brothers_manga": {
-   "name": "Space_Brothers_Manga",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
   "tentanghariini_09": {
    "name": "tentanghariini_09",
    "src": "directory",
    "tries": 0,
    "ts": 1795258838
-  },
-  "the_god_of_highschool_manhwa": {
-   "name": "The_God_Of_Highschool_Manhwa",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "the_infinite_mage": {
-   "name": "The_Infinite_Mage",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
-  },
-  "the_regressed_son_of_duke_is_an": {
-   "name": "The_Regressed_Son_Of_Duke_is_an",
-   "src": "snowball",
-   "tries": 0,
-   "ts": 1795248031
   },
   "theofficialmads": {
    "name": "theofficialmads",
@@ -1092,6 +972,8 @@
   "my_dressup_darling": 1795263492,
   "nana_manga": 1795263492,
   "natsume_yuujinchou_manga": 1795263492,
+  "nausica_of_the_valleyof_the_wind": 1795265483,
+  "neongenesisevangelion_manga": 1795265483,
   "nevertheless7": 1792908095,
   "nevertheless_01": 1792908095,
   "nevertheless_dkorea": 1792908095,
@@ -1103,24 +985,37 @@
   "nyoks24": 1792908095,
   "official_1win_kanal": 1792908095,
   "one_piece_sub_indo_new": 1792908095,
+  "originmanga": 1795265483,
+  "oshinokomanga": 1795265483,
   "ostdrachinfinish_day": 1795248031,
   "ostdrakorfinish_day": 1795248031,
   "ostdrakorongoing_day": 1795240895,
   "otaku_collection": 1792908095,
   "overdo_drachin": 1792908095,
+  "overgeared_webtoon": 1795265483,
   "pandahvdw": 1792908095,
   "passionmanhwaseries_subindo": 1792908095,
+  "past_life_regresser": 1795265483,
   "pearlboysubindonesia": 1792908095,
   "pinkypp": 1792908095,
+  "psyren_manga": 1795265483,
   "qlpcoin_indo": 1792908095,
   "qqpulsa365gacor": 1792908095,
   "raising_villains_the_right_wayy": 1795240895,
   "raonraoffseries": 1792908095,
+  "rave_master_adventure": 1795265483,
   "red_mansion_indo": 1792908095,
   "return_of_the_mount_hua_sect1": 1795240895,
+  "rogue_guard_in_medieval_fantasy": 1795265483,
+  "saikik_manga": 1795265483,
+  "sanctuary_manga": 1795265483,
+  "say_i_love_you_manga": 1795265483,
+  "sayonara_zetsubousensei": 1795265483,
   "sbobet88_resmi": 1792908095,
+  "scums_wish_manga": 1795265483,
   "seeyoumykingggg": 1792908095,
   "sektedoujin": 1792908095,
+  "shadow_slave_manhwa_relam": 1795265483,
   "shinigami_id": 1792908095,
   "sido247kuatterpecaya": 1792908095,
   "silver_spoon_manga": 1795248031,
@@ -1130,12 +1025,17 @@
   "slotcoin365": 1792908095,
   "slotgacorsensational": 1792908095,
   "slotsgacorr": 1792908095,
+  "sousouno_frieren": 1795265483,
+  "space_brothers_manga": 1795265483,
   "spadeslot": 1792908095,
   "ssidwinner": 1792908095,
   "the_academys_weapon_replicator_m": 1795240895,
+  "the_god_of_highschool_manhwa": 1795265483,
   "the_god_of_war_leveling_up": 1795240895,
   "the_hero_starts_over_at_academy": 1795240895,
   "the_howling_plague": 1795248031,
+  "the_infinite_mage": 1795265483,
+  "the_regressed_son_of_duke_is_an": 1795265483,
   "the_regressor_and_the_blind_sai": 1795248031,
   "thenewbiecivilservanthuntsvillan": 1795240895,
   "therougeprincesecretlyanomega": 1792908095,
