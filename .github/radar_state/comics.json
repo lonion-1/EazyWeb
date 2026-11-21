@@ -2,21 +2,23 @@
  "proposals": {
   "https://manhwaland.io/": {
    "src": "mirror:link.manhwaland.land",
-   "tries": 0,
+   "tries": 1,
    "ts": 1795240895
   },
   "https://mediafire.com/": {
    "src": "tg:@komikpremium",
-   "tries": 1,
+   "tries": 2,
    "ts": 1795240895
   },
   "https://sektejav.cc/": {
    "src": "mirror:sektedoujin.cc",
-   "tries": 0,
+   "tries": 1,
    "ts": 1795240895
   }
  },
- "rejected": {},
+ "rejected": {
+  "https://anilist.co/": 1795248031
+ },
  "retired": {},
  "sites": {
   "https://11.ikiru.wtf/": {
@@ -24,9 +26,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -35,9 +37,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -46,9 +48,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -57,9 +59,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -67,10 +69,10 @@
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
-   "hits": 1,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "hits": 2,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -79,9 +81,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 2,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -90,9 +92,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -101,9 +103,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 5,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -112,9 +114,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -123,9 +125,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -134,9 +136,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -145,9 +147,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   },
@@ -156,9 +158,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 1,
-   "last_ok": 1795240895,
-   "last_scan": 1795240895,
-   "scans": 1,
+   "last_ok": 1795248031,
+   "last_scan": 1795248031,
+   "scans": 2,
    "soft_days": [],
    "source": "legacy"
   }
