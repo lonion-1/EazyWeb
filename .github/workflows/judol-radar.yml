@@ -5,6 +5,8 @@ name: Radar Otomatis Domain Judol (Secondary Engine)
 on:
   schedule:
     - cron: '17 20 * * *' # Cadangan harian jam 03:17 WIB (sebelum WhaleList build 04:23 WIB)
+  repository_dispatch:
+    types: [whaleindex-judol-batch, whaleindex-phishing-batch]
   workflow_dispatch:
     inputs:
       dry_run:
@@ -39,11 +41,13 @@ jobs:
 
       - name: Pindai & verifikasi domain judol baru
         id: radar
-        continue-on-error: true   # radar boleh gagal; Main Engine tetap jalan
+        continue-on-error: true
         timeout-minutes: 14
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             python3 scripts/judol_radar.py --dry-run
+          elif [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            python3 scripts/judol_radar.py --only feeds
           else
             python3 scripts/judol_radar.py
           fi
