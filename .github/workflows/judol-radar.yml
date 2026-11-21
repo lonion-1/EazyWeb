@@ -22,7 +22,7 @@ concurrency:
 jobs:
   radar-judol:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 90
     env:
       PYTHONUNBUFFERED: "1"
     steps:
@@ -40,7 +40,7 @@ jobs:
       - name: Pindai & verifikasi domain judol baru
         id: radar
         continue-on-error: true   # radar boleh gagal; Main Engine tetap jalan
-        timeout-minutes: 14
+        timeout-minutes: 90
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             python3 scripts/judol_radar.py --dry-run
