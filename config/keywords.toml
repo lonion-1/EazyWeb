@@ -68,7 +68,9 @@ context_regex = [
 # Dicocokkan di AWAL kata (bukan di tengah) agar "judicial" ≠ "judi".
 banner = [
   "slot", "gacor", "rtp", "togel", "toto", "maxwin", "judol", "judi",
-  "depo", "withdraw", "wd", "bonus", "zeus", "mahjong", "pragmatic", "scatter",
+  "depo", "withdraw", "wd", "bonus", "zeus", "mahjong", "pragmatic", "scatter", "slot88", "gacor88", "togel88", "rtp88", "maxwin88", "vip", "alternatif",
+  "bo", "bandar", "casino", "poker", "domino", "qq", "bola", "parlay",
+  "sbobet", "pragmatic", "pgsoft", "habanero", "spadegaming", "joker123",
 ]
 
 [comic]
@@ -76,7 +78,8 @@ banner = [
 site_hint = [
   "komik", "manga", "manhwa", "manhua", "pornhwa", "webtoon", "doujin",
   "desu", "sekte", "crot", "ikiru", "shinigami", "kiryuu", "westmanga",
-  "bacakomik", "toon",
+  "bacakomik", "toon", "cast", "id", "me", "in", "pro", "station", "nime", "ku", "san",
+  "kan", "zuki", "yomi", "sc", "tl", "scan", "scans", "mirror",
 ]
 
 # Konteks postingan kanal komik (regex).
