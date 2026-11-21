@@ -3,10 +3,10 @@
 # ════════════════════════════════════════════════════════════════
 
 # ── Waktu ──
-time_budget_seconds = 660          # total waktu bot (jangan > timeout step workflow)
-finalize_reserve_seconds = 120     # sisa waktu untuk DNS + verifikasi + tulis hasil
-polite_sleep = 1.0                 # jeda antar request ke host yang sama (detik)
-http_trip_after = 4                # host gagal berturut-turut N kali → dilewati sisa run
+time_budget_seconds = 3300          # total waktu bot (jangan > timeout step workflow)
+finalize_reserve_seconds = 240     # sisa waktu untuk DNS + verifikasi + tulis hasil
+polite_sleep = 0.15                 # jeda antar request ke host yang sama (detik)
+http_trip_after = 12                # host gagal berturut-turut N kali → dilewati sisa run
 
 # ── Skoring: domain lolos blokir bila total skor ≥ promote_at ──
 promote_at = 3
@@ -17,14 +17,14 @@ score_banner = 1                   # teks/alt/nama-file banner bernuansa judol
 score_page_confirm = 3             # isi halaman domain terbukti judol
 confirm_min_score = 1              # skor minimal untuk dicek isi halamannya
 page_confirm_hits = 2              # minimal kemunculan kata konteks judol di halaman
-page_confirm_max_per_run = 40
+page_confirm_max_per_run = 500
 page_recheck_days = 7
 
 # ── Batas keamanan ──
-max_new_domains_per_run = 250
-max_promoted_per_source = 40       # 1 sumber (kanal/situs/query) tak boleh memasukkan > N domain per run
+max_new_domains_per_run = 2500
+max_promoted_per_source = 300       # 1 sumber (kanal/situs/query) tak boleh memasukkan > N domain per run
 pending_ttl_days = 21              # kandidat yang tak muncul lagi dibuang
-pending_max = 3000
+pending_max = 15000
 dns_fail_drop_days = 4             # NXDOMAIN di N hari berbeda → buang kandidat
 dns_workers = 16
 dns_timeout_seconds = 8
@@ -37,9 +37,9 @@ parole_days = 30                   # sumber yang dipensiunkan dicoba lagi setela
 reject_recheck_days = 30           # kanal yang ditolak dicek ulang setelah N hari
 
 # ── Telegram ──
-tg_channels_per_run = 30
+tg_channels_per_run = 100
 tg_max_channels = 120
-tg_max_pages = 4
+tg_max_pages = 15
 tg_max_dry_runs = 20
 tg_verify_per_run = 20
 tg_discovery_queries_per_run = 4
@@ -47,10 +47,10 @@ tg_require_indonesian = true
 tg_queue_max = 500
 
 # ── Situs komik ──
-comic_sites_per_run = 25
+comic_sites_per_run = 80
 comic_max_sites = 80
 comic_verify_per_run = 8
-comic_deep_pages = 2               # halaman baca tambahan per situs (iklan banyak di sini)
+comic_deep_pages = 10               # halaman baca tambahan per situs (iklan banyak di sini)
 comic_verify_hits = 8
 
 # ── crt.sh ──
