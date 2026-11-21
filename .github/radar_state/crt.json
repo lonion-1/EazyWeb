@@ -1,32 +1,32 @@
 {
  "queries": {
   "id|%antirungkad%": {
-   "cool_until": 1795255231,
-   "fails": 1,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795258838,
+   "soft_days": []
   },
   "id|%gacorslot%": {
-   "cool_until": 1795248095,
-   "fails": 1,
+   "cool_until": 1795273238,
+   "fails": 2,
    "soft_days": [
     "2026-11-21"
    ]
   },
   "id|%judionline%": {
-   "cool_until": 1795248095,
-   "fails": 1,
+   "cool_until": 1795273238,
+   "fails": 2,
    "soft_days": [
     "2026-11-21"
    ]
   },
   "id|%judol%": {
-   "cool_until": 1795248095,
-   "fails": 1,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795258838,
+   "soft_days": []
   },
   "id|%mahjongways%": {
    "cool_until": 0,
@@ -43,8 +43,8 @@
    "soft_days": []
   },
   "id|%polagacor%": {
-   "cool_until": 1795255231,
-   "fails": 1,
+   "cool_until": 1795273238,
+   "fails": 2,
    "soft_days": [
     "2026-11-21"
    ]
@@ -57,11 +57,11 @@
    "soft_days": []
   },
   "id|%slotgacor%": {
-   "cool_until": 1795248095,
-   "fails": 1,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795258838,
+   "soft_days": []
   },
   "id|%slotrtp%": {
    "cool_until": 0,
