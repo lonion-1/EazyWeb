@@ -196,12 +196,13 @@ def load_config() -> Config:
     c.crt_queries = {r: [str(q) for q in lst] for r, lst in ((qs.get("crt") or {}).get("queries") or {}).items()}
     disc = qs.get("telegram_discovery") or {}
     c.tg_disc = {"judol": list(disc.get("judol", [])), "comic": list(disc.get("comic", []))}
-        c.cache_sources = [x for x in qs.get("cache", []) if x.get("url")]
+    c.cache_sources = [x for x in qs.get("cache", []) if x.get("url")]
     c.feed_sources = [
         x for x in (list(qs.get("whaleindex_feeds", [])) + list(qs.get("web_sources", [])))
         if isinstance(x, dict) and x.get("url")
     ]
     return c
+
 
 # ──────────────────────────── Util teks ────────────────────────────
 RE_DOMAIN = re.compile(
@@ -531,6 +532,7 @@ class Sighting:
 class CollectorResult:
     name: str
     sightings: list = field(default_factory=list)
+    sightings: list
     proposals: list = field(default_factory=list)   # (origin_url, sumber)
     stats: dict = field(default_factory=dict)
     error: str = ""
