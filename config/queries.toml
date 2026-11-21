@@ -47,15 +47,18 @@ url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Isekai
 name = "WhaleList Security"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"
 
-# Daftar domain blokir pihak lain.
-[[web_sources]]
+# Suplai temuan real-time dari WhaleIndex (akan diverifikasi DNS lalu masuk EazyBlock.txt)
+[[whaleindex_feeds]]
 name = "whaleindex_judol_latest"
+kind = "judol"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_latest.txt"
 
-[[web_sources]]
+[[whaleindex_feeds]]
 name = "whaleindex_judol_rolling"
+kind = "judol"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_rolling.jsonl"
 
-[[cache]]
+[[whaleindex_feeds]]
 name = "whaleindex_phishing_latest"
+kind = "phishing"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/phishing_domains_latest.txt"
