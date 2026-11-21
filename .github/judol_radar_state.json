@@ -414,128 +414,128 @@
     "komikpremium": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 2,
-      "dry_runs": 1,
+      "dry_runs": 2,
       "misses": 0
     },
     "agent828bet": {
       "source": "directory",
-      "scans": 10,
+      "scans": 11,
       "harvested": 0,
-      "dry_runs": 10,
+      "dry_runs": 11,
       "misses": 0
     },
     "manhwa1_8": {
       "source": "directory",
       "kind": "comic",
-      "scans": 6,
+      "scans": 7,
       "harvested": 0,
-      "dry_runs": 6,
+      "dry_runs": 7,
       "misses": 0
     },
     "manga_mania": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "Manhwadesu_Official": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "asupannewupdate1": {
       "source": "seed",
       "kind": "judol",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "Drama_Daily_DAY": {
       "source": "seed",
       "kind": "judol",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "komitaku": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "manhwa_university_updates": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "Manga_Campus": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "manga_gallery": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "madlokiofficiall": {
       "source": "seed",
       "kind": "comic",
-      "scans": 2,
+      "scans": 3,
       "harvested": 0,
-      "dry_runs": 2,
+      "dry_runs": 3,
       "misses": 0
     },
     "drkrongoing": {
       "source": "snowball",
       "kind": "judol",
-      "scans": 1,
+      "scans": 2,
       "harvested": 0,
-      "dry_runs": 1,
+      "dry_runs": 2,
       "misses": 0
     },
     "favoritasupan2": {
       "source": "snowball",
       "kind": "judol",
-      "scans": 1,
+      "scans": 2,
       "harvested": 0,
-      "dry_runs": 1,
+      "dry_runs": 2,
       "misses": 0
     },
     "DrachinOngoing_DAY": {
       "source": "snowball",
       "kind": "judol",
-      "scans": 1,
+      "scans": 2,
       "harvested": 0,
-      "dry_runs": 1,
+      "dry_runs": 2,
       "misses": 0
     },
     "DramaDailyDAY": {
       "source": "snowball",
       "kind": "judol",
-      "scans": 0,
+      "scans": 1,
       "harvested": 0,
-      "dry_runs": 0,
+      "dry_runs": 1,
       "misses": 0
     }
   },
@@ -733,5 +733,6 @@
     "https://manhwaland.io/",
     "https://sektejav.cc/",
     "https://mediafire.com/"
-  ]
+  ],
+  "crt_cursor": 6
 }
