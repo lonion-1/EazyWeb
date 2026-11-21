@@ -1,0 +1,108 @@
+name: Web Indexer (cari & indeks situs kandidat)
+# Copyright (c) 2026 <EazyWhale>
+# Licensed under the MIT License.
+#
+# Tahap 1 (agresif): cari situs film/dewasa/komik/anime/judol lewat mesin pencari + crawl tautan keluar.
+# Tahap 2 (ketat)  : radar (judol-radar.yml) membaca Candidates/index.json → verifikasi → Curated/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'Durasi (menit)'
+        default: '55'
+      cats:
+        description: 'Batasi kategori query (koma, mis. film,comic). Kosong = semua'
+        default: ''
+      dry_run:
+        description: 'Dry-run (tidak menulis apa pun)'
+        type: boolean
+        default: false
+  # schedule:               # aktifkan bila ingin otomatis tiap 2 hari
+  #   - cron: '40 17 */2 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: webindex          # terpisah dari radar agar tidak saling menunggu
+  cancel-in-progress: false
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Ambil isi repo
+        uses: actions/checkout@v4
+
+      - name: Pasang Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validasi config
+        run: python3 scripts/judol_radar.py --check-config
+
+      - name: Pulihkan cache indeks (frontier, situs terlihat, query)
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/webindex
+          key: webindex-${{ github.run_id }}
+          restore-keys: webindex-
+
+      - name: Nyalakan SearXNG lokal (JSON API)
+        continue-on-error: true   # gagal → Indexer memakai mesin cadangan (Mojeek/DDG/Bing)
+        run: |
+          docker run -d --name searxng -p 8888:8080 \
+            -v "$PWD/config/searxng:/etc/searxng" \
+            -e SEARXNG_SECRET="$(openssl rand -hex 24)" \
+            searxng/searxng:latest
+          for i in $(seq 1 40); do
+            if curl -sf "http://127.0.0.1:8888/search?q=test&format=json" >/dev/null; then
+              echo "SearXNG siap"
+              echo "SEARXNG_URL=http://127.0.0.1:8888" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::warning::SearXNG tidak siap; memakai mesin cadangan"
+          docker logs searxng | tail -30 || true
+          exit 0
+
+      - name: Jalankan Indexer
+        run: |
+          ARGS="--budget $(( ${{ inputs.minutes || '55' }} * 60 ))"
+          if [ -n "${{ inputs.cats }}" ]; then ARGS="$ARGS --cats ${{ inputs.cats }}"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python3 -u scripts/web_indexer.py $ARGS
+
+      - name: Simpan cache indeks
+        if: always() && inputs.dry_run != true
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/webindex
+          key: webindex-${{ github.run_id }}
+
+      - name: Simpan kandidat ke GitHub
+        if: inputs.dry_run != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Candidates
+          if git diff --staged --quiet; then
+            echo "Tidak ada kandidat baru."
+            exit 0
+          fi
+          git commit -m "chore(indexer): perbarui daftar kandidat situs [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
+          
