@@ -6,6 +6,11 @@ on:
   schedule:
     - cron: '17 20 * * *' # Cadangan harian jam 03:17 WIB (sebelum WhaleList build 04:23 WIB)
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run (tidak menulis apa pun)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -17,13 +22,31 @@ concurrency:
 jobs:
   radar-judol:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"
     steps:
       - name: Ambil isi repo
         uses: actions/checkout@v4
 
-      - name: Pindai & verifikasi domain judol baru (WhaleList Cache + crt.sh + Telegram)
-        run: python3 scripts/judol_radar.py
+      - name: Pasang Python 3.12 (tomllib bawaan)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validasi config radar
+        run: python3 scripts/judol_radar.py --check-config
+
+      - name: Pindai & verifikasi domain judol baru
+        id: radar
+        continue-on-error: true   # radar boleh gagal; Main Engine tetap jalan
+        timeout-minutes: 14
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python3 scripts/judol_radar.py --dry-run
+          else
+            python3 scripts/judol_radar.py
+          fi
 
       - name: Jalankan Main Engine (clean.py) untuk deduplikasi & build
         run: python3 scripts/clean.py
@@ -34,7 +57,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if git diff --staged --quiet; then
-            echo "Tidak ada domain baru untuk di-commit."
+            echo "Tidak ada perubahan untuk di-commit."
             exit 0
           fi
           git commit -m "chore(radar): auto-add domain judol terverifikasi [skip ci]"
@@ -46,4 +69,9 @@ jobs:
             sleep 5
           done
           exit 1
-          
+
+      - name: Tandai merah bila radar gagal (setelah hasil tersimpan)
+        if: steps.radar.outcome == 'failure'
+        run: |
+          echo "::error::Radar gagal — cek log step 'Pindai & verifikasi'. Main Engine & commit tetap dijalankan."
+          exit 1
