@@ -10,7 +10,7 @@ on:
     inputs:
       minutes:
         description: 'Durasi (menit)'
-        default: '55'
+        default: '90'
       cats:
         description: 'Batasi kategori query (koma, mis. film,comic). Kosong = semua'
         default: ''
