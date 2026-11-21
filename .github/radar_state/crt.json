@@ -112,6 +112,13 @@
    "last_ok": 1795265483,
    "soft_days": []
   },
+  "my_sg_bn|%gdlotto%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795267835,
+   "soft_days": []
+  },
   "my_sg_bn|%judislot%": {
    "cool_until": 0,
    "fails": 0,
@@ -124,6 +131,20 @@
    "fails": 0,
    "hard_days": [],
    "last_ok": 1795265483,
+   "soft_days": []
+  },
+  "my_sg_bn|%lotto4d%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795267835,
+   "soft_days": []
+  },
+  "my_sg_bn|%magnum4d%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795267835,
    "soft_days": []
   },
   "my_sg_bn|%mega888%": {
@@ -147,12 +168,33 @@
    "last_ok": 1795265483,
    "soft_days": []
   },
+  "my_sg_bn|%toto4d%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795267835,
+   "soft_days": []
+  },
   "my_sg_bn|%xe88%": {
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
    "last_ok": 1795265483,
    "soft_days": []
+  },
+  "vn|%nohu%": {
+   "cool_until": 1795275035,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "vn|%taixiu%": {
+   "cool_until": 1795275035,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
   }
  },
  "version": 3

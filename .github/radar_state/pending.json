@@ -1,5 +1,18 @@
 {
  "domains": {
+  "bookwalker.jp": {
+   "dns_fail_days": [],
+   "first": 1795267835,
+   "last": 1795267835,
+   "notes": [
+    "banner"
+   ],
+   "page_checked": 1795267835,
+   "page_ok": false,
+   "src": {
+    "comic:komikaido.com": 2
+   }
+  },
   "injd.site": {
    "dns_fail_days": [],
    "first": 1795240895,
