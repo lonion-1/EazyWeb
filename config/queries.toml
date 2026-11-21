@@ -46,3 +46,11 @@ url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Isekai
 [[cache]]
 name = "WhaleList Security"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"
+
+[[web_sources]]
+name = "whaleindex_judol_latest"
+url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_latest.txt"
+
+[[web_sources]]
+name = "whaleindex_judol_rolling"
+url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_rolling.jsonl"
