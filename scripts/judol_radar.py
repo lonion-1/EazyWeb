@@ -148,6 +148,7 @@ CRT_QUERIES = {
         "%link alternatif%", "%situs resmi slot%",
         "%jackpot slot%", "%casino online%",
     ],   
+  }
 ]
 
 JUDOL_TG_QUERIES = [
