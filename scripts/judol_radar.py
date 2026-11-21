@@ -82,12 +82,70 @@ COMIC_SEED_URLS = [
     "https://ikiru.id/",
 ]
 
-CRT_QUERIES = [
-    "%slotgacor%",
-    "%rtpslot%",
-    "%maxwin%",
-    "%judol%",
-    "%mahjongways%",
+CRT_QUERIES = {
+    "id": [  # Indonesia
+        "%slotgacor%", "%slot gacor%", "%slot-gacor%",
+        "%judol%", "%judi online%", "%judi slot%", "%bandar judi%",
+        "%maxwin%", "%mahjongways%", "%mahjong ways%",
+        "%rtpslot%", "%rtp slot%", "%rtp live%",
+        "%anti rungkad%", "%pola gacor%", "%gampang maxwin%",
+        "%server thailand%", "%situs slot%", "%link alternatif slot%",
+        "%deposit pulsa%", "%slot online%", "%togel online%",
+    ],
+
+    "th": [  # Thailand
+        "%สล็อต%", "%สล็อตเว็บตรง%", "%เว็บตรง%",
+        "%บาคาร่า%", "%คาสิโน%", "%ฟรีเครดิต%",
+        "%เกมสล็อต%", "%slot thailand%", "%slot online thailand%",
+    ],
+
+    "ph": [  # Filipina
+        "%slot rtp philippines%", "%philippines casino%",
+        "%online casino ph%", "%pogo%", "%jili%",
+        "%slot online ph%", "%casino online ph%",
+    ],
+
+    "vn": [  # Vietnam
+        "%cá cược%", "%nổ hũ%", "%tài xỉu%",
+        "%lô đề%", "%nhà cái%", "%casino trực tuyến%",
+        "%slot online%", "%game bài%",
+    ],
+
+    "my": [  # Malaysia
+        "%judi online%", "%slot online%", "%kasino%",
+        "%4d%", "%toto%", "%judi slot%", "%bandar toto%",
+    ],
+
+    "sg": [  # Singapura
+        "%online casino%", "%slot online%", "%4d%",
+        "%toto%", "%jackpot%", "%free spins%",
+    ],
+
+    "bn": [  # Brunei
+        "%judi online%", "%kasino%", "%slot online%",
+        "%online casino%", "%4d%",
+    ],
+
+    "kh": [  # Kamboja
+        "%កាស៊ីណូ%", "%casino%", "%slot online%",
+        "%online casino%", "%jackpot%",
+    ],
+
+    "la": [  # Laos
+        "%ຄາສິໂນ%", "%casino%", "%slot online%",
+        "%online casino%",
+    ],
+
+    "mm": [  # Myanmar
+        "%ကာစီနို%", "%လောင်းကစား%", "%casino%",
+        "%slot online%", "%online casino%",
+    ],
+
+    "asean": [  # Regional / English
+        "%online casino%", "%slot online%", "%maxwin%",
+        "%rtp live%", "%free spins%", "%bonus deposit%",
+        "%link alternatif%", "%situs resmi slot%",
+        "%jackpot slot%", "%casino online%",
 ]
 
 JUDOL_TG_QUERIES = [
