@@ -9,7 +9,7 @@ import os
 import time
 import traceback
 
-from . import comics, crt, pipeline, telegram
+from . import comics, crt, feeds, pipeline, telegram
 from .core import (
     DAY, LEGACY_STATE, Config, ConfigError, Ctx, Deadline, Http, Store, CollectorResult,
     ekstrak_domain_aman, load_config, load_known, log, now, score_domain,
@@ -64,7 +64,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Radar Judol v3")
     ap.add_argument("--check-config", action="store_true", help="validasi config lalu keluar")
     ap.add_argument("--dry-run", action="store_true", help="jalan penuh tapi TIDAK menulis file apa pun")
-    ap.add_argument("--only", default="", help="koma: telegram,comics,crt (default semua)")
+    ap.add_argument("--only", default="", help="koma: feeds,telegram,comics,crt (default semua)")
     ap.add_argument("--budget", type=int, default=0, help="timpa time_budget_seconds")
     args = ap.parse_args(argv)
 
@@ -92,6 +92,8 @@ def main(argv=None) -> int:
     load_known(ctx, Deadline(90))
     log("CACHE", f"{len(ctx.known)} domain dikenal, {len(ctx.allowlist)} allowlist")
 
+    # ── muat semua state collector (sekali saja) ──
+    st_feeds = Store("feeds", feeds.DEFAULT_STATE).load()
     st_tg = Store("telegram", telegram.DEFAULT_STATE).load()
     st_cm = Store("comics", comics.DEFAULT_STATE).load()
     st_crt = Store("crt", crt.DEFAULT_STATE).load()
@@ -121,22 +123,13 @@ def main(argv=None) -> int:
         results.append(res)
         incoming.extend(res.proposals)
 
-    st_feeds = Store("feeds", feeds.DEFAULT_STATE).load()
-    st_tg = Store("telegram", telegram.DEFAULT_STATE).load()
-    st_cm = Store("comics", comics.DEFAULT_STATE).load()
-    st_crt = Store("crt", crt.DEFAULT_STATE).load()
-    st_pend = Store("pending", pipeline.DEFAULT_STATE).load()
-    migrate_legacy(st_tg, st_cm, ts, T)
-
+    # ── jalankan collector (feeds → telegram → comics → crt) ──
     guarded("feeds", st_feeds, lambda dl: feeds.run(ctx, st_feeds.data, dl), 12, 2)
     guarded("telegram", st_tg, lambda dl: telegram.run(ctx, st_tg.data, dl), 10, 4)
     guarded("comics", st_cm, lambda dl: comics.run(ctx, st_cm.data, dl, incoming), 6, 4)
     guarded("crt", st_crt, lambda dl: crt.run(ctx, st_crt.data, dl), 2, 2)
-    guarded("telegram", st_tg, lambda dl: telegram.run(ctx, st_tg.data, dl), 10, 4)
-    guarded("comics", st_cm, lambda dl: comics.run(ctx, st_cm.data, dl, incoming), 6, 4)
-    guarded("crt", st_crt, lambda dl: crt.run(ctx, st_crt.data, dl), 2, 2)
 
-    # gabung temuan → pending → finalisasi
+    # ── gabung temuan → pending → finalisasi ──
     for r in results:
         added = pipeline.merge(st_pend.data["domains"], r.sightings, ts)
         log("MERGE", f"{r.name}: {len(r.sightings)} temuan ({added} domain baru di pending)")
