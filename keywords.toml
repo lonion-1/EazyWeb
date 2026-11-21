@@ -1,0 +1,95 @@
+# ════════════════════════════════════════════════════════════════
+#  KATA KUNCI RADAR — edit di sini, tidak perlu menyentuh kode.
+#  Cek hasil edit:  python3 scripts/judol_radar.py --check-config
+# ════════════════════════════════════════════════════════════════
+
+[judol]
+# STRONG: kata yang kalau muncul di NAMA DOMAIN → skor tinggi (langsung lolos
+# setelah DNS aktif). Huruf kecil, tanpa spasi, satu kata per baris.
+# Kata ≤4 karakter (mis. "bk8", "w88", "nohu") otomatis hanya cocok di AWAL
+# label domain atau setelah "-" / "." supaya tidak salah tangkap.
+strong = [
+  # Indonesia
+  "slotgacor", "gacorslot", "rtpslot", "slotrtp", "maxwin", "judol",
+  "judibola", "judionline", "judislot", "agenbola", "togel", "mahjongways",
+  "pkvgames", "idnplay", "sbobet", "sabungayam", "situsjudi", "bandarjudi",
+  "linkalternatif", "antirungkad", "polagacor", "serverthailand",
+  # Malaysia / Singapura / Brunei
+  "mega888", "pussy888", "918kiss", "scr888", "xe88", "kasinoonline",
+  "gdlotto", "lotto4d", "magnum4d", "toto4d", "4dtoto",
+  # Vietnam
+  "nohu", "taixiu", "nhacai", "lodeonline", "gamebai", "cacuoc",
+  "sunwin", "go88", "rikvip",
+  # Filipina / Thailand / Kamboja / Laos / Myanmar
+  "jilislot", "esabong", "sabong", "pgslot", "jokerslot", "ufabet",
+  "sexybaccarat", "thaislot", "slotthailand", "xo88", "sa168", "shan234",
+  "myanmarcasino", "khmercasino", "phcasino", "onlinecasinoph",
+  # ASEAN umum
+  "bk8", "aw8", "w88", "m88", "fun88", "188bet", "dafa888", "cmd368",
+  "onlinecasino", "slotonline", "jackpotslot",
+]
+
+# Lanjutan (opsional, regex mentah). Untuk pola gabungan. Tulis pakai tanda
+# kutip TUNGGAL agar backslash aman. JANGAN pakai (?i) — sudah otomatis.
+strong_regex = [
+  'toto(?:4d|88|77|99|macau|hk|sgp|sdy)',
+  '(?:4d|88|77|99)toto',
+  'olympus(?:88|77|1000)',
+  'zeus(?:88|77|1000)',
+  'slot(?:77|88|99|138|303|365|5000|777)',
+  'gacor(?:77|88|99|303|5000)',
+  'jili(?:77|88|777)',
+]
+
+# MODERATE: longgar. Hanya dihitung bila ada KONTEKS judol (isi postingan
+# atau teks banner). Sendirian tidak cukup untuk memblokir.
+moderate = [
+  "slot", "gacor", "jp", "jackpot", "cuan", "hok", "depo", "wd", "bet", "win",
+  "spin", "zeus", "olympus", "toto", "4d", "77", "88", "99", "138", "303",
+  "5000", "vip", "raja", "dewa", "bos", "indo", "asia", "idn", "link",
+  "alternatif",
+]
+
+# KONTEKS (regex) untuk isi postingan Telegram & halaman. Pakai '...' tunggal.
+context_regex = [
+  'slot\s*gacor', 'rtp\s*live', 'rtp\s*slot', 'rtp\s*hari\s*ini', 'maxwin',
+  'anti\s*rungkad', 'pola\s*gacor', 'bocoran\s*slot', 'scatter\s*hitam',
+  'pragmatic\s*play', 'pg\s*soft', 'gates\s*of\s*olympus', 'sweet\s*bonanza',
+  'togel\s*online', 'bandar\s*togel', 'depo\s*\d+', 'deposit\s*pulsa',
+  'withdraw', 'bonus\s*new\s*member', 'link\s*alternatif', 'situs\s*judol',
+  'situs\s*slot', 'daftar\s*slot',
+]
+
+# Kata pada teks/alt/title/nama-file BANNER iklan di situs komik.
+# Dicocokkan di AWAL kata (bukan di tengah) agar "judicial" ≠ "judi".
+banner = [
+  "slot", "gacor", "rtp", "togel", "toto", "maxwin", "judol", "judi",
+  "depo", "withdraw", "wd", "bonus", "zeus", "mahjong", "pragmatic", "scatter",
+]
+
+[comic]
+# Petunjuk bahwa sebuah DOMAIN adalah situs komik/manhwa.
+site_hint = [
+  "komik", "manga", "manhwa", "manhua", "pornhwa", "webtoon", "doujin",
+  "desu", "sekte", "crot", "ikiru", "shinigami", "kiryuu", "westmanga",
+  "bacakomik", "toon",
+]
+
+# Konteks postingan kanal komik (regex).
+context_regex = [
+  'chapter', 'ch\.?\s*\d+', 'episode', 'ep\.?\s*\d+', 'manhwa', 'pornhwa',
+  'manga', 'manhua', 'doujin', 'komik', 'sub\s*indo', 'baca\s*disini',
+  'link\s*baca', 'update', 'pindah', 'domain\s*baru',
+]
+
+# Pola path halaman dalam situs komik yang biasanya penuh iklan (halaman baca).
+chapter_path = [
+  'chapter', '/ch[-_]?\d', 'episode', '/baca', '/read', '/komik/',
+  '/manga/', '/manhwa/', '/series/',
+]
+
+[language]
+indonesian_hint = [
+  "dan", "yang", "ini", "itu", "daftar", "login", "link", "alternatif",
+  "bonus", "member", "depo", "resmi", "gacor", "hari", "baca", "indo", "lanjut",
+]
