@@ -47,6 +47,7 @@ url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Isekai
 name = "WhaleList Security"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"
 
+# Daftar domain blokir pihak lain.
 [[web_sources]]
 name = "whaleindex_judol_latest"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_latest.txt"
