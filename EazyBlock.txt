@@ -31,7 +31,6 @@
 ||dana-id.com^
 ||dana-id.my.id^
 ||dana.biz.id^
-||dana.com^
 ||dana.live^
 ||dana.my.id^
 ||dana.top^
