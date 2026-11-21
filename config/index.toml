@@ -4,26 +4,26 @@
 # ════════════════════════════════════════════════════════════════
 
 [run]
-time_budget_seconds = 3300      # ±55 menit (workflow memberi timeout 75 menit)
-workers = 12                    # jumlah unduhan paralel
-per_host_delay = 1.5            # jeda minimal antar request ke host yang sama (detik)
-fetch_timeout = 12
-body_max_bytes = 400000
-respect_robots = true           # hormati robots.txt (matikan hanya bila perlu)
-max_pages_per_domain = 3        # beranda + halaman dalam (hanya untuk situs relevan)
-max_hops = 2                    # lompatan tautan keluar dari hasil pencarian
-follow_min_score = 4            # tautan keluar hanya diikuti dari halaman berskor ≥ ini
-max_out_per_page = 40
-frontier_max = 30000
-seen_max = 100000
-index_max = 60000
-revisit_days = 30
-dead_revisit_days = 14
-export_max = 40000
-queries_per_run = 60
-query_repeat_days = 7
-search_pages = 2                # halaman hasil per query (SearXNG)
-mirror_queries_per_run = 40     # perburuan mirror: "<merek> link alternatif" dst.
+time_budget_seconds = 5400      # ±90 menit (ubah workflow YAML timeout-minutes ke 115)
+workers = 48                    # Naik 4x lipat! 4 vCPU GitHub sangat sanggup handle 48 async/thread I/O
+per_host_delay = 0.35           # Hajar! Dari 1.5s turun ke 0.35s (4x lebih cepat per domain)
+fetch_timeout = 7               # Situs bajakan/judol yang lemot (>7 detik) langsung buang
+body_max_bytes = 250000         # 250 KB cukup untuk ambil title, meta, H1, dan tautan keluar (hemat bandwidth & regex CPU)
+respect_robots = false          # Matikan! Banyak situs bajakan/judol blokir bot di robots.txt
+max_pages_per_domain = 2        # Beranda + 1 halaman dalam cukup untuk skoring, biar crawler cepat pindah domain
+max_hops = 3                    # Perluas jangkauan BFS dari 2 ke 3 lompatan tautan keluar
+follow_min_score = 3            # Turunkan dikit dari 4 ke 3 agar jaringan "situs teman/partner" lebih agresif diikuti
+max_out_per_page = 60           # Tangkap lebih banyak link keluar (banner iklan & blogroll situs sejenis)
+frontier_max = 100000           # Perbesar kolam antrean URL (3.3x lipat)
+seen_max = 300000               # Perbesar memori URL yang sudah dikunjungi
+index_max = 150000              # Naikkan kapasitas database indeks
+revisit_days = 21               # Domain mirror cepat ganti, cek ulang tiap 3 minggu
+dead_revisit_days = 7           # Domain mati dicek lagi seminggu kemudian (kadang cuma down sementara)
+export_max = 100000             # Jangan sampai hasil panen terpotong limit ekspor
+queries_per_run = 200           # SearXNG jalan lokal di runner (127.0.0.1:8888), hajar 200 query per run!
+query_repeat_days = 4           # Putar ulang query lebih sering untuk menangkap domain baru yang baru terindeks
+search_pages = 3                # Ambil sampai halaman 3 hasil SearXNG (situs mirror sering ngumpet di page 2-3)
+mirror_queries_per_run = 120    # Gaspol perburuan "<merek> link alternatif"
 
 # ── Mesin pencari ──────────────────────────────────────────────
 [engines]
