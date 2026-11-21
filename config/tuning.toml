@@ -2,59 +2,59 @@
 #  PENALA — semua angka perilaku bot. Yang dihapus = pakai bawaan.
 # ════════════════════════════════════════════════════════════════
 
-# ── Waktu ──
-time_budget_seconds = 3300          # total waktu bot (jangan > timeout step workflow)
-finalize_reserve_seconds = 240     # sisa waktu untuk DNS + verifikasi + tulis hasil
-polite_sleep = 0.15                 # jeda antar request ke host yang sama (detik)
-http_trip_after = 12                # host gagal berturut-turut N kali → dilewati sisa run
+# ── Waktu (Marathon Mode: 90 Menit) ──
+time_budget_seconds = 5400         # 90 menit (bisa naik sampai 7200 / 2 jam)
+finalize_reserve_seconds = 180     # 3 menit cukup untuk DNS massal + git push
+polite_sleep = 0.25                # Agak santai dikit biar gak kena 429 di tengah jalan
+http_trip_after = 3                # Beri 3x kesempatan karena waktu luang banyak
 
-# ── Skoring: domain lolos blokir bila total skor ≥ promote_at ──
+# ── Skoring (Verifikasi Total) ──
 promote_at = 3
-score_strong_domain = 3            # kata STRONG di nama domain
-score_moderate_domain = 1          # kata MODERATE (hanya bila ada konteks)
-score_context = 1                  # konteks judol di postingan
-score_banner = 1                   # teks/alt/nama-file banner bernuansa judol
-score_page_confirm = 3             # isi halaman domain terbukti judol
-confirm_min_score = 1              # skor minimal untuk dicek isi halamannya
-page_confirm_hits = 2              # minimal kemunculan kata konteks judol di halaman
-page_confirm_max_per_run = 500
+score_strong_domain = 3
+score_moderate_domain = 1
+score_context = 1
+score_banner = 1
+score_page_confirm = 3
+confirm_min_score = 1
+page_confirm_hits = 2
+page_confirm_max_per_run = 800     # Cek isi halaman sampai 800 kandidat sekaligus!
 page_recheck_days = 7
 
-# ── Batas keamanan ──
-max_new_domains_per_run = 2500
-max_promoted_per_source = 300       # 1 sumber (kanal/situs/query) tak boleh memasukkan > N domain per run
-pending_ttl_days = 21              # kandidat yang tak muncul lagi dibuang
-pending_max = 15000
-dns_fail_drop_days = 4             # NXDOMAIN di N hari berbeda → buang kandidat
-dns_workers = 16
-dns_timeout_seconds = 8
+# ── Batas keamanan (Kuras Habis) ──
+max_new_domains_per_run = 5000     # Plafon jumbo, nyaris tanpa rem
+max_promoted_per_source = 300      # Kurangi sumbatan kalau nemu kanal/situs "tambang emas"
+pending_ttl_days = 21
+pending_max = 15000                # Kapasitas penampungan antrean raksasa
+dns_fail_drop_days = 3
+dns_workers = 64                   # 64 thread DNS di 4 vCPU Azure ngebut parah
+dns_timeout_seconds = 4
 
-# ── Kesehatan sumber (anti "pecat gara-gara error sementara") ──
-retire_hard_days = 4               # 404/410/NXDOMAIN di N hari BERBEDA berturut-turut
-retire_soft_days = 14              # 403/429/5xx/timeout di N hari berbeda berturut-turut
+# ── Kesehatan sumber ──
+retire_hard_days = 4
+retire_soft_days = 14
 max_cooldown_hours = 72
-parole_days = 30                   # sumber yang dipensiunkan dicoba lagi setelah N hari
-reject_recheck_days = 30           # kanal yang ditolak dicek ulang setelah N hari
+parole_days = 30
+reject_recheck_days = 30
 
-# ── Telegram ──
-tg_channels_per_run = 100
-tg_max_channels = 120
-tg_max_pages = 15
-tg_max_dry_runs = 20
-tg_verify_per_run = 20
-tg_discovery_queries_per_run = 4
+# ── Telegram (Sapu Bersih Jaringan BFS) ──
+tg_channels_per_run = 250          # Sikat 250 kanal per run
+tg_max_channels = 500
+tg_max_pages = 5                   # Gali lebih dalam sampai 5 halaman ke belakang
+tg_max_dry_runs = 25
+tg_verify_per_run = 150            # Percepat validasi kanal baru dari antrean
+tg_discovery_queries_per_run = 15  # Perbanyak keyword discovery biar graf BFS mekar terus
 tg_require_indonesian = true
-tg_queue_max = 500
+tg_queue_max = 3000
 
-# ── Situs komik ──
-comic_sites_per_run = 80
-comic_max_sites = 80
-comic_verify_per_run = 8
-comic_deep_pages = 10               # halaman baca tambahan per situs (iklan banyak di sini)
+# ── Situs komik (Sapuan Menyeluruh) ──
+comic_sites_per_run = 100          # Hampir semua list komik disikat dalam 1 run
+comic_max_sites = 200
+comic_verify_per_run = 40
+comic_deep_pages = 2               # Balikkan ke 2 chapter karena waktu sudah melimpah!
 comic_verify_hits = 8
 
-# ── crt.sh ──
-crt_batch_per_run = 6
-crt_max_entries = 400
+# ── crt.sh (Gali Lebih Dalam) ──
+crt_batch_per_run = 25             # Naikkan batch dari 6 ke 25
+crt_max_entries = 600              # Ambil lebih banyak entri sertifikat
 crt_max_age_days = 120
-crt_timeout = 45
+crt_timeout = 30                   # Kasih napas 30 detik, kalau hang tetap di-skip
