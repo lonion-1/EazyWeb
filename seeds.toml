@@ -1,0 +1,57 @@
+# ════════════════════════════════════════════════════════════════
+#  SEED — titik awal radar. Hapus baris = kanal/situs itu ikut dibuang
+#  dari radar. Tambah baris = otomatis dipantau di run berikutnya.
+# ════════════════════════════════════════════════════════════════
+
+# Kanal Telegram publik:  nama = "jenis"   (jenis: "comic" atau "judol")
+[telegram]
+shinigami_id = "comic"
+sektedoujin = "comic"
+doujindesu = "comic"
+komikcast = "comic"
+kiryuu_id = "comic"
+agent328bet = "judol"
+Manhwaland = "comic"
+manga_mania = "comic"
+Manhwa_Loverz = "comic"
+Manhwadesu_Official = "comic"
+Official_1win_kanal = "judol"
+pandahvdw = "judol"
+asupannewupdate1 = "judol"
+MELEDAK_BESTIE_KU_LANGSUNG_GAS = "judol"
+BENUA88_SlotOnline = "judol"
+MEJAVIP_Slot_Gacor_Anti_Rungkad = "judol"
+Drama_Daily_DAY = "judol"
+SBOBET88_Resmi = "judol"
+MULTIBET88_Link_Situs_Slot = "judol"
+komitaku = "comic"
+milftoonid = "comic"
+ManhwaheavenAOM = "comic"
+manhwa_university_updates = "comic"
+Manga_Campus = "comic"
+manga_gallery = "comic"
+komikpremium = "comic"
+morpheussubind = "comic"
+madlokiofficiall = "comic"
+Cellapino = "comic"
+nokepocukasugtl = "comic"
+red_mansion_indo = "comic"
+komik_one_piece_indo = "comic"
+One_Piece_Sub_Indo_New = "comic"
+passionmanhwaseries_subindo = "comic"
+pearlboysubindonesia = "comic"
+honeybearblmanhwa = "comic"
+komikbl_indo = "comic"
+yaoi_manhwa_indo = "comic"
+seeyoumykingggg = "comic"
+therougeprincesecretlyanomega = "comic"
+undercoverchaebol = "comic"
+badthinkingdiaryend = "comic"
+
+# Situs komik yang halamannya dipindai untuk mencari banner judol.
+[comic_sites]
+urls = [
+  "https://doujin.desu.xxx/",
+  "https://shinigami.to/",
+  "https://ikiru.id/",
+]
