@@ -23,8 +23,18 @@ protected_domains = [
 
 # Akhiran yang tak pernah diblokir (pemerintah, pendidikan, dll).
 protected_tld_suffixes = [
-  ".go.id", ".ac.id", ".sch.id", ".mil.id", ".or.id", ".desa.id", ".ponpes.id",
-  ".gov", ".edu", ".mil",
+  ".go.id", ".ac.id", ".sch.id", ".mil.id", ".or.id", ".desa.id", ".ponpes.id", ".co.id", ".net.id",
+".gov", ".edu", ".mil", ".int", ".aero", ".coop", ".museum", ".travel", ".bank", ".insurance", ".post", ".jobs",
+".gov.my", ".mil.my", ".edu.my", ".org.my", ".com.my", ".net.my",
+".gov.sg", ".edu.sg", ".org.sg", ".com.sg", ".net.sg",
+".go.th", ".mi.th", ".ac.th", ".or.th", ".co.th", ".net.th",
+".gov.ph", ".mil.ph", ".edu.ph", ".ngo.ph", ".org.ph", ".com.ph", ".net.ph",
+".gov.vn", ".edu.vn", ".ac.vn", ".org.vn", ".int.vn", ".com.vn", ".net.vn",
+".gov.bn", ".mil.bn", ".edu.bn", ".org.bn", ".com.bn", ".net.bn",
+".gov.kh", ".edu.kh", ".org.kh", ".com.kh", ".net.kh",
+".gov.la", ".edu.la", ".org.la", ".int.la", ".com.la", ".net.la",
+".gov.mm", ".mil.mm", ".edu.mm", ".org.mm", ".com.mm", ".net.mm",
+".gov.tl", ".edu.tl", ".org.tl", ".com.tl", ".net.tl"
 ]
 
 # Hosting gratis: yang diblokir adalah SUBDOMAIN-nya, bukan induknya.
