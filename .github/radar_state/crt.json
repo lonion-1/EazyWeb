@@ -1,5 +1,26 @@
 {
  "queries": {
+  "asean_regional|%aw8%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "asean_regional|%bk8%": {
+   "cool_until": 1795290650,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "asean_regional|%w88%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
   "id|%antirungkad%": {
    "cool_until": 0,
    "fails": 0,
@@ -182,12 +203,145 @@
    "last_ok": 1795265483,
    "soft_days": []
   },
-  "vn|%cacuoc%": {
-   "cool_until": 1795276837,
+  "ph|%esabong%": {
+   "cool_until": 1795290650,
    "fails": 1,
    "soft_days": [
     "2026-11-21"
    ]
+  },
+  "ph|%jili77%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%jili777%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%jili88%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%jilislot%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%onlinecasinoph%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%phcasino%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "ph|%sabong%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%jokerslot%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%khmercasino%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%myanmarcasino%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%pgslot%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%sa168%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%sexybaccarat%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%shan234%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%slotthailand%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%thaislot%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%ufabet%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "th_kh_la_mm|%xo88%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
+  },
+  "vn|%cacuoc%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
   },
   "vn|%gamebai%": {
    "cool_until": 0,
@@ -197,11 +351,11 @@
    "soft_days": []
   },
   "vn|%go88%": {
-   "cool_until": 1795276837,
-   "fails": 1,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795283450,
+   "soft_days": []
   },
   "vn|%lodeonline%": {
    "cool_until": 0,
@@ -232,8 +386,11 @@
    "soft_days": []
   },
   "vn|%sunwin%": {
-   "cool_until": 1795276837,
-   "fails": 1,
+   "cool_until": 1795297850,
+   "fails": 2,
+   "hard_days": [
+    "2026-11-21"
+   ],
    "soft_days": [
     "2026-11-21"
    ]
