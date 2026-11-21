@@ -1,0 +1,159 @@
+# ════════════════════════════════════════════════════════════════
+#  INDEXER (scripts/webindex.py) + KURASI KATEGORI (dipakai radar)
+#  Cek hasil edit:  python3 scripts/judol_radar.py --check-config
+# ════════════════════════════════════════════════════════════════
+
+[run]
+time_budget_seconds = 3300      # ±55 menit (workflow memberi timeout 75 menit)
+workers = 12                    # jumlah unduhan paralel
+per_host_delay = 1.5            # jeda minimal antar request ke host yang sama (detik)
+fetch_timeout = 12
+body_max_bytes = 400000
+respect_robots = true           # hormati robots.txt (matikan hanya bila perlu)
+max_pages_per_domain = 3        # beranda + halaman dalam (hanya untuk situs relevan)
+max_hops = 2                    # lompatan tautan keluar dari hasil pencarian
+follow_min_score = 4            # tautan keluar hanya diikuti dari halaman berskor ≥ ini
+max_out_per_page = 40
+frontier_max = 30000
+seen_max = 100000
+index_max = 60000
+revisit_days = 30
+dead_revisit_days = 14
+export_max = 40000
+queries_per_run = 60
+query_repeat_days = 7
+search_pages = 2                # halaman hasil per query (SearXNG)
+mirror_queries_per_run = 40     # perburuan mirror: "<merek> link alternatif" dst.
+
+# ── Mesin pencari ──────────────────────────────────────────────
+[engines]
+# URL instance SearXNG dengan JSON aktif. Env SEARXNG_URL (pisah koma) juga dibaca.
+# Workflow web-indexer.yml menyalakan SearXNG sendiri di runner (http://127.0.0.1:8888).
+searxng = []
+fallback = ["mojeek", "ddg_html", "bing_html"]   # dipakai bila SearXNG tak ada / hasil kosong
+language = "id"
+
+[engines.templates]
+mojeek = "https://www.mojeek.com/search?q={q}"
+ddg_html = "https://html.duckduckgo.com/html/?q={q}"
+bing_html = "https://www.bing.com/search?q={q}&setlang=id"
+
+# ── Domain yang TIDAK PERNAH di-crawl / diblokir (digabung ke safety.toml) ──
+[protect]
+domains = [
+  # mesin pencari
+  "bing.com", "microsoft.com", "duckduckgo.com", "mojeek.com", "yandex.com", "yandex.ru",
+  "brave.com", "startpage.com", "yahoo.com", "baidu.com", "searx.be", "ecosia.org",
+  # infrastruktur / iklan umum / CDN
+  "doubleclick.net", "googletagmanager.com", "google-analytics.com", "googlesyndication.com",
+  "jsdelivr.net", "cdnjs.com", "jquery.com", "fontawesome.com", "bootstrapcdn.com",
+  "unpkg.com", "gravatar.com", "w.org", "wordpress.org", "mozilla.org", "apple.com",
+  # layanan film / komik / anime RESMI
+  "netflix.com", "disneyplus.com", "primevideo.com", "amazon.com", "vidio.com", "viu.com",
+  "wetv.vip", "iq.com", "iqiyi.com", "hbomax.com", "max.com", "hotstar.com", "cgv.id",
+  "tix.id", "imdb.com", "themoviedb.org", "rottentomatoes.com", "letterboxd.com",
+  "crunchyroll.com", "bilibili.com", "bilibili.tv", "myanimelist.net", "anilist.co",
+  "webtoons.com", "webtoon.com", "kakao.com", "naver.com", "shueisha.co.jp", "comixology.com",
+  "mangaplus.shueisha.co.jp", "line.me", "spotify.com", "twitch.tv", "vimeo.com",
+]
+
+# ── Kategori ───────────────────────────────────────────────────
+# Skor halaman = 2·(domain cocok) + 3·(istilah strong di judul/meta/h1, maks 3)
+#              + 1·(strong di isi, maks 4) + 1·(weak di isi, maks 4) − 2·(negatif, maks 2)
+# min_score   : syarat masuk daftar kandidat (Candidates/)
+# curate_score: syarat lolos kurasi radar (lebih ketat) → masuk Curated/
+# Regex ditulis dengan '...' tunggal; tak perlu (?i) maupun \b.
+
+[categories.film]
+label = "Film / drama streaming ilegal"
+domain_hint = ["lk21", "layarkaca", "indoxxi", "rebahin", "nonton", "filmapik", "movie", "cinema", "drakor", "dutafilm", "bioskop", "pusatfilm", "film21", "dunia21", "juragan", "streaming"]
+strong = ['nonton\s+(?:film|movie|drama|serial)', 'streaming\s+(?:film|movie|drama)', 'download\s+(?:film|movie|drama)', 'film\s+(?:gratis|terbaru|subtitle)', 'sub(?:title)?\s*indo(?:nesia)?', 'full\s+movie', 'drama\s+korea', 'drakor', 'blu-?ray', 'web-?dl', 'hdcam']
+weak = ['episode', 'kualitas', 'resolusi', 'server\s*\d', 'trailer', 'genre', 'rating', 'tahun\s+rilis', '1080p', '720p', 'sinopsis']
+negative = ['berita', 'kominfo', 'kementerian', 'tiket\s+bioskop', 'jadwal\s+tayang\s+resmi']
+min_score = 7
+curate_score = 10
+
+[categories.porn]
+label = "Situs dewasa"
+domain_hint = ["bokep", "porn", "porno", "xxx", "jav", "hentai", "nsfw", "18plus", "asupan"]
+strong = ['bokep', 'porn(?:o|hub)?', 'xxx', 'video\s+dewasa', 'situs\s+dewasa', 'konten\s+dewasa', 'hentai', 'nsfw', 'adult\s+(?:video|content|only)', '18\s*\+', 'umur\s*18', 'berusia\s+18', 'jav\s+sub\s*indo']
+weak = ['asupan', 'durasi', 'download\s+video', 'streaming\s+video', 'kategori', 'semua\s+tag']
+negative = ['edukasi', 'kesehatan', 'berita', 'hukum', 'uu\s+ite', 'kominfo', 'pencegahan', 'kecanduan', 'psikolog', 'konselor', 'blokir']
+min_score = 8
+curate_score = 12
+
+[categories.comic]
+label = "Komik / manhwa / doujin bajakan"
+domain_hint = ["komik", "manga", "manhwa", "manhua", "pornhwa", "doujin", "desu", "kiryuu", "shinigami", "westmanga", "bacakomik", "toon"]
+strong = ['baca\s+(?:komik|manhwa|manga|manhua)', 'komik\s+online', 'manhwa\s+sub\s*indo', 'manga\s+sub\s*indo', 'pornhwa', 'doujin(?:shi)?', 'chapter\s*\d+', 'raw\s+manhwa']
+weak = ['genre', 'update\s+terbaru', 'chapter', 'manga', 'manhwa', 'komik', 'bookmark', 'populer']
+negative = ['berita', 'penerbit\s+resmi', 'toko\s+buku']
+min_score = 7
+curate_score = 10
+
+[categories.anime]
+label = "Anime streaming / unduh ilegal"
+domain_hint = ["anime", "samehadaku", "otakudesu", "kusonime", "nimegami", "oploverz", "animeindo", "anoboy"]
+strong = ['nonton\s+anime', 'anime\s+sub\s*indo', 'download\s+anime', 'batch\s+sub\s*indo', 'streaming\s+anime', 'donghua']
+weak = ['episode', 'ongoing', 'completed', 'genre', 'musim', 'season', '480p', '720p', '1080p']
+negative = ['berita']
+min_score = 7
+curate_score = 10
+
+[categories.judol]
+label = "Judi online"
+domain_hint = []   # kosong = pakai [judol].strong dari keywords.toml
+strong = ['slot\s*gacor', 'rtp\s*slot', 'togel', 'maxwin', 'situs\s+judi', 'judi\s+online', 'bandar\s+togel', 'daftar\s+slot', 'link\s+alternatif', 'anti\s*rungkad']
+weak = ['deposit', 'withdraw', 'bonus\s+new\s+member', 'jackpot', 'scatter', 'pragmatic', 'depo\s*\d+', 'pola\s+gacor']
+negative = ['edukasi', 'bahaya\s+judi', 'kominfo', 'polisi', 'berita', 'kecanduan']
+min_score = 7
+curate_score = 9
+
+# ── Kurasi oleh radar (EazyWeb) ────────────────────────────────
+[curate]
+intake = ["film", "porn", "comic", "anime", "judol"]   # kategori yang boleh dibaca radar dari Candidates/
+
+# Ke file mana domain yang LOLOS kurasi ditulis (format ||domain^).
+# Ubah sesuai sumber daftarmu, mis. komik → file IsekaiWall milikmu.
+[targets]
+judol = "EazyBlock.txt"
+film = "Curated/film.txt"
+porn = "Curated/porn.txt"
+comic = "Curated/comic.txt"
+anime = "Curated/anime.txt"
+
+# ── Query pencarian ────────────────────────────────────────────
+# {t} diisi bergiliran dari fillers; {year} = tahun berjalan.
+[queries.film]
+templates = ["nonton {t} sub indo", "streaming {t} gratis", "download film {t} sub indo", "{t} full movie sub indo {year}"]
+fillers = ["film horor", "film action", "film korea", "drama korea", "film barat", "film india", "film thailand", "film anime", "film terbaru", "film komedi", "film romantis", "serial netflix", "drakor ongoing", "film jepang", "film mandarin", "film indonesia", "film thriller", "film perang", "film animasi", "film superhero"]
+plain = ["situs nonton film gratis {year}", "web streaming film terbaru sub indo", "nonton drama korea sub indo terbaru", "download film bluray sub indo"]
+brands = ["lk21", "layarkaca21", "indoxxi", "rebahin", "dunia21", "pusatfilm21", "juragan film", "dutafilm", "filmapik", "bioskopkeren"]
+
+[queries.porn]
+templates = ["{t} terbaru {year}", "situs {t} indo"]
+fillers = ["video dewasa", "streaming dewasa 18+", "jav sub indo", "hentai sub indo", "konten dewasa viral"]
+plain = ["situs video dewasa indo", "nonton video dewasa gratis"]
+brands = []
+
+[queries.comic]
+templates = ["baca {t} online", "{t} sub indo terbaru", "baca {t} gratis bahasa indonesia"]
+fillers = ["komik", "manhwa", "manga", "manhua", "pornhwa", "doujin", "webtoon", "komik romantis", "manhwa action", "manhwa fantasy", "komik horor", "manga isekai", "manhwa dewasa", "komik terbaru", "manhwa raw", "doujin indo"]
+plain = ["situs baca komik gratis {year}", "web baca manhwa sub indo update tiap hari"]
+brands = ["komikcast", "shinigami", "kiryuu", "doujindesu", "westmanga", "bacakomik", "komiku", "mangaku"]
+
+[queries.anime]
+templates = ["nonton {t} sub indo", "download {t} batch sub indo", "streaming {t} gratis"]
+fillers = ["anime terbaru", "anime ongoing", "anime action", "anime isekai", "anime romance", "anime romcom", "donghua", "anime movie", "anime fantasy"]
+plain = ["situs nonton anime sub indo {year}"]
+brands = ["samehadaku", "otakudesu", "kusonime", "nimegami", "oploverz", "anoboy", "animeindo"]
+
+[queries.judol]
+templates = ["{t} hari ini", "daftar {t} {year}"]
+fillers = ["slot gacor", "rtp slot", "situs togel", "slot maxwin", "link alternatif slot", "bocoran slot gacor", "situs judi online", "slot server thailand"]
+plain = []
+brands = []
+
+# Perburuan mirror: "<merek> <kata>" untuk situs yang terindeks / merek di atas.
+[queries.mirror]
+templates = ["{b} link alternatif", "{b} domain baru", "{b} mirror", "{b} situs resmi terbaru"]
