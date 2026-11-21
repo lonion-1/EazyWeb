@@ -55,3 +55,7 @@ url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_do
 [[web_sources]]
 name = "whaleindex_judol_rolling"
 url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/judol_domains_rolling.jsonl"
+
+[[cache]]
+name = "whaleindex_phishing_latest"
+url = "https://raw.githubusercontent.com/lonion-1/WhaleIndex/main/feeds/phishing_domains_latest.txt"
