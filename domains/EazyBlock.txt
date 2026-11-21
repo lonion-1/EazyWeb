@@ -1,6 +1,6 @@
 # Title: EazyWhale Isekai Wall (personalDNSfilter Wildcard)
-# Version: 2026.11.21.1317
-# Count: 107
+# Version: 2026.11.21.1543
+# Count: 110
 
 388heroky.cc
 *.388heroky.cc
@@ -60,6 +60,8 @@ dana.top
 *.dana.top
 dana.vip
 *.dana.vip
+diantogel.net
+*.diantogel.net
 emas5000.biz
 *.emas5000.biz
 emas5000zr.site
@@ -96,6 +98,8 @@ gcash.xyz
 *.gcash.xyz
 gcsh.com
 *.gcsh.com
+h1-poker-rikvip-bi-quyet-len-trinh-cung--0d52a0.pages.dev
+*.h1-poker-rikvip-bi-quyet-len-trinh-cung--0d52a0.pages.dev
 haarstudioimagevanalebeek.com
 *.haarstudioimagevanalebeek.com
 hs-scripts.com
@@ -196,6 +200,8 @@ scanrw4d.com
 *.scanrw4d.com
 slotgacor--2025.pages.dev
 *.slotgacor--2025.pages.dev
+syairtogelx.com
+*.syairtogelx.com
 togelonline--moblie-version.pages.dev
 *.togelonline--moblie-version.pages.dev
 touchngo.biz.id

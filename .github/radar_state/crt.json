@@ -15,18 +15,18 @@
    "soft_days": []
   },
   "id|%gacorslot%": {
-   "cool_until": 1795273238,
-   "fails": 2,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795275462,
+   "soft_days": []
   },
   "id|%judionline%": {
-   "cool_until": 1795273238,
-   "fails": 2,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795275462,
+   "soft_days": []
   },
   "id|%judol%": {
    "cool_until": 0,
@@ -57,11 +57,11 @@
    "soft_days": []
   },
   "id|%polagacor%": {
-   "cool_until": 1795273238,
-   "fails": 2,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795275462,
+   "soft_days": []
   },
   "id|%rtpslot%": {
    "cool_until": 0,
@@ -218,11 +218,18 @@
    "soft_days": []
   },
   "vn|%nohu%": {
-   "cool_until": 1795275035,
-   "fails": 1,
-   "soft_days": [
-    "2026-11-21"
-   ]
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795275462,
+   "soft_days": []
+  },
+  "vn|%rikvip%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795275462,
+   "soft_days": []
   },
   "vn|%sunwin%": {
    "cool_until": 1795276837,
@@ -232,8 +239,8 @@
    ]
   },
   "vn|%taixiu%": {
-   "cool_until": 1795275035,
-   "fails": 1,
+   "cool_until": 1795289862,
+   "fails": 2,
    "soft_days": [
     "2026-11-21"
    ]

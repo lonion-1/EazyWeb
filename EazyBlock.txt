@@ -2,8 +2,8 @@
 ! License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ! Maintainer: EazyWhale
 ! Expires: 1 hours
-! Version: 2026.11.21.1255
-! Total Rules: 109
+! Version: 2026.11.21.1543
+! Total Rules: 110
 ! --------------------------------------------------
 
 ||388heroky.cc^
@@ -35,6 +35,7 @@
 ||dana.my.id^
 ||dana.top^
 ||dana.vip^
+||diantogel.net^
 ||emas5000.biz^
 ||emas5000zr.site^
 ||enakslotmw.cc^
@@ -53,6 +54,7 @@
 ||gcash.vip^
 ||gcash.xyz^
 ||gcsh.com^
+||h1-poker-rikvip-bi-quyet-len-trinh-cung--0d52a0.pages.dev^
 ||haarstudioimagevanalebeek.com^
 ||hs-scripts.com^
 ||indo1.sbs^
@@ -103,6 +105,7 @@
 ||rakeback.com^
 ||scanrw4d.com^
 ||slotgacor--2025.pages.dev^
+||syairtogelx.com^
 ||togelonline--moblie-version.pages.dev^
 ||touchngo.biz.id^
 ||touchngo.com^

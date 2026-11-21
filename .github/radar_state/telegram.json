@@ -1,31 +1,31 @@
 {
  "channels": {
   "BENUA88_SlotOnline": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "Cellapino": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "DrachinOngoing_DAY": {
@@ -35,10 +35,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 5347,
-   "last_scan": 1795269637,
-   "scans": 12,
+   "last_scan": 1795275462,
+   "scans": 13,
    "soft_days": [],
    "source": "snowball"
   },
@@ -49,10 +49,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 992,
-   "last_scan": 1795269637,
-   "scans": 11,
+   "last_scan": 1795275462,
+   "scans": 12,
    "soft_days": [],
    "source": "snowball"
   },
@@ -63,53 +63,53 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 992,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
   "MEJAVIP_Slot_Gacor_Anti_Rungkad": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "MELEDAK_BESTIE_KU_LANGSUNG_GAS": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "MULTIBET88_Link_Situs_Slot": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "Manga_Campus": {
@@ -119,25 +119,25 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 1553,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
   "Manhwa_Loverz": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "Manhwadesu_Official": {
@@ -147,95 +147,95 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 9,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
   "ManhwaheavenAOM": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "Manhwaland": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "Official_1win_kanal": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "One_Piece_Sub_Indo_New": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "SBOBET88_Resmi": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "agent328bet": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "judol",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "agent828bet": {
@@ -245,10 +245,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 78,
-   "last_scan": 1795269637,
-   "scans": 21,
+   "last_scan": 1795275462,
+   "scans": 22,
    "soft_days": [],
    "source": "directory"
   },
@@ -259,52 +259,52 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 9128,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
   "badthinkingdiaryend": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "doujindesu": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "drkrongoing": {
    "cool_until": 0,
-   "dry_runs": 3,
+   "dry_runs": 4,
    "fails": 0,
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
-   "last_post": 5057,
-   "last_scan": 1795269637,
-   "scans": 12,
+   "last_ok": 1795275462,
+   "last_post": 5060,
+   "last_scan": 1795275462,
+   "scans": 13,
    "soft_days": [],
    "source": "snowball"
   },
@@ -315,81 +315,81 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "judol",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 666,
-   "last_scan": 1795269637,
-   "scans": 12,
+   "last_scan": 1795275462,
+   "scans": 13,
    "soft_days": [],
    "source": "snowball"
   },
   "honeybearblmanhwa": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "kiryuu_id": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "komik_one_piece_indo": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "komikbl_indo": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "komikcast": {
-   "cool_until": 1795273238,
+   "cool_until": 1795304262,
    "dry_runs": 0,
-   "fails": 2,
+   "fails": 3,
    "hard_days": [
     "2026-11-21"
    ],
    "harvested": 0,
    "kind": "comic",
    "last_post": 0,
-   "last_scan": 1795258838,
-   "scans": 2,
+   "last_scan": 1795275462,
+   "scans": 3,
    "source": "seed"
   },
   "komikpremium": {
@@ -399,10 +399,10 @@
    "hard_days": [],
    "harvested": 149,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 2121,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
@@ -413,10 +413,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 1826,
-   "last_scan": 1795269637,
-   "scans": 13,
+   "last_scan": 1795275462,
+   "scans": 14,
    "soft_days": [],
    "source": "seed"
   },
@@ -427,10 +427,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 342,
-   "last_scan": 1795269637,
-   "scans": 11,
+   "last_scan": 1795275462,
+   "scans": 12,
    "soft_days": [],
    "source": "seed"
   },
@@ -441,10 +441,10 @@
    "hard_days": [],
    "harvested": 16,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 303,
-   "last_scan": 1795269637,
-   "scans": 11,
+   "last_scan": 1795275462,
+   "scans": 12,
    "soft_days": [],
    "source": "seed"
   },
@@ -455,10 +455,10 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 2,
-   "last_scan": 1795269637,
-   "scans": 11,
+   "last_scan": 1795275462,
+   "scans": 12,
    "soft_days": [],
    "source": "seed"
   },
@@ -469,24 +469,24 @@
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
+   "last_ok": 1795275462,
    "last_post": 316,
-   "last_scan": 1795269637,
-   "scans": 15,
+   "last_scan": 1795275462,
+   "scans": 16,
    "soft_days": [],
    "source": "directory"
   },
   "manhwa_university_updates": {
    "cool_until": 0,
-   "dry_runs": 2,
+   "dry_runs": 3,
    "fails": 0,
    "hard_days": [],
    "harvested": 0,
    "kind": "comic",
-   "last_ok": 1795269637,
-   "last_post": 19506,
-   "last_scan": 1795269637,
-   "scans": 11,
+   "last_ok": 1795275462,
+   "last_post": 19514,
+   "last_scan": 1795275462,
+   "scans": 12,
    "soft_days": [],
    "source": "seed"
   },
@@ -673,10 +673,11 @@
    "source": "seed"
   }
  },
- "disc_cursor": 8,
+ "disc_cursor": 2,
  "queue": {},
  "rejected": {
   "a_regressor_tale_of_cultivation": 1795240895,
+  "a_space_marine_gets_a_status_win": 1795275462,
   "aaru_2075": 1795240895,
   "abang_sincan138": 1792908095,
   "abangbumi": 1795267835,
@@ -751,6 +752,7 @@
   "filmdrakorsubindo": 1792908095,
   "filmdramamouse": 1792908095,
   "filmkdramasubindorrf": 1792908095,
+  "flashing_genius_at_magic_academy": 1795275462,
   "forumslotpragmatic": 1792908095,
   "fxt_indo": 1792908095,
   "gamefifaslot88": 1792908095,

@@ -1,72 +1,99 @@
 {
  "proposals": {
+  "http://enable-javascript.com/": {
+   "src": "mirror:pinterest.com",
+   "tries": 0,
+   "ts": 1795275462
+  },
   "http://otakumode.com/": {
    "src": "mirror:myanimelist.net",
-   "tries": 0,
-   "ts": 1795269637
-  },
-  "http://www.sunrise-inc.co.jp/": {
-   "src": "mirror:myanimelist.net",
-   "tries": 0,
+   "tries": 1,
    "ts": 1795269637
   },
   "https://anidb.net/": {
    "src": "mirror:myanimelist.net",
-   "tries": 0,
+   "tries": 1,
    "ts": 1795269637
   },
-  "https://frieren-anime.jp/": {
-   "src": "mirror:myanimelist.net",
-   "tries": 0,
-   "ts": 1795269637
-  },
-  "https://pakdeslotmaxwin.com/": {
-   "src": "mirror:komikstation.org",
-   "tries": 0,
-   "ts": 1795267835
-  },
-  "https://pinterest.com/": {
-   "src": "mirror:komikstation.org",
-   "tries": 0,
-   "ts": 1795267835
-  },
-  "https://stats.uptimerobot.com/": {
+  "https://cover.eromanga.cfd/": {
    "src": "mirror:crotpedia.net",
    "tries": 0,
-   "ts": 1795267835
+   "ts": 1795275462
   },
-  "https://www.anime-planet.com/": {
+  "https://ff.alwaysecuredhub.com/": {
+   "src": "redirect:komikstation.co",
+   "tries": 0,
+   "ts": 1795275462
+  },
+  "https://jaga.link/": {
+   "src": "mirror:pakdeslotmaxwin.com",
+   "tries": 0,
+   "ts": 1795275462
+  },
+  "https://manga.nicovideo.jp/": {
    "src": "mirror:komikaido.com",
    "tries": 0,
-   "ts": 1795267835
+   "ts": 1795275462
+  },
+  "https://pakdeslott.link/": {
+   "src": "mirror:pakdeslotmaxwin.com",
+   "tries": 0,
+   "ts": 1795275462
+  },
+  "https://www.anime-mao.com/": {
+   "src": "mirror:sunrise-inc.co.jp",
+   "tries": 0,
+   "ts": 1795275462
   },
   "https://www.animenewsnetwork.com/": {
    "src": "mirror:myanimelist.net",
    "tries": 0,
    "ts": 1795269637
   },
+  "https://www.lovelive-anime.jp/": {
+   "src": "mirror:sunrise-inc.co.jp",
+   "tries": 0,
+   "ts": 1795275462
+  },
   "https://www.mirrored.to/": {
    "src": "mirror:sektedoujin.cc",
    "tries": 0,
    "ts": 1795269637
+  },
+  "https://www.webtoons.com/": {
+   "src": "mirror:komikaido.com",
+   "tries": 0,
+   "ts": 1795275462
   }
  },
  "rejected": {
   "https://anilist.co/": 1795248031,
   "https://manhwaland.io/": 1795265483,
   "https://mediafire.com/": 1795263492,
-  "https://sektejav.cc/": 1795265483
+  "https://sektejav.cc/": 1795265483,
+  "https://stats.uptimerobot.com/": 1795275462
  },
  "retired": {},
  "sites": {
+  "http://www.sunrise-inc.co.jp/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 0,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:myanimelist.net"
+  },
   "https://11.ikiru.wtf/": {
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -75,9 +102,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
   },
@@ -86,9 +113,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -97,9 +124,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -108,20 +135,31 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:shiroku.web.id"
+  },
+  "https://frieren-anime.jp/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 0,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:myanimelist.net"
   },
   "https://gacor.vin/": {
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:link.manhwaland.land"
   },
@@ -130,9 +168,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
   },
@@ -141,9 +179,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -152,9 +190,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
   },
@@ -162,10 +200,10 @@
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
-   "hits": 6,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "hits": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -174,9 +212,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikstation.org"
   },
@@ -185,9 +223,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 2,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -209,9 +247,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 5,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -220,9 +258,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -231,9 +269,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -242,9 +280,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
   },
@@ -253,20 +291,42 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 1,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 2,
    "soft_days": [],
    "source": "mirror:komikaido.com"
+  },
+  "https://pakdeslotmaxwin.com/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 3,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:komikstation.org"
+  },
+  "https://pinterest.com/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 0,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:komikstation.org"
   },
   "https://sektedoujin.cc/": {
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -275,9 +335,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
@@ -286,20 +346,31 @@
    "fails": 0,
    "hard_days": [],
    "hits": 1,
-   "last_ok": 1795269637,
-   "last_scan": 1795269637,
-   "scans": 7,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 8,
    "soft_days": [],
    "source": "legacy"
   },
+  "https://www.anime-planet.com/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 0,
+   "last_ok": 1795275462,
+   "last_scan": 1795275462,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:komikaido.com"
+  },
   "https://www.mangaupdates.com/": {
-   "cool_until": 1795275035,
-   "fails": 1,
+   "cool_until": 1795289862,
+   "fails": 2,
    "hard_days": [],
    "hits": 0,
    "last_ok": 1795265483,
-   "last_scan": 1795267835,
-   "scans": 3,
+   "last_scan": 1795275462,
+   "scans": 4,
    "soft_days": [
     "2026-11-21"
    ],
