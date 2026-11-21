@@ -146,6 +146,8 @@ CRT_QUERIES = {
         "%rtp live%", "%free spins%", "%bonus deposit%",
         "%link alternatif%", "%situs resmi slot%",
         "%jackpot slot%", "%casino online%",
+    ],
+   }
 ]
 
 JUDOL_TG_QUERIES = [
