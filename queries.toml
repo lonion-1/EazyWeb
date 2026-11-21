@@ -1,0 +1,48 @@
+# ════════════════════════════════════════════════════════════════
+#  QUERY PENCARIAN — crt.sh (Certificate Transparency) & direktori Telegram
+# ════════════════════════════════════════════════════════════════
+
+# Pola crt.sh. % = wildcard. ASCII saja. Tiap kata di sini SEBAIKNYA juga
+# ada di [judol].strong (keywords.toml), kalau tidak hasilnya akan disaring.
+[crt.queries]
+id = [
+  "%slotgacor%", "%gacorslot%", "%judol%", "%judionline%", "%maxwin%",
+  "%mahjongways%", "%rtpslot%", "%slotrtp%", "%antirungkad%", "%polagacor%",
+  "%serverthailand%", "%linkalternatif%", "%togelonline%", "%bandartogel%",
+]
+my_sg_bn = [
+  "%mega888%", "%pussy888%", "%918kiss%", "%scr888%", "%xe88%",
+  "%judislot%", "%kasinoonline%", "%4dtoto%", "%toto4d%", "%lotto4d%",
+  "%gdlotto%", "%magnum4d%",
+]
+vn = [
+  "%nohu%", "%taixiu%", "%nhacai%", "%lodeonline%", "%gamebai%",
+  "%cacuoc%", "%sunwin%", "%go88%", "%rikvip%",
+]
+ph = [
+  "%jili77%", "%jili88%", "%jili777%", "%jilislot%", "%sabong%",
+  "%esabong%", "%onlinecasinoph%", "%phcasino%",
+]
+th_kh_la_mm = [
+  "%slotthailand%", "%thaislot%", "%pgslot%", "%jokerslot%", "%xo88%",
+  "%ufabet%", "%sa168%", "%sexybaccarat%", "%shan234%", "%myanmarcasino%",
+  "%khmercasino%",
+]
+asean_regional = [
+  "%bk8%", "%aw8%", "%w88%", "%fun88%", "%188bet%", "%m88%", "%dafa888%",
+  "%sbobet%", "%cmd368%", "%onlinecasino%", "%slotonline%", "%jackpotslot%",
+]
+
+# Kata pencarian direktori Telegram (lyzem.com) untuk menemukan kanal baru.
+[telegram_discovery]
+judol = ["slot gacor", "situs judol", "link alternatif slot", "rtp slot hari ini", "bocoran slot gacor"]
+comic = ["manhwa sub indo", "baca manhwa", "pornhwa indo", "doujin sub indo", "komik sub indo"]
+
+# Daftar blokir pihak lain: domain di sini dianggap SUDAH DIKENAL (tidak ditambah lagi).
+[[cache]]
+name = "WhaleList IsekaiWall"
+url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-IsekaiWall.txt"
+
+[[cache]]
+name = "WhaleList Security"
+url = "https://raw.githubusercontent.com/lonion-1/WhaleList/main/EazyLife-Security.txt"
