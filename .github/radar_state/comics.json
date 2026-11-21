@@ -2,27 +2,18 @@
  "proposals": {
   "https://manhwaland.io/": {
    "src": "mirror:link.manhwaland.land",
-   "tries": 2,
-   "ts": 1795240895
-  },
-  "https://mediafire.com/": {
-   "src": "tg:@komikpremium",
    "tries": 3,
    "ts": 1795240895
   },
   "https://sektejav.cc/": {
    "src": "mirror:sektedoujin.cc",
-   "tries": 2,
+   "tries": 3,
    "ts": 1795240895
-  },
-  "https://www.mangaupdates.com/": {
-   "src": "mirror:komikaido.com",
-   "tries": 0,
-   "ts": 1795258838
   }
  },
  "rejected": {
-  "https://anilist.co/": 1795248031
+  "https://anilist.co/": 1795248031,
+  "https://mediafire.com/": 1795263492
  },
  "retired": {},
  "sites": {
@@ -31,9 +22,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -42,9 +33,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -53,9 +44,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -64,9 +55,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -74,10 +65,10 @@
    "cool_until": 0,
    "fails": 0,
    "hard_days": [],
-   "hits": 3,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "hits": 4,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -86,9 +77,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 2,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -97,9 +88,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -108,9 +99,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 5,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -119,9 +110,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -130,9 +121,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -141,9 +132,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -152,9 +143,9 @@
    "fails": 0,
    "hard_days": [],
    "hits": 0,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
   },
@@ -163,11 +154,22 @@
    "fails": 0,
    "hard_days": [],
    "hits": 1,
-   "last_ok": 1795258838,
-   "last_scan": 1795258838,
-   "scans": 3,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 4,
    "soft_days": [],
    "source": "legacy"
+  },
+  "https://www.mangaupdates.com/": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "hits": 0,
+   "last_ok": 1795263492,
+   "last_scan": 1795263492,
+   "scans": 1,
+   "soft_days": [],
+   "source": "mirror:komikaido.com"
   }
  },
  "version": 3

@@ -7,6 +7,13 @@
    "last_ok": 1795258838,
    "soft_days": []
   },
+  "id|%bandartogel%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
+   "soft_days": []
+  },
   "id|%gacorslot%": {
    "cool_until": 1795273238,
    "fails": 2,
@@ -26,6 +33,13 @@
    "fails": 0,
    "hard_days": [],
    "last_ok": 1795258838,
+   "soft_days": []
+  },
+  "id|%linkalternatif%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
    "soft_days": []
   },
   "id|%mahjongways%": {
@@ -56,6 +70,13 @@
    "last_ok": 1795248031,
    "soft_days": []
   },
+  "id|%serverthailand%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
+   "soft_days": []
+  },
   "id|%slotgacor%": {
    "cool_until": 0,
    "fails": 0,
@@ -68,6 +89,27 @@
    "fails": 0,
    "hard_days": [],
    "last_ok": 1795248031,
+   "soft_days": []
+  },
+  "id|%togelonline%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
+   "soft_days": []
+  },
+  "my_sg_bn|%mega888%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
+   "soft_days": []
+  },
+  "my_sg_bn|%pussy888%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795263492,
    "soft_days": []
   }
  },
