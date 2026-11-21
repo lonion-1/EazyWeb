@@ -18,7 +18,7 @@ Kumpulan daftar blokir garis depan untuk menangkap domain judi online (*judol*),
 
 | File | Format | Aturan Aktif | Ukuran | Raw URL |
 | :--- | :--- | :--- | :--- | :--- |
-| **`EazyBlock.txt`** | Adblock (`\|\|domain^`) | <!-- COUNT:EazyBlock.txt -->108<!-- /COUNT --> | <!-- SIZE:EazyBlock.txt -->2 KB<!-- /SIZE --> | `https://raw.githubusercontent.com/lonion-1/EazyWeb/blocker/EazyBlock.txt` |
+| **`EazyBlock.txt`** | Adblock (`\|\|domain^`) | <!-- COUNT:EazyBlock.txt -->107<!-- /COUNT --> | <!-- SIZE:EazyBlock.txt -->2 KB<!-- /SIZE --> | `https://raw.githubusercontent.com/lonion-1/EazyWeb/blocker/EazyBlock.txt` |
 | **`domains/EazyBlock.txt`** | Wildcard (`*.domain`) | *Sama* | *Otomatis* | `https://raw.githubusercontent.com/lonion-1/EazyWeb/blocker/domains/EazyBlock.txt` |
 
 > **Pengguna `personalDNSfilter`?** Gunakan tautan versi *wildcard* (`domains/EazyBlock.txt`) pada baris kedua.

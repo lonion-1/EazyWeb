@@ -1,6 +1,6 @@
 # Title: EazyWhale Isekai Wall (personalDNSfilter Wildcard)
-# Version: 2026.11.21.1303
-# Count: 108
+# Version: 2026.11.21.1317
+# Count: 107
 
 388heroky.cc
 *.388heroky.cc
@@ -60,8 +60,6 @@ dana.top
 *.dana.top
 dana.vip
 *.dana.vip
-dana.xyz
-*.dana.xyz
 emas5000.biz
 *.emas5000.biz
 emas5000zr.site
