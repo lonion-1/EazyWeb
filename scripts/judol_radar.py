@@ -80,12 +80,6 @@ COMIC_SEED_URLS = [
     "https://doujin.desu.xxx/",
     "https://shinigami.to/",
     "https://ikiru.id/",
-    "https://sektedoujin.cc/",
-    "https://crotpedia.net/",
-    "https://link.manhwaland.land/",
-    "https://komiktap.info/",
-    "https://komiku.org/",
-    "https://mangaku.lol/",
 ]
 
 CRT_QUERIES = [
@@ -109,14 +103,14 @@ COMIC_TG_QUERIES = [
     "https://lyzem.com/search?q=doujin+sub+indo",
 ]
 
-MAX_SEEN_POSTS = 4000
-MAX_ACTIVE_CHANNELS = 55
-MAX_COMIC_SITES = 45
-MAX_VERIFY_PER_RUN = 20
+MAX_SEEN_POSTS = 5000
+MAX_ACTIVE_CHANNELS = 60
+MAX_COMIC_SITES = 60
+MAX_VERIFY_PER_RUN = 40
 MAX_REJECTED = 700
 MAX_DRY_RUNS = 20
 MAX_MISSES = 2
-MAX_NEW_DOMAINS_PER_RUN = 150
+MAX_NEW_DOMAINS_PER_RUN = 250
 
 RE_DOMAIN = re.compile(
     r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:xn--[a-z0-9-]{1,59}|[a-z]{2,63})$"
@@ -575,6 +569,10 @@ def crawl_comic_banners(
                 comic_sites.pop(site_url, None)
                 blocked_urls.add(site_url)
                 state["blocked_urls"].append(site_url)
+            return []
+
+        elif 500 <= status < 600:
+            print(f"[SKIP-{status}] {site_url} mengalami gangguan server ({status}), dilewati sementara.")
             return []
 
         meta["misses"] = 0
