@@ -127,7 +127,11 @@ def main(argv=None) -> int:
     st_crt = Store("crt", crt.DEFAULT_STATE).load()
     st_pend = Store("pending", pipeline.DEFAULT_STATE).load()
     migrate_legacy(st_tg, st_cm, ts, T)
-    
+
+    guarded("feeds", st_feeds, lambda dl: feeds.run(ctx, st_feeds.data, dl), 12, 2)
+    guarded("telegram", st_tg, lambda dl: telegram.run(ctx, st_tg.data, dl), 10, 4)
+    guarded("comics", st_cm, lambda dl: comics.run(ctx, st_cm.data, dl, incoming), 6, 4)
+    guarded("crt", st_crt, lambda dl: crt.run(ctx, st_crt.data, dl), 2, 2)
     guarded("telegram", st_tg, lambda dl: telegram.run(ctx, st_tg.data, dl), 10, 4)
     guarded("comics", st_cm, lambda dl: comics.run(ctx, st_cm.data, dl, incoming), 6, 4)
     guarded("crt", st_crt, lambda dl: crt.run(ctx, st_crt.data, dl), 2, 2)
