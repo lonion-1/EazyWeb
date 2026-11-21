@@ -57,7 +57,11 @@ context_regex = [
   'pragmatic\s*play', 'pg\s*soft', 'gates\s*of\s*olympus', 'sweet\s*bonanza',
   'togel\s*online', 'bandar\s*togel', 'depo\s*\d+', 'deposit\s*pulsa',
   'withdraw', 'bonus\s*new\s*member', 'link\s*alternatif', 'situs\s*judol',
-  'situs\s*slot', 'daftar\s*slot',
+  'situs\s*slot', 'daftar\s*slot', 'depo(?:sit)?\s*(?:dana|ovo|gopay|qris|pulsa)',
+  '(?:dana|ovo|gopay|qris)\s*tanpa\s*potongan',
+  'wd\s*kilat', 'proses\s*wd', 'bo\s*terpercaya', 'situs\s*resmi\s*slot',
+  'akun\s*pro\s*(?:thailand|kamboja|vietnam|server)',
+  'modal\s*receh', 'auto\s*maxwin', 'sensational', 'freespin', 'buy\s*spin',
 ]
 
 # Kata pada teks/alt/title/nama-file BANNER iklan di situs komik.
