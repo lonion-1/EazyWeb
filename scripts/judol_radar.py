@@ -82,74 +82,40 @@ COMIC_SEED_URLS = [
     "https://ikiru.id/",
 ]
 
-# Tujuan: moderasi/pemblokiran konten judi online di ASEAN.
-CRT_QUERIES = {
-    "id": [  # Indonesia
-        "%slotgacor%", "%slot gacor%", "%slot-gacor%",
-        "%judol%", "%judi online%", "%judi slot%", "%bandar judi%",
-        "%maxwin%", "%mahjongways%", "%mahjong ways%",
-        "%rtpslot%", "%rtp slot%", "%rtp live%",
-        "%anti rungkad%", "%pola gacor%", "%gampang maxwin%",
-        "%server thailand%", "%situs slot%", "%link alternatif slot%",
-        "%deposit pulsa%", "%slot online%", "%togel online%",
+# Daftar Query Certificate Transparency (crt.sh) Cakupan ASEAN (ASCII Domain-Safe)
+CRT_QUERIES_ASEAN = {
+    "id": [
+        "%slotgacor%", "%gacorslot%", "%judol%", "%judionline%",
+        "%maxwin%", "%mahjongways%", "%rtpslot%", "%slotrtp%",
+        "%antirungkad%", "%polagacor%", "%serverthailand%",
+        "%linkalternatif%", "%togelonline%", "%bandartogel%",
     ],
-
-    "th": [  # Thailand
-        "%สล็อต%", "%สล็อตเว็บตรง%", "%เว็บตรง%",
-        "%บาคาร่า%", "%คาสิโน%", "%ฟรีเครดิต%",
-        "%เกมสล็อต%", "%slot thailand%", "%slot online thailand%",
+    "my_sg_bn": [  # Malaysia, Singapura, Brunei
+        "%mega888%", "%pussy888%", "%918kiss%", "%scr888%", "%xe88%",
+        "%judionline%", "%judislot%", "%kasinoonline%", "%4dtoto%",
+        "%toto4d%", "%lotto4d%", "%gdlotto%", "%magnum4d%",
     ],
-
-    "ph": [  # Filipina
-        "%slot rtp philippines%", "%philippines casino%",
-        "%online casino ph%", "%pogo%", "%jili%",
-        "%slot online ph%", "%casino online ph%",
-    ],
-
     "vn": [  # Vietnam
-        "%cá cược%", "%nổ hũ%", "%tài xỉu%",
-        "%lô đề%", "%nhà cái%", "%casino trực tuyến%",
-        "%slot online%", "%game bài%",
+        "%nohu%", "%taixiu%", "%nhacai%", "%lodeonline%",
+        "%gamebai%", "%cacuoc%", "%sunwin%", "%go88%", "%rikvip%",
     ],
-
-    "my": [  # Malaysia
-        "%judi online%", "%slot online%", "%kasino%",
-        "%4d%", "%toto%", "%judi slot%", "%bandar toto%",
+    "ph": [  # Filipina
+        "%jili77%", "%jili88%", "%jili777%", "%jilislot%",
+        "%sabong%", "%esabong%", "%onlinecasinoph%", "%phcasino%",
     ],
-
-    "sg": [  # Singapura
-        "%online casino%", "%slot online%", "%4d%",
-        "%toto%", "%jackpot%", "%free spins%",
+    "th_kh_la_mm": [  # Thailand, Kamboja, Laos, Myanmar
+        "%slotthailand%", "%thaislot%", "%pgslot%", "%jokerslot%",
+        "%xo88%", "%ufabet%", "%sa168%", "%sexybaccarat%",
+        "%shan234%", "%myanmarcasino%", "%khmercasino%",
     ],
-
-    "bn": [  # Brunei
-        "%judi online%", "%kasino%", "%slot online%",
-        "%online casino%", "%4d%",
+    "asean_regional": [
+        "%bk8%", "%aw8%", "%w88%", "%fun88%", "%188bet%",
+        "%m88%", "%dafa888%", "%sbobet%", "%cmd368%",
+        "%onlinecasino%", "%slotonline%", "%jackpotslot%",
     ],
+}
 
-    "kh": [  # Kamboja
-        "%កាស៊ីណូ%", "%casino%", "%slot online%",
-        "%online casino%", "%jackpot%",
-    ],
-
-    "la": [  # Laos
-        "%ຄາສິໂນ%", "%casino%", "%slot online%",
-        "%online casino%",
-    ],
-
-    "mm": [  # Myanmar
-        "%ကာစီနို%", "%လောင်းကစား%", "%casino%",
-        "%slot online%", "%online casino%",
-    ],
-
-    "asean": [  # Regional / English
-        "%online casino%", "%slot online%", "%maxwin%",
-        "%rtp live%", "%free spins%", "%bonus deposit%",
-        "%link alternatif%", "%situs resmi slot%",
-        "%jackpot slot%", "%casino online%",
-    ],   
-  }
-]
+CRT_BATCH_PER_RUN = 6  # Putar 6 query per siklus agar crt.sh tidak timeout
 
 JUDOL_TG_QUERIES = [
     "https://lyzem.com/search?q=slot+gacor",
@@ -196,11 +162,19 @@ RE_COMIC_POST_CONTEXT = re.compile(
 
 RE_JUDOL_DOMAIN_STRONG = re.compile(
     r"(?i)("
-    r"slotgacor|gacorslot|rtpslot|slotrtp|maxwin|judol|judibola|agenbola|"
+    # Indonesia & Regional
+    r"slotgacor|gacorslot|rtpslot|slotrtp|maxwin|judol|judibola|judionline|agenbola|"
     r"togel|toto(?:4d|88|77|99|macau|hk|sgp|sdy)|(?:4d|88|77|99)toto|"
     r"mahjongways|olympus(?:88|77|1000)|zeus(?:88|77|1000)|"
     r"slot(?:77|88|99|138|303|365|5000|777)|gacor(?:77|88|99|303|5000)|"
-    r"pkvgames|idnplay|sbobet|sabungayam|situsjudi|bandarjudi"
+    r"pkvgames|idnplay|sbobet|sabungayam|situsjudi|bandarjudi|linkalternatif|"
+    # Malaysia / Singapura / Brunei
+    r"mega888|pussy888|918kiss|scr888|xe88|kasinoonline|gdlotto|"
+    # Vietnam
+    r"nohu|taixiu|nhacai|lodeonline|gamebai|cacuoc|sunwin|go88|rikvip|"
+    # Filipina / Thailand / Kamboja / Myanmar / ASEAN
+    r"jilislot|jili(?:77|88|777)|esabong|pgslot|jokerslot|ufabet|sexybaccarat|"
+    r"bk8|aw8|w88|fun88|188bet|dafa888|cmd368|onlinecasino|slotonline"
     r")"
 )
 
@@ -397,9 +371,24 @@ def punya_induk_di_cache(domain: str, cache: set[str]) -> bool:
     return False
 
 
-def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
+def fetch_crt_candidates(state: dict, allowlist: set[str], diabaikan: set[str]) -> set[str]:
+    """Jalur A: Sadapan Certificate Transparency (crt.sh) cakupan ASEAN dengan rotasi anti-timeout."""
+    all_queries = [
+        (region, q)
+        for region, q_list in CRT_QUERIES_ASEAN.items()
+        for q in q_list
+    ]
+    if not all_queries:
+        return set()
+
+    cursor = int(state.get("crt_cursor", 0)) % len(all_queries)
+    batch: list[tuple[str, str]] = []
+    for i in range(min(CRT_BATCH_PER_RUN, len(all_queries))):
+        batch.append(all_queries[(cursor + i) % len(all_queries)])
+    state["crt_cursor"] = (cursor + len(batch)) % len(all_queries)
+
     kandidat: set[str] = set()
-    for q in CRT_QUERIES:
+    for region, q in batch:
         url = f"https://crt.sh/?q={urllib.parse.quote(q)}&output=json"
         raw, _, _ = http_get(url, timeout=25)
         if not raw:
@@ -418,7 +407,7 @@ def fetch_crt_candidates(allowlist: set[str], diabaikan: set[str]) -> set[str]:
                     continue
                 if RE_JUDOL_DOMAIN_STRONG.search(dom):
                     kandidat.add(dom)
-        print(f"[CRT.SH] Query {q}: total kandidat sementara {len(kandidat)}")
+        print(f"[CRT.SH-{region.upper()}] Query {q}: total kandidat sementara {len(kandidat)}")
         time.sleep(1.5)
     return kandidat
 
@@ -723,7 +712,7 @@ def main() -> int:
     to_prune: list[tuple[str, str]] = []
 
     # 1. Jalur A: Certificate Transparency (crt.sh)
-    kandidat_mentah.update(fetch_crt_candidates(allowlist, diabaikan))
+    kandidat_mentah.update(fetch_crt_candidates(state, allowlist, diabaikan))
 
     # 2. Jalur B: Cari kanal Telegram baru DULUAN sebelum memindai!
     if len(channels_map) < MAX_ACTIVE_CHANNELS:
