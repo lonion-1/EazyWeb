@@ -82,6 +82,7 @@ COMIC_SEED_URLS = [
     "https://ikiru.id/",
 ]
 
+# Tujuan: moderasi/pemblokiran konten judi online di ASEAN.
 CRT_QUERIES = {
     "id": [  # Indonesia
         "%slotgacor%", "%slot gacor%", "%slot-gacor%",
@@ -146,8 +147,7 @@ CRT_QUERIES = {
         "%rtp live%", "%free spins%", "%bonus deposit%",
         "%link alternatif%", "%situs resmi slot%",
         "%jackpot slot%", "%casino online%",
-    ],
-   }
+    ],   
 ]
 
 JUDOL_TG_QUERIES = [
