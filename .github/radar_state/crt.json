@@ -182,8 +182,50 @@
    "last_ok": 1795265483,
    "soft_days": []
   },
+  "vn|%cacuoc%": {
+   "cool_until": 1795276837,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "vn|%gamebai%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795269637,
+   "soft_days": []
+  },
+  "vn|%go88%": {
+   "cool_until": 1795276837,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "vn|%lodeonline%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795269637,
+   "soft_days": []
+  },
+  "vn|%nhacai%": {
+   "cool_until": 0,
+   "fails": 0,
+   "hard_days": [],
+   "last_ok": 1795269637,
+   "soft_days": []
+  },
   "vn|%nohu%": {
    "cool_until": 1795275035,
+   "fails": 1,
+   "soft_days": [
+    "2026-11-21"
+   ]
+  },
+  "vn|%sunwin%": {
+   "cool_until": 1795276837,
    "fails": 1,
    "soft_days": [
     "2026-11-21"
